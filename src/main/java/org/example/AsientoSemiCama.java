@@ -6,7 +6,7 @@ public class AsientoSemiCama extends Asiento{
         super(fila, columna);
     }
     @Override
-    public void setHabilitado(boolean habilitado) {
+    public void setHabilitado(boolean habilitado){
         this.habilitado=habilitado;
     }
     @Override
