@@ -13,7 +13,6 @@ public class PanelDestinoIda extends JPanel {
     private JTextField Origen_Destino;
     private JLabel Introducir;
     private BufferedImage imagen;
-
     private String origendestino;
     public PanelDestinoIda(){
         this.setLayout(null);
@@ -33,15 +32,6 @@ public class PanelDestinoIda extends JPanel {
         Origen_Destino = new JTextField("Origen/Destino");
         Origen_Destino.setFont(font);
         Origen_Destino.setBounds(700,300,250,50);
-        ActionListener OrigenyDestino = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                origendestino=Origen_Destino.getText();
-                System.out.println(origendestino);
-
-            }
-        };
-        Origen_Destino.addActionListener(OrigenyDestino);
         add(Origen_Destino);
     }
     private BufferedImage cargarImagen(String ruta) {
@@ -61,17 +51,17 @@ public class PanelDestinoIda extends JPanel {
         }
     }
 
-    public String getOrigendestino() {
-        return origendestino;
+    public JTextField getOrigen_Destino() {
+        return Origen_Destino;
     }
 
     /**
-    public static void main (String[] args){
+     public static void main (String[] args){
         JFrame frame = new JFrame();
         frame.add(new PanelDestinoIda());
         frame.setTitle("Venta de pasajes");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(1000,1000);
         frame.setVisible(true);
-    }*/
+     }*/
 }
