@@ -1,8 +1,12 @@
 package org.example;
 
+import java.awt.image.BufferedImage;
+
+
 public abstract class Asiento {
 private String fila;
 private int columna;
+
 public Asiento(String fila, int columna){
     this.fila=fila;
     this.columna=columna;
@@ -16,4 +20,5 @@ public Asiento(String fila, int columna){
     public int getColumna() {
         return columna;
     }
+    public abstract BufferedImage getImagen();
 }
