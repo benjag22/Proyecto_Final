@@ -20,5 +20,6 @@ public Asiento(String fila, int columna){
     public int getColumna() {
         return columna;
     }
-    public abstract BufferedImage getImagen();
+    public abstract BufferedImage getImagenSeleccionada();
+    public abstract BufferedImage getImagenDeseleccionada();
 }

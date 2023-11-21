@@ -19,4 +19,5 @@ public class BusDosPisos extends Bus {
         listaTotalAsientos.addAll(listaAsientosPiso2);
         return listaTotalAsientos;
     }
+
 }

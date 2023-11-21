@@ -7,10 +7,12 @@ import java.io.IOException;
 
 public class AsientoSemiCama extends Asiento{
     private Boolean habilitado;
-    private BufferedImage imagen;
+    private BufferedImage imagenDeseleccionada;
+    private BufferedImage imagenSeleccionada;
     public AsientoSemiCama(String fila, int columna){
         super(fila, columna);
-        imagen=cargarImagen("resources/asiento_semicama.png");
+        this.imagenDeseleccionada=cargarImagen("src/main/resources/asiento_semicama.png");
+        this.imagenSeleccionada=cargarImagen("src/main/resources/asiento_semicama_elegida.png");
     }
     @Override
     public void setHabilitado(boolean habilitado){
@@ -24,12 +26,14 @@ public class AsientoSemiCama extends Asiento{
             return null;
         }
     }
-
     @Override
-    public BufferedImage getImagen() {
-        return imagen;
+    public BufferedImage getImagenDeseleccionada() {
+        return imagenDeseleccionada;
     }
-
+    @Override
+    public BufferedImage getImagenSeleccionada() {
+        return imagenSeleccionada;
+    }
     @Override
     public String toString() {
         return super.getFila()+super.getColumna();
