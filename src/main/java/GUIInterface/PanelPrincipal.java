@@ -19,6 +19,9 @@ public class PanelPrincipal extends JPanel implements MouseListener {
 
         destinoIda = new PanelDestinoIda();
         destinoIda.setVisible(false);
+
+        horarios = new PanelHorarios();
+        horarios.setVisible(false);
         ActionListener horaselec = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -28,23 +31,18 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         };
         destinoIda.getOrigen_Destino().addActionListener(horaselec);
 
-        horarios = new PanelHorarios();
-        horarios.setVisible(false);
-
         compra.getComprarAsiento().addMouseListener(this);
 
         setPreferredSize(new Dimension(1920,1080));
-
+        add(compra);
+        add(destinoIda);
+        add(horarios);
 
     }
 
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        add(compra);
-        add(destinoIda);
-        add(horarios);
-
         destinoIda.setLocation(0,0);
         compra.setLocation(0,0);
         horarios.setLocation(0,0);
@@ -60,13 +58,13 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         else if(horarios.isVisible()){
             horarios.paintComponent(g);
         }
-
     }
     @Override
     public void mouseClicked(MouseEvent e) {
         if(e.getComponent()==compra.getComprarAsiento()){
             compra.setVisible(false);
             destinoIda.setVisible(true);
+            revalidate();
             repaint();
         }
     }
@@ -92,13 +90,10 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     public static void main (String[] args){
         JFrame frame = new JFrame();
         PanelPrincipal panelPrincipal = new PanelPrincipal();
-        panelPrincipal.setBounds(0,0,1920,1080);
         frame.add(panelPrincipal);
         frame.setTitle("Venta de pasajes");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(1500,1020);
         frame.setVisible(true);
     }
-
-
 }
