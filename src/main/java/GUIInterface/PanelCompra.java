@@ -5,14 +5,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseAdapter;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import javax.sound.sampled.*;
 
 public class PanelCompra extends JPanel implements MouseListener {
     private JButton ComprarAsiento;
     private BufferedImage imagen;
     private boolean botoncomprar;
+    private Clip clipMouseOver;
+    private Clip clipClick;
     public PanelCompra(){
         this.setLayout(null);
         setPreferredSize(new Dimension(1920,1080));
@@ -74,13 +78,26 @@ public class PanelCompra extends JPanel implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+    private void cargarSonidos() {
+        try {
+            File audioFileMouseOver = new File("recursos/Sobre.wav");
+            AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(audioFileMouseOver);
+            clipMouseOver = AudioSystem.getClip();
+            clipMouseOver.open(audioStreamMouseOver);
 
-    public static void main (String[] args){
-        JFrame frame = new JFrame();
-        frame.add(new PanelCompra());
-        frame.setTitle("Venta de pasajes");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(1000,1000);
-        frame.setVisible(true);
+            File audioFileClick = new File("recursos/ClickExpendedor.wav");
+            AudioInputStream audioStreamClick = AudioSystem.getAudioInputStream(audioFileClick);
+            clipClick = AudioSystem.getClip();
+            clipClick.open(audioStreamClick);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void reproducirSonido(Clip clip) {
+        if (clip != null) {
+            clip.setMicrosecondPosition(0);
+            clip.start();
+        }
     }
 }

@@ -1,6 +1,7 @@
 package GUIInterface;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
@@ -8,11 +9,14 @@ import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import javax.sound.sampled.*;
 
 public class PanelHorarios extends JPanel implements ItemListener {
     private BufferedImage imagen;
     private JLabel Seleccionar;
     private String seleccion;
+    private Clip clipMouseOver;
+    private Clip clipClick;
     private JComboBox horarios;
 
 public PanelHorarios(){
@@ -60,20 +64,32 @@ public PanelHorarios(){
         }
     }
 
-     public static void main (String[] args){
-     JFrame frame = new JFrame();
-     frame.add(new PanelHorarios());
-     frame.setTitle("Venta de pasajes");
-     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-     frame.setSize(1000,1000);
-     frame.setVisible(true);
-     }
-
     @Override
     public void itemStateChanged(ItemEvent e) {
         if(e.getSource() == horarios){
             seleccion = horarios.getSelectedItem().toString();
             System.out.println(seleccion);
+        }
+    }
+    private void cargarSonidos() {
+        try {
+            File audioFileMouseOver = new File("recursos/Sobre.wav");
+            AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(audioFileMouseOver);
+            clipMouseOver = AudioSystem.getClip();
+            clipMouseOver.open(audioStreamMouseOver);
+
+            File audioFileClick = new File("recursos/ClickExpendedor.wav");
+            AudioInputStream audioStreamClick = AudioSystem.getAudioInputStream(audioFileClick);
+            clipClick = AudioSystem.getClip();
+            clipClick.open(audioStreamClick);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+    private void reproducirSonido(Clip clip) {
+        if (clip != null) {
+            clip.setMicrosecondPosition(0);
+            clip.start();
         }
     }
 }

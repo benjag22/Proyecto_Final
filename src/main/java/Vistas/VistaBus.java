@@ -1,7 +1,5 @@
 package Vistas;
 import javax.swing.*;
-
-import GUIInterface.PanelCompra;
 import org.example.Asiento;
 import org.example.Bus;
 import org.example.BusUnPiso;
