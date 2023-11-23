@@ -40,6 +40,11 @@ public class Horario {
         return new Horario(horarioInicio, horarioFin);
     }
 
+    @Override
+    public String toString() {
+        return horaInicio.toString();
+    }
+
     public static void main(String[] args) {
         Horario horarioAleatorio = Horario.generarHorarioAleatorio();
         System.out.println("Hora de inicio: " + horarioAleatorio.getHoraInicio());
