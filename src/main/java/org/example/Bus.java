@@ -9,11 +9,11 @@ public abstract class Bus {
 
     public abstract List<Asiento> getListaAsientos();
 
-    public void añadirAsientosPiso2(int cantidadAsientosCama, int cantidadAsientosSemicama) {
+    public void añadirAsientosPiso2() {
 
     }
 
-    public void añadirAsientosPiso1(int cantidadAsientosCama, int cantidadAsientosSemicama) {
+    public void añadirAsientosPiso1() {
 
     }
 

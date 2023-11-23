@@ -17,7 +17,7 @@ public class VistaBus extends JFrame {
         super();
         this.bus=bus;
         listaAsientos = new ArrayList<>();
-        bus.añadirAsientosPiso1(cantidad,30);
+        bus.añadirAsientosPiso1();
         setLayout(new FlowLayout());
 
         Asiento asiento=bus.getListaAsientos().remove(0);

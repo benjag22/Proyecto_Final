@@ -5,6 +5,7 @@ import java.util.List;
 
 public class BusUnPiso extends Bus {
     private List<Asiento> listaAsientosPiso1;
+    private final int pisos=1;
     public BusUnPiso() {
         super();
         listaAsientosPiso1 = new ArrayList<>();
@@ -16,12 +17,11 @@ public class BusUnPiso extends Bus {
         return new ArrayList<>(listaAsientosPiso1);
     }
     @Override
-    public void añadirAsientosPiso1(int cantidadAsientosCama, int cantidadAsientosSemicama) {
-        for(int i=1;i<=cantidadAsientosCama;i++){
-            listaAsientosPiso1.add(new AsientoSemiCama("A",i));
-        }
-        for(int i=1;i<=cantidadAsientosCama;i++){
-            listaAsientosPiso1.add(new AsientoSemiCama("A",i));
-        }
+    public void añadirAsientosPiso1() {
+
+    }
+
+    public int getPisos() {
+        return pisos;
     }
 }

@@ -38,4 +38,7 @@ public class AsientoCama extends Asiento{
     public String toString() {
         return super.getFila()+super.getColumna();
     }
+    public AsientoCama getThis(){
+        return this;
+    }
 }

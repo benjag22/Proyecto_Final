@@ -6,6 +6,7 @@ import java.util.List;
 public class BusDosPisos extends Bus {
     private ArrayList<Asiento> listaAsientosPiso1;
     private ArrayList<Asiento> listaAsientosPiso2;
+    private final int pisos=2;
 
     public BusDosPisos() {
         super();
@@ -20,20 +21,14 @@ public class BusDosPisos extends Bus {
         return listaTotalAsientos;
     }
     @Override
-    public void añadirAsientosPiso1(int cantidadAsientosCama, int cantidadAsientosSemicama) {
-        for(int i=1;i<=cantidadAsientosCama;i++){
-            listaAsientosPiso1.add(new AsientoCama("A",i));
-        }
-        for(int i=1;i<=cantidadAsientosSemicama;i++){
-            listaAsientosPiso1.add(new AsientoSemiCama("A",i));
-        }
+    public void añadirAsientosPiso1() {
+
     }
-    public void añadirAsientosPiso2(int cantidadAsientosCama, int cantidadAsientosSemicama) {
-        for(int i=1;i<=cantidadAsientosCama;i++){
-            listaAsientosPiso1.add(new AsientoCama("A",i));
-        }
-        for(int i=1;i<=cantidadAsientosSemicama;i++){
-            listaAsientosPiso1.add(new AsientoSemiCama("A",i));
-        }
+    public void añadirAsientosPiso2() {
+
+    }
+
+    public int getPisos() {
+        return pisos;
     }
 }
