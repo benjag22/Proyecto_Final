@@ -1,21 +1,28 @@
 package GUIInterface;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.*;
 
 public class PanelPrincipal extends JPanel implements MouseListener {
     private PanelDestinoIda destinoIda;
     private PanelCompra compra;
+    private Clip clipMouseOver;
+    private Clip clipClick;
     private PanelHorarios horarios;
 
     public PanelPrincipal(){
         this.addMouseListener(this);
         compra = new PanelCompra();
         compra.setVisible(true);
+        cargarSonidos();
 
         destinoIda = new PanelDestinoIda();
         destinoIda.setVisible(false);
@@ -61,6 +68,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
+        reproducirSonido(clipClick);
         if(e.getComponent()==compra.getComprarAsiento()){
             compra.setVisible(false);
             destinoIda.setVisible(true);
@@ -88,6 +96,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     }
 
     public static void main (String[] args){
+        MusicaFondo.reproducirMusicaFondo("main/java/resources/Fondo.wav");
         JFrame frame = new JFrame();
         PanelPrincipal panelPrincipal = new PanelPrincipal();
         frame.add(panelPrincipal);
@@ -95,5 +104,26 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(1500,1020);
         frame.setVisible(true);
+    }
+    private void cargarSonidos() {
+        try {
+            File audioFileMouseOver = new File("resources/Sobre.wav");
+            AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(audioFileMouseOver);
+            clipMouseOver = AudioSystem.getClip();
+            clipMouseOver.open(audioStreamMouseOver);
+
+            File audioFileClick = new File("resources/ClickExpendedor.wav");
+            AudioInputStream audioStreamClick = AudioSystem.getAudioInputStream(audioFileClick);
+            clipClick = AudioSystem.getClip();
+            clipClick.open(audioStreamClick);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+    private void reproducirSonido(Clip clip) {
+        if (clip != null) {
+            clip.setMicrosecondPosition(0);
+            clip.start();
+        }
     }
 }

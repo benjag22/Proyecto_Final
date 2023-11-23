@@ -19,6 +19,7 @@ public class PanelDestinoIda extends JPanel {
     private Clip clipMouseOver;
     private Clip clipClick;
     public PanelDestinoIda(){
+        cargarSonidos();
         this.setLayout(null);
         setPreferredSize(new Dimension(1920,1080));
         this.imagen = cargarImagen("C:\\Users\\Asus\\OneDrive\\Desktop\\Sukuna y fushiguro.PNG");

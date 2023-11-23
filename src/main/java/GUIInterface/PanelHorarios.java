@@ -20,6 +20,7 @@ public class PanelHorarios extends JPanel implements ItemListener {
     private JComboBox horarios;
 
 public PanelHorarios(){
+    cargarSonidos();
     this.setLayout(null);
     setPreferredSize(new Dimension(1920,1080));
     this.imagen =cargarImagen("");
@@ -33,7 +34,7 @@ public PanelHorarios(){
 
     horarios = new JComboBox();
     horarios.addItemListener(this);
-    horarios.addItem("Eliga su horario");
+    horarios.addItem("Elija su horario");
     horarios.addItem("10:00");
     horarios.addItem("11:00");
     horarios.addItem("12:00");

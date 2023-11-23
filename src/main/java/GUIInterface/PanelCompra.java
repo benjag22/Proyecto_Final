@@ -18,6 +18,7 @@ public class PanelCompra extends JPanel implements MouseListener {
     private Clip clipMouseOver;
     private Clip clipClick;
     public PanelCompra(){
+        cargarSonidos();
         this.setLayout(null);
         setPreferredSize(new Dimension(1920,1080));
         this.imagen = cargarImagen("C:\\Users\\Asus\\OneDrive\\Desktop\\Itadori durmiendo.jpg");
@@ -71,7 +72,7 @@ public class PanelCompra extends JPanel implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        reproducirSonido(clipMouseOver);
     }
 
     @Override
