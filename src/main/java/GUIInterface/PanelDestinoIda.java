@@ -11,17 +11,18 @@ import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.*;
 
-public class PanelDestinoIda extends JPanel {
+public class PanelDestinoIda extends JPanel implements ActionListener{
     private JTextField Origen_Destino;
     private JLabel Introducir;
     private BufferedImage imagen;
-    private String origendestino;
     private Clip clipMouseOver;
     private Clip clipClick;
+    private PanelHorarios panelHorarios;
     public PanelDestinoIda(){
         this.setLayout(null);
         setPreferredSize(new Dimension(1920,1080));
         this.imagen = cargarImagen("C:\\Users\\Asus\\OneDrive\\Desktop\\Sukuna y fushiguro.PNG");
+        panelHorarios = new PanelHorarios();
 
         Font font1 = new Font("Arial",Font.PLAIN,30);
         Introducir = new JLabel("Ingresar origen y destino de la siguiente manera: CNCE/LOSA");
@@ -33,10 +34,13 @@ public class PanelDestinoIda extends JPanel {
 
 
         Font font = new Font("Arial",Font.PLAIN,20);
+
         Origen_Destino = new JTextField("Origen/Destino");
         Origen_Destino.setFont(font);
         Origen_Destino.setBounds(700,300,250,50);
         add(Origen_Destino);
+        Origen_Destino.addActionListener(this);
+
     }
     private BufferedImage cargarImagen(String ruta) {
         try {
@@ -79,5 +83,24 @@ public class PanelDestinoIda extends JPanel {
             clip.setMicrosecondPosition(0);
             clip.start();
         }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        this.setVisible(false);
+        panelHorarios.setVisible(true);
+    }
+
+    public PanelHorarios getPanelHorarios() {
+        return panelHorarios;
+    }
+    public static void main (String[] args){
+        JFrame frame = new JFrame();
+        PanelDestinoIda panelDestinoIda = new PanelDestinoIda();
+        frame.add(panelDestinoIda);
+        frame.setTitle("Venta de pasajes");
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setSize(1000,1000);
+        frame.setVisible(true);
     }
 }

@@ -7,31 +7,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class PanelPrincipal extends JPanel implements MouseListener {
+public class PanelPrincipal extends JPanel{
     private PanelDestinoIda destinoIda;
     private PanelCompra compra;
     private PanelHorarios horarios;
 
     public PanelPrincipal(){
-        this.addMouseListener(this);
         compra = new PanelCompra();
         compra.setVisible(true);
 
-        destinoIda = new PanelDestinoIda();
+        destinoIda = compra.getPanelDestinoIda();
         destinoIda.setVisible(false);
 
-        horarios = new PanelHorarios();
+        horarios =destinoIda.getPanelHorarios();
         horarios.setVisible(false);
-        ActionListener horaselec = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                destinoIda.setVisible(false);
-                horarios.setVisible(true);
-            }
-        };
-        destinoIda.getOrigen_Destino().addActionListener(horaselec);
 
-        compra.getComprarAsiento().addMouseListener(this);
 
         setPreferredSize(new Dimension(1920,1080));
         add(compra);
@@ -58,33 +48,6 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         else if(horarios.isVisible()){
             horarios.paintComponent(g);
         }
-    }
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        if(e.getComponent()==compra.getComprarAsiento()){
-            compra.setVisible(false);
-            destinoIda.setVisible(true);
-            revalidate();
-            repaint();
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
     }
 
     public static void main (String[] args){
