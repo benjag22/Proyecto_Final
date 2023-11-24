@@ -1,5 +1,8 @@
 package GUIInterface;
 
+import org.example.Bus;
+import org.example.Horario;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -9,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalTime;
 import javax.sound.sampled.*;
 
 public class PanelDestinoIda extends JPanel implements ActionListener{
@@ -87,6 +91,12 @@ public class PanelDestinoIda extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        for(int i=0;i<panelHorarios.getBusArrayList().size();i++){
+            Bus bus = panelHorarios.getBusArrayList().get(i);
+            if(Origen_Destino.getText().equals(bus.getOrigen_Destino())){
+                panelHorarios.addItem(bus);
+            }
+        }
         this.setVisible(false);
         panelHorarios.setVisible(true);
     }
