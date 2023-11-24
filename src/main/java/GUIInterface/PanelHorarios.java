@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import javax.sound.sampled.*;
 
 public class PanelHorarios extends JPanel implements ItemListener {
@@ -32,38 +33,139 @@ public class PanelHorarios extends JPanel implements ItemListener {
     private Bus bus6;
     private Bus bus7;
     private Bus bus8;
+    private Bus bus9;
+    private Bus bus10;
+    private Bus bus11;
+    private Bus bus12;
+    private Bus bus13;
+    private Bus bus14;
+    private Bus bus15;
+    private Bus bus16;
+    private Bus bus17;
+    private Bus bus18;
+    private Bus bus19;
+    private Bus bus20;
+    private Bus bus21;
+    private Bus bus22;
+    private Bus bus23;
+    private Bus bus24;
+    private ArrayList<Bus> busArrayList;
 
 
 public PanelHorarios(){
     this.setLayout(null);
     setPreferredSize(new Dimension(1920,1080));
     this.imagen =cargarImagen("");
+    busArrayList = new ArrayList<>();
     bus1= new BusUnPiso();
     bus2= new BusUnPiso();
     bus3= new BusUnPiso();
     bus4= new BusUnPiso();
+    bus5= new BusUnPiso();
+    bus6= new BusUnPiso();
+    bus7= new BusUnPiso();
+    bus8= new BusUnPiso();
+    bus9= new BusUnPiso();
+    bus10= new BusUnPiso();
+    bus11= new BusUnPiso();
+    bus12= new BusUnPiso();
 
-    bus5= new BusDosPisos();
-    bus6= new BusDosPisos();
-    bus7= new BusDosPisos();
-    bus8= new BusDosPisos();
+    bus13 = new BusDosPisos();
+    bus14 = new BusDosPisos();
+    bus15 = new BusDosPisos();
+    bus16 = new BusDosPisos();
+    bus17 = new BusDosPisos();
+    bus18 = new BusDosPisos();
+    bus19 = new BusDosPisos();
+    bus20 = new BusDosPisos();
+    bus21 = new BusDosPisos();
+    bus22 = new BusDosPisos();
+    bus23 = new BusDosPisos();
+    bus24 = new BusDosPisos();
+
+
+
+    busArrayList.add(bus1);
+    busArrayList.add(bus2);
+    busArrayList.add(bus3);
+    busArrayList.add(bus4);
+    busArrayList.add(bus5);
+    busArrayList.add(bus6);
+    busArrayList.add(bus7);
+    busArrayList.add(bus8);
+    busArrayList.add(bus9);
+    busArrayList.add(bus10);
+    busArrayList.add(bus11);
+    busArrayList.add(bus12);
+    busArrayList.add(bus13);
+    busArrayList.add(bus14);
+    busArrayList.add(bus15);
+    busArrayList.add(bus16);
+    busArrayList.add(bus17);
+    busArrayList.add(bus18);
+    busArrayList.add(bus19);
+    busArrayList.add(bus20);
+    busArrayList.add(bus21);
+    busArrayList.add(bus22);
+    busArrayList.add(bus23);
+    busArrayList.add(bus24);
+
+
 
     bus1.setHorario(new Horario(LocalTime.of(9,0),LocalTime.of(10,45)));
     bus1.setOrigen_Destino("CONC/LA");
-    bus2.setHorario(new Horario(LocalTime.of(11,0),LocalTime.of(12,45)));
-    bus2.setOrigen_Destino("LA/CONC");
-    bus3.setHorario(new Horario(LocalTime.of(13,0),LocalTime.of(14,45)));
+    bus2.setHorario(new Horario(LocalTime.of(9,30),LocalTime.of(12,15)));
+    bus2.setOrigen_Destino("CONC/LA");
+    bus3.setHorario(new Horario(LocalTime.of(10,0),LocalTime.of(11,45)));
     bus3.setOrigen_Destino("CONC/LA");
-    bus4.setHorario(new Horario(LocalTime.of(15,0),LocalTime.of(16,45)));
-    bus4.setOrigen_Destino("LA/CONC");
-    bus5.setHorario(new Horario(LocalTime.of(17,0),LocalTime.of(18,45)));
+    bus4.setHorario(new Horario(LocalTime.of(10,30),LocalTime.of(16,45)));
+    bus4.setOrigen_Destino("CONC/LA");
+    bus5.setHorario(new Horario(LocalTime.of(11,0),LocalTime.of(12,45)));
     bus5.setOrigen_Destino("CONC/LA");
-    bus6.setHorario(new Horario(LocalTime.of(19,0),LocalTime.of(20,45)));
-    bus6.setOrigen_Destino("LA/CONC");
-    bus7.setHorario(new Horario(LocalTime.of(21,0),LocalTime.of(22,45)));
+    bus6.setHorario(new Horario(LocalTime.of(11,30),LocalTime.of(20,45)));
+    bus6.setOrigen_Destino("CONC/LA");
+    bus7.setHorario(new Horario(LocalTime.of(12,0),LocalTime.of(13,45)));
     bus7.setOrigen_Destino("CONC/LA");
-    bus8.setHorario(new Horario(LocalTime.of(23,0),LocalTime.of(0,45)));
-    bus8.setOrigen_Destino("LA/CONC");
+    bus8.setHorario(new Horario(LocalTime.of(12,30),LocalTime.of(14,45)));
+    bus8.setOrigen_Destino("CONC/LA");
+    bus9.setHorario(new Horario(LocalTime.of(9,0),LocalTime.of(12,0)));
+    bus9.setOrigen_Destino("LA/TEM");
+    bus10.setHorario(new Horario(LocalTime.of(10,0),LocalTime.of(13,0)));
+    bus10.setOrigen_Destino("LA/TEM");
+    bus11.setHorario(new Horario(LocalTime.of(11,0),LocalTime.of(14,0)));
+    bus11.setOrigen_Destino("LA/TEM");
+    bus12.setHorario(new Horario(LocalTime.of(12,0),LocalTime.of(15,0)));
+    bus12.setOrigen_Destino("LA/TEM");
+    bus13.setHorario(new Horario(LocalTime.of(13,0),LocalTime.of(16,0)));
+    bus13.setOrigen_Destino("LA/TEM");
+    bus14.setHorario(new Horario(LocalTime.of(14,0),LocalTime.of(17,0)));
+    bus14.setOrigen_Destino("LA/TEM");
+    bus15.setHorario(new Horario(LocalTime.of(15,0),LocalTime.of(18,0)));
+    bus15.setOrigen_Destino("LA/TEM");
+    bus16.setHorario(new Horario(LocalTime.of(16,0),LocalTime.of(19,0)));
+    bus16.setOrigen_Destino("LA/TEM");
+    bus17.setHorario(new Horario(LocalTime.of(17,0),LocalTime.of(20,0)));
+    bus17.setOrigen_Destino("LA/TEM");
+    bus18.setHorario(new Horario(LocalTime.of(4,0),LocalTime.of(10,30)));
+    bus18.setOrigen_Destino("SGTO/CONC");
+    bus19.setHorario(new Horario(LocalTime.of(5,0),LocalTime.of(20,0)));
+    bus19.setOrigen_Destino("SGTO/CONC");
+    bus20.setHorario(new Horario(LocalTime.of(6,0),LocalTime.of(20,0)));
+    bus20.setOrigen_Destino("SGTO/CONC");
+    bus21.setHorario(new Horario(LocalTime.of(7,0),LocalTime.of(20,0)));
+    bus21.setOrigen_Destino("SGTO/CONC");
+    bus22.setHorario(new Horario(LocalTime.of(12,0),LocalTime.of(18,30)));
+    bus22.setOrigen_Destino("CONC/STGO");
+    bus23.setHorario(new Horario(LocalTime.of(13,0),LocalTime.of(19,30)));
+    bus23.setOrigen_Destino("CONC/STGO");
+    bus24.setHorario(new Horario(LocalTime.of(14,0),LocalTime.of(20,30)));
+    bus24.setOrigen_Destino("CONC/STGO");
+
+
+
+
+
+
 
 
 
@@ -76,15 +178,8 @@ public PanelHorarios(){
 
     horarios = new JComboBox();
     horarios.addItemListener(this);
-    horarios.addItem("Eliga su horario");
-    horarios.addItem(bus1.getHorario());
-    horarios.addItem(bus2.getHorario());
-    horarios.addItem(bus3.getHorario());
-    horarios.addItem(bus4.getHorario());
-    horarios.addItem(bus5.getHorario());
-    horarios.addItem(bus6.getHorario());
-    horarios.addItem(bus7.getHorario());
-    horarios.addItem(bus8.getHorario());
+    horarios.addItem("Elija su horario");
+
 
     horarios.setBounds(400,300,300,50);
     add(horarios);
@@ -135,36 +230,13 @@ public PanelHorarios(){
             clip.start();
         }
     }
+    
 
-    public Bus getBus1() {
-        return bus1;
+    public ArrayList<Bus> getBusArrayList() {
+        return busArrayList;
     }
 
-    public Bus getBus2() {
-        return bus2;
-    }
-
-    public Bus getBus3() {
-        return bus3;
-    }
-
-    public Bus getBus4() {
-        return bus4;
-    }
-
-    public Bus getBus5() {
-        return bus5;
-    }
-
-    public Bus getBus6() {
-        return bus6;
-    }
-
-    public Bus getBus7() {
-        return bus7;
-    }
-
-    public Bus getBus8() {
-        return bus8;
+    public void addItem(Bus bus) {
+    horarios.addItem(bus.getHorario());
     }
 }
