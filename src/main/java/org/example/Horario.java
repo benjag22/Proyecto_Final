@@ -42,7 +42,7 @@ public class Horario {
 
     @Override
     public String toString() {
-        return horaInicio.toString();
+        return "Salida del bus: "+horaInicio.toString()+","+"Llegada del bus:"+horaFin.toString();
     }
 
     public static void main(String[] args) {
