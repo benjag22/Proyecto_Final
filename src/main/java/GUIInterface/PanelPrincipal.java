@@ -29,12 +29,9 @@ public class PanelPrincipal extends JPanel implements MouseListener {
 
         horarios = new PanelHorarios();
         horarios.setVisible(false);
-        ActionListener horaselec = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        ActionListener horaselec = e -> {
                 destinoIda.setVisible(false);
                 horarios.setVisible(true);
-            }
         };
         destinoIda.getOrigen_Destino().addActionListener(horaselec);
 
@@ -107,13 +104,15 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     }
     private void cargarSonidos() {
         try {
-            File audioFileMouseOver = new File("resources/Sobre.wav");
-            AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(audioFileMouseOver);
+            String basePath = new File("").getAbsolutePath();
+            String audioFileMouseOverPath = basePath + "/src/Main/resources/Sobre.wav";
+            String audioFileClickPath = basePath + "/src/Main/resources/ClickExpendedor.wav";
+
+            AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(new File(audioFileMouseOverPath));
             clipMouseOver = AudioSystem.getClip();
             clipMouseOver.open(audioStreamMouseOver);
 
-            File audioFileClick = new File("resources/ClickExpendedor.wav");
-            AudioInputStream audioStreamClick = AudioSystem.getAudioInputStream(audioFileClick);
+            AudioInputStream audioStreamClick = AudioSystem.getAudioInputStream(new File(audioFileClickPath));
             clipClick = AudioSystem.getClip();
             clipClick.open(audioStreamClick);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
