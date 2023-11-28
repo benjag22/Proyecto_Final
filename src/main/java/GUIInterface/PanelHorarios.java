@@ -53,6 +53,7 @@ public class PanelHorarios extends JPanel implements ItemListener {
 
 
 public PanelHorarios(){
+    cargarSonidos();
     this.setLayout(null);
     setPreferredSize(new Dimension(1920,1080));
     this.imagen =cargarImagen("");
@@ -179,7 +180,14 @@ public PanelHorarios(){
     horarios = new JComboBox();
     horarios.addItemListener(this);
     horarios.addItem("Elija su horario");
-
+    horarios.addItem("10:00");
+    horarios.addItem("11:00");
+    horarios.addItem("12:00");
+    horarios.addItem("13:00");
+    horarios.addItem("14:00");
+    horarios.addItem("15:00");
+    horarios.addItem("16:00");
+    horarios.addItem("17:00");
 
     horarios.setBounds(400,300,300,50);
     add(horarios);
@@ -211,13 +219,15 @@ public PanelHorarios(){
     }
     private void cargarSonidos() {
         try {
-            File audioFileMouseOver = new File("recursos/Sobre.wav");
-            AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(audioFileMouseOver);
+            String basePath = new File("").getAbsolutePath();
+            String audioFileMouseOverPath = basePath + "/src/Main/java/resources/Sobre.wav";
+            String audioFileClickPath = basePath + "/src/Main/java/resources/ClickExpendedor.wav";
+
+            AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(new File(audioFileMouseOverPath));
             clipMouseOver = AudioSystem.getClip();
             clipMouseOver.open(audioStreamMouseOver);
 
-            File audioFileClick = new File("recursos/ClickExpendedor.wav");
-            AudioInputStream audioStreamClick = AudioSystem.getAudioInputStream(audioFileClick);
+            AudioInputStream audioStreamClick = AudioSystem.getAudioInputStream(new File(audioFileClickPath));
             clipClick = AudioSystem.getClip();
             clipClick.open(audioStreamClick);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {

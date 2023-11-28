@@ -23,6 +23,7 @@ public class PanelDestinoIda extends JPanel implements ActionListener{
     private Clip clipClick;
     private PanelHorarios panelHorarios;
     public PanelDestinoIda(){
+        cargarSonidos();
         this.setLayout(null);
         setPreferredSize(new Dimension(1920,1080));
         this.imagen = cargarImagen("C:\\Users\\Asus\\OneDrive\\Desktop\\Sukuna y fushiguro.PNG");
@@ -68,13 +69,15 @@ public class PanelDestinoIda extends JPanel implements ActionListener{
     }
     private void cargarSonidos() {
         try {
-            File audioFileMouseOver = new File("recursos/Sobre.wav");
-            AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(audioFileMouseOver);
+            String basePath = new File("").getAbsolutePath();
+            String audioFileMouseOverPath = basePath + "/src/Main/java/resources/Sobre.wav";
+            String audioFileClickPath = basePath + "/src/Main/java/resources/ClickExpendedor.wav";
+
+            AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(new File(audioFileMouseOverPath));
             clipMouseOver = AudioSystem.getClip();
             clipMouseOver.open(audioStreamMouseOver);
 
-            File audioFileClick = new File("recursos/ClickExpendedor.wav");
-            AudioInputStream audioStreamClick = AudioSystem.getAudioInputStream(audioFileClick);
+            AudioInputStream audioStreamClick = AudioSystem.getAudioInputStream(new File(audioFileClickPath));
             clipClick = AudioSystem.getClip();
             clipClick.open(audioStreamClick);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
