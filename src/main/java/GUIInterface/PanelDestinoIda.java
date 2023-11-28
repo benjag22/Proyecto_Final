@@ -4,20 +4,25 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.sound.sampled.*;
+import java.awt.event.ActionEvent;
 
-public class PanelDestinoIda extends JPanel {
-    private JTextField Origen_Destino;
-    private JLabel Introducir;
+
+public class PanelDestinoIda extends JPanel implements ItemListener {
     private BufferedImage imagen;
-    private String origendestino;
+    private JLabel Seleccionar;
+    private String seleccion;
+    private JTextField Fecha;
+    private JLabel Introducir;
     private Clip clipMouseOver;
     private Clip clipClick;
+    private JComboBox Origen;
+    private JComboBox Destino;
+
     public PanelDestinoIda(){
         cargarSonidos();
         this.setLayout(null);
@@ -25,20 +30,55 @@ public class PanelDestinoIda extends JPanel {
         String basePath = new File("").getAbsolutePath();
         this.imagen = cargarImagen(basePath + "/src/Main/java/resources/Fondo.jpg");
 
-        Font font1 = new Font("Arial",Font.PLAIN,30);
-        Introducir = new JLabel("Ingresar origen y destino de la siguiente manera: CNCE/LOSA");
-        Introducir.setFont(font1);
-        Introducir.setBounds(350,150,1800,50);
-        Introducir.setForeground(Color.BLACK);
-        add(Introducir);
-        
+        Font font = new Font("Arial",Font.PLAIN,30);
+        Seleccionar = new JLabel("Seleccionar Horario");
+        Seleccionar.setFont(font);
+        Seleccionar.setBounds(650,150,1000,50);
+        Seleccionar.setForeground(Color.BLACK);
+        add(Seleccionar);
 
-        Font font = new Font("Arial",Font.PLAIN,20);
-        Origen_Destino = new JTextField("Origen/Destino");
-        Origen_Destino.setFont(font);
-        Origen_Destino.setBounds(690,300,250,50);
-        add(Origen_Destino);
+        Origen = new JComboBox();
+        Origen.addItemListener(this);
+        Origen.addItem("Elija su Origen");
+        Origen.addItem("CONCEPCION");
+        Origen.addItem("LOS ANGELES");
+        Origen.addItem("TEMUCO");
+        Origen.addItem("SANTIAGO");
+        Origen.addItem("14:00");
+        Origen.addItem("15:00");
+        Origen.addItem("16:00");
+        Origen.addItem("17:00");
+
+        Origen.setBounds(430,300,300,50);
+        add(Origen);
+
+        Destino = new JComboBox();
+        Destino.addItemListener(this);
+        Destino.addItem("Elija su Destino");
+        Destino.addItem("CONCEPCION");
+        Destino.addItem("LOS ANGELES");
+        Destino.addItem("TEMUCO");
+        Destino.addItem("SANTIAGO");
+        Destino.addItem("14:00");
+        Destino.addItem("15:00");
+        Destino.addItem("16:00");
+        Destino.addItem("17:00");
+
+        Destino.setBounds(830,300,300,50);
+        add(Destino);
+
+        Fecha = new JTextField("Fecha");
+        Fecha.setFont(font);
+        Fecha.setBounds(670,450,250,50);
+        add(Fecha);
+
+
+
+        /*Falta añadir cambio al presionar enter en Fecha  by: mrc.
+
+         */
     }
+
     private BufferedImage cargarImagen(String ruta) {
         try {
             return ImageIO.read(new File(ruta));
@@ -47,7 +87,9 @@ public class PanelDestinoIda extends JPanel {
             return null;
         }
     }
-
+    public JTextField getFecha() {
+        return Fecha;
+    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -56,9 +98,17 @@ public class PanelDestinoIda extends JPanel {
         }
     }
 
-    public JTextField getOrigen_Destino() {
-        return Origen_Destino;
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        if (e.getSource() == Origen) {
+            seleccion = Origen.getSelectedItem().toString();
+            System.out.println("Origen: " + seleccion);
+        } else if (e.getSource() == Destino) {
+            seleccion = Destino.getSelectedItem().toString();
+            System.out.println("Destino: " + seleccion);
+        }
     }
+
     private void cargarSonidos() {
         try {
             String basePath = new File("").getAbsolutePath();
@@ -76,7 +126,6 @@ public class PanelDestinoIda extends JPanel {
             e.printStackTrace();
         }
     }
-
     private void reproducirSonido(Clip clip) {
         if (clip != null) {
             clip.setMicrosecondPosition(0);

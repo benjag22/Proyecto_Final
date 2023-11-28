@@ -45,7 +45,7 @@ public PanelHorarios(){
     horarios.addItem("16:00");
     horarios.addItem("17:00");
 
-    horarios.setBounds(620,300,300,50);
+    horarios.setBounds(630,300,300,50);
     add(horarios);
 }
 
