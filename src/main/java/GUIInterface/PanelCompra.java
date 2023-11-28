@@ -14,15 +14,16 @@ import javax.sound.sampled.*;
 public class PanelCompra extends JPanel implements MouseListener {
     private JButton ComprarAsiento;
     private BufferedImage imagen;
+    private boolean botoncomprar;
     private Clip clipMouseOver;
     private Clip clipClick;
-    private PanelDestinoIda panelDestinoIda;
     public PanelCompra(){
         cargarSonidos();
         this.setLayout(null);
         setPreferredSize(new Dimension(1920,1080));
-        this.imagen = cargarImagen("C:\\Users\\Asus\\OneDrive\\Desktop\\Itadori durmiendo.jpg");
-        panelDestinoIda = new PanelDestinoIda();
+        String basePath = new File("").getAbsolutePath();
+        this.imagen = cargarImagen(basePath + "/src/Main/java/resources/Fondo.jpg");
+
 
         ComprarAsiento = new JButton("Comprar asiento");
         ComprarAsiento.addMouseListener(this);
@@ -30,6 +31,7 @@ public class PanelCompra extends JPanel implements MouseListener {
         ComprarAsiento.setFont(new Font("Arial",Font.PLAIN,20));
         add(ComprarAsiento);
 
+        botoncomprar = true;
     }
     private BufferedImage cargarImagen(String ruta) {
         try {
@@ -46,13 +48,18 @@ public class PanelCompra extends JPanel implements MouseListener {
                 g.drawImage(imagen, 0, 0, 1920, 1080, this);
         }
     }
+    public JButton getComprarAsiento() {
+        return ComprarAsiento;
+    }
 
+    public Boolean getBotoncomprar() {
+        return botoncomprar;
+    }
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getComponent()==ComprarAsiento){
-            this.setVisible(false);
-            panelDestinoIda.setVisible(true);
-        }
+            botoncomprar = false;
+        reproducirSonido(clipClick);
+        System.out.println(botoncomprar);
     }
 
     @Override
@@ -97,9 +104,5 @@ public class PanelCompra extends JPanel implements MouseListener {
             clip.setMicrosecondPosition(0);
             clip.start();
         }
-    }
-
-    public PanelDestinoIda getPanelDestinoIda() {
-        return panelDestinoIda;
     }
 }

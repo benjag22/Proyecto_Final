@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.*;
 
-public class PanelPrincipal extends JPanel{
+public class PanelPrincipal extends JPanel implements MouseListener {
     private PanelDestinoIda destinoIda;
     private PanelCompra compra;
     private Clip clipMouseOver;
@@ -19,21 +19,23 @@ public class PanelPrincipal extends JPanel{
     private PanelHorarios horarios;
 
     public PanelPrincipal(){
+        this.addMouseListener(this);
         compra = new PanelCompra();
         compra.setVisible(true);
         cargarSonidos();
 
-        destinoIda = compra.getPanelDestinoIda();
+        destinoIda = new PanelDestinoIda();
         destinoIda.setVisible(false);
 
-        horarios =destinoIda.getPanelHorarios();
+        horarios = new PanelHorarios();
         horarios.setVisible(false);
-
         ActionListener horaselec = e -> {
                 destinoIda.setVisible(false);
                 horarios.setVisible(true);
         };
         destinoIda.getOrigen_Destino().addActionListener(horaselec);
+
+        compra.getComprarAsiento().addMouseListener(this);
 
         setPreferredSize(new Dimension(1920,1080));
         add(compra);
@@ -63,7 +65,6 @@ public class PanelPrincipal extends JPanel{
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        reproducirSonido(clipClick);
         if(e.getComponent()==compra.getComprarAsiento()){
             compra.setVisible(false);
             destinoIda.setVisible(true);
@@ -71,7 +72,6 @@ public class PanelPrincipal extends JPanel{
             repaint();
         }
     }
-
     @Override
     public void mousePressed(MouseEvent e) {
 
