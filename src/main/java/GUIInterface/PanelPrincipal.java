@@ -91,7 +91,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
     }
-
+/*
     public static void main (String[] args){
         MusicaFondo.reproducirMusicaFondo("main/java/resources/Fondo.wav");
         JFrame frame = new JFrame();
@@ -102,11 +102,13 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         frame.setSize(1500,1020);
         frame.setVisible(true);
     }
+
+ */
     private void cargarSonidos() {
         try {
             String basePath = new File("").getAbsolutePath();
-            String audioFileMouseOverPath = basePath + "/src/Main/resources/Sobre.wav";
-            String audioFileClickPath = basePath + "/src/Main/resources/ClickExpendedor.wav";
+            String audioFileMouseOverPath = basePath + "/src/Main/java/resources/Sobre.wav";
+            String audioFileClickPath = basePath + "/src/Main/java/resources/ClickExpendedor.wav";
 
             AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(new File(audioFileMouseOverPath));
             clipMouseOver = AudioSystem.getClip();
@@ -119,6 +121,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
             e.printStackTrace();
         }
     }
+
     private void reproducirSonido(Clip clip) {
         if (clip != null) {
             clip.setMicrosecondPosition(0);

@@ -1,11 +1,12 @@
 package GUIInterface;
 
-import GUIInterface.PanelPrincipal;
-
 import javax.swing.*;
+import java.io.File;
 
 public class VentanaMain {
     public static void main(String[] args) {
+        String basePath = new File("").getAbsolutePath();
+        MusicaFondo.reproducirMusicaFondo(basePath + "/src/Main/java/resources/Fondo.wav");
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame();
             PanelPrincipal panelPrincipal = new PanelPrincipal();

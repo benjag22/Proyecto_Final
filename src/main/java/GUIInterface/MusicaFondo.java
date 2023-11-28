@@ -5,9 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.*;
 public class MusicaFondo {
-    public static void main(String[] args) {
-        reproducirMusicaFondo("main/java/resources/Fondo.wav");
-    }
 
     public static void reproducirMusicaFondo(String filepath) {
         try {
