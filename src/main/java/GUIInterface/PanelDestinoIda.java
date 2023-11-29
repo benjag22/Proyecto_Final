@@ -1,5 +1,6 @@
 package GUIInterface;
 
+import org.example.Ciudades;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -9,8 +10,6 @@ import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
-
 
 public class PanelDestinoIda extends JPanel implements ItemListener {
     private BufferedImage imagen;
@@ -22,7 +21,6 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     private Clip clipClick;
     private JComboBox Origen;
     private JComboBox Destino;
-
     public PanelDestinoIda(){
         cargarSonidos();
         this.setLayout(null);
@@ -40,14 +38,9 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
         Origen = new JComboBox();
         Origen.addItemListener(this);
         Origen.addItem("Elija su Origen");
-        Origen.addItem("CONCEPCION");
-        Origen.addItem("LOS ANGELES");
-        Origen.addItem("TEMUCO");
-        Origen.addItem("SANTIAGO");
-        Origen.addItem("14:00");
-        Origen.addItem("15:00");
-        Origen.addItem("16:00");
-        Origen.addItem("17:00");
+        for (Ciudades ciudad : Ciudades.values()) {
+            Origen.addItem(ciudad.getNombre());
+        }
 
         Origen.setBounds(430,300,300,50);
         add(Origen);
@@ -55,14 +48,9 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
         Destino = new JComboBox();
         Destino.addItemListener(this);
         Destino.addItem("Elija su Destino");
-        Destino.addItem("CONCEPCION");
-        Destino.addItem("LOS ANGELES");
-        Destino.addItem("TEMUCO");
-        Destino.addItem("SANTIAGO");
-        Destino.addItem("14:00");
-        Destino.addItem("15:00");
-        Destino.addItem("16:00");
-        Destino.addItem("17:00");
+        for (Ciudades ciudad : Ciudades.values()) {
+            Destino.addItem(ciudad.getNombre());
+        }
 
         Destino.setBounds(830,300,300,50);
         add(Destino);

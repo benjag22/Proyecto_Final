@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class VistaHorario extends JFrame {
+public class VistaHorario extends JPanel {  // Cambiado de JFrame a JPanel
 
     private Horario horario;
     private BufferedImage imagenComprar;
@@ -18,26 +18,29 @@ public class VistaHorario extends JFrame {
     private String destino;
     private JButton botonCompra;
 
+    // Constructor de la clase
     public VistaHorario(Horario horario, String origen, String destino) {
         this.horario = horario;
         this.origen = origen;
         this.destino = destino;
 
+        // Cargar imágenes
         this.imagenComprar = cargarImagen("src/main/java/resources/botonCompra.png");
         this.imagenComprarPresionada = cargarImagen("src/main/java/resources/botonCompraPresionado.png");
 
+        // Configuración de dimensiones
         int ancho = 180;
         int alto = 70;
 
+        // Crear un botón con una imagen
         ImageIcon iconoOriginal = new ImageIcon(imagenComprar);
         Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
         ImageIcon iconoPersonalizado = new ImageIcon(imagenEscalada);
 
-        setLayout(new FlowLayout());  // Usa FlowLayout en lugar de setBounds
-
         botonCompra = new JButton(iconoPersonalizado);
         botonCompra.setPreferredSize(new Dimension(ancho, alto));
-        botonCompra.setLocation(100,150);
+
+        // Configurar el ActionListener para el botón
         botonCompra.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,11 +48,12 @@ public class VistaHorario extends JFrame {
                 actualizarImagen();
             }
         });
+
+        // Agregar el botón al panel
         add(botonCompra);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(700,200);
     }
 
+    // Método para actualizar la imagen del botón
     private void actualizarImagen() {
         if (presionado) {
             botonCompra.setIcon(new ImageIcon(imagenComprarPresionada.getScaledInstance(botonCompra.getWidth(), botonCompra.getHeight(), Image.SCALE_SMOOTH)));
@@ -58,14 +62,20 @@ public class VistaHorario extends JFrame {
         }
     }
 
+    // Método para dibujar en el panel
     @Override
-    public void paint(Graphics g) {
-        super.paint(g);
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        // Dibujar una imagen
         BufferedImage flecha = cargarImagen("src/main/java/resources/flecha.png");
         g.drawImage(flecha, 10, 30, flecha.getWidth(), flecha.getHeight(), this);
 
+        // Configurar la fuente
         Font fuente = new Font("Yu Gothic UI Semilight", Font.BOLD, 18);
         g.setFont(fuente);
+
+        // Dibujar texto
         g.drawString("---" + "Origen: " + origen, 200, 45);
         g.drawString("---" + "Destino: " + destino, 180, 105);
         g.drawString("Hora de inicio: " + horario.getHoraInicio(), 35, 45);
@@ -74,6 +84,7 @@ public class VistaHorario extends JFrame {
         g.drawString("Descripción: " + horario + ", " + "Fecha: " + horario.getLocalDate(), 35, 135);
     }
 
+    // Método para cargar una imagen desde un archivo
     private BufferedImage cargarImagen(String ruta) {
         try {
             return ImageIO.read(new File(ruta));
@@ -83,14 +94,20 @@ public class VistaHorario extends JFrame {
         }
     }
 
+    // Método principal para probar la clase
     public static void main(String[] args) {
-        Horario horarioAleatorio = Horario.generarHorarioAleatorio();
-        String origen = "Conce";
-        String destino = "Chillan";
-
         SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Ejemplo VistaHorario");
+            Horario horarioAleatorio = Horario.generarHorarioAleatorio();
+            String origen = Ciudades.ANGOL.getNombre();
+            String destino = Ciudades.ARAUCO.getNombre();
             VistaHorario horarioPanel = new VistaHorario(horarioAleatorio, origen, destino);
-            horarioPanel.setVisible(true);
+
+            frame.add(horarioPanel);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
         });
     }
 }

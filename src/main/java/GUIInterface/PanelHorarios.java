@@ -1,5 +1,8 @@
 package GUIInterface;
 
+import org.example.Ciudades;
+import org.example.Horario;
+import org.example.VistaHorario;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -9,7 +12,7 @@ import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.sound.sampled.*;
+import  java.util.Random;
 
 public class PanelHorarios extends JPanel implements ItemListener {
     private BufferedImage imagen;
@@ -17,36 +20,25 @@ public class PanelHorarios extends JPanel implements ItemListener {
     private String seleccion;
     private Clip clipMouseOver;
     private Clip clipClick;
-    private JComboBox horarios;
+    private JList<VistaHorario> listaHorarios;
 
 public PanelHorarios(){
     cargarSonidos();
     this.setLayout(null);
     setPreferredSize(new Dimension(1920,1080));
-    String basePath = new File("").getAbsolutePath();
-    this.imagen = cargarImagen(basePath + "/src/Main/java/resources/Fondo.jpg");
-
+    this.imagen = cargarImagen("src/main/java/resources/Fondo.jpg");
+    this.listaHorarios= new JList<>();
     Font font = new Font("Arial",Font.PLAIN,30);
     Seleccionar = new JLabel("Seleccionar Horario");
     Seleccionar.setFont(font);
     Seleccionar.setBounds(650,150,1000,50);
     Seleccionar.setForeground(Color.BLACK);
     add(Seleccionar);
-
-    horarios = new JComboBox();
-    horarios.addItemListener(this);
-    horarios.addItem("Elija su horario");
-    horarios.addItem("10:00");
-    horarios.addItem("11:00");
-    horarios.addItem("12:00");
-    horarios.addItem("13:00");
-    horarios.addItem("14:00");
-    horarios.addItem("15:00");
-    horarios.addItem("16:00");
-    horarios.addItem("17:00");
-
-    horarios.setBounds(630,300,300,50);
-    add(horarios);
+    Random numeroDeHorarios= new Random();
+    int cantidad=numeroDeHorarios.nextInt(10,20);
+    for(int i=0;i<cantidad;i++){
+        listaHorarios.add(new VistaHorario(new Horario(), Ciudades.ANGOL.getNombre(), Ciudades.CONCEPCION.getNombre()));
+    }
 }
 
     private BufferedImage cargarImagen(String ruta) {
@@ -68,10 +60,10 @@ public PanelHorarios(){
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if(e.getSource() == horarios){
+        /*if(e.getSource() == horarios){
             seleccion = horarios.getSelectedItem().toString();
             System.out.println(seleccion);
-        }
+        }*/
     }
     private void cargarSonidos() {
         try {
@@ -95,5 +87,18 @@ public PanelHorarios(){
             clip.setMicrosecondPosition(0);
             clip.start();
         }
+    }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Panel de Horarios");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            PanelHorarios panelHorarios = new PanelHorarios();
+            frame.getContentPane().add(panelHorarios);
+
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
     }
 }
