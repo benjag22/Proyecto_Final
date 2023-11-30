@@ -22,7 +22,6 @@ public class PanelHorarios extends JPanel {
     private Clip clipMouseOver;
     private Clip clipClick;
     private VistaListaHorarios listaHorarios;
-    private JList<VistaListaHorarios> listapanel;
 
 public PanelHorarios(){
     cargarSonidos();
@@ -81,6 +80,11 @@ public PanelHorarios(){
             clip.start();
         }
     }
+
+    public VistaListaHorarios getListaHorarios() {
+        return listaHorarios;
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Panel de Horarios");

@@ -17,8 +17,10 @@ public class PanelCompra extends JPanel implements MouseListener {
     private boolean botoncomprar;
     private Clip clipMouseOver;
     private Clip clipClick;
+    private PanelDestinoIda panelDestinoIda;
     public PanelCompra(){
         cargarSonidos();
+        panelDestinoIda = new PanelDestinoIda();
         this.setLayout(null);
         setPreferredSize(new Dimension(1920,1080));
         String basePath = new File("").getAbsolutePath();
@@ -104,5 +106,9 @@ public class PanelCompra extends JPanel implements MouseListener {
             clip.setMicrosecondPosition(0);
             clip.start();
         }
+    }
+
+    public PanelDestinoIda getPanelDestinoIda() {
+        return panelDestinoIda;
     }
 }

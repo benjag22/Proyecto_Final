@@ -22,8 +22,10 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     private Clip clipClick;
     private JComboBox Origen;
     private JComboBox Destino;
+    private PanelHorarios panelHorarios;
     public PanelDestinoIda(){
         cargarSonidos();
+        panelHorarios = new PanelHorarios();
         this.setLayout(null);
         setPreferredSize(new Dimension(1920,1080));
         String basePath = new File("").getAbsolutePath();
@@ -135,5 +137,9 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     }
     public JTextField getFecha() {
         return Fecha;
+    }
+
+    public PanelHorarios getPanelHorarios() {
+        return panelHorarios;
     }
 }
