@@ -81,7 +81,7 @@ public PanelHorarios(){
         }
     }
 
-    public VistaListaHorarios getListaHorarios() {
+    public VistaListaHorarios getListaHorariosdepanel() {
         return listaHorarios;
     }
 
