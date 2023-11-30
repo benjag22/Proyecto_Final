@@ -27,10 +27,12 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         horarios = new PanelHorarios();
         horarios.setVisible(false);
         ActionListener horaselec = e -> {
+            if(destinoIda.aceptar()) {
                 destinoIda.setVisible(false);
                 horarios.setVisible(true);
+            }
         };
-
+        destinoIda.getFecha().addActionListener(horaselec);
 
         compra.getComprarAsiento().addMouseListener(this);
 
