@@ -1,6 +1,9 @@
 package GUIInterface;
 
 import org.example.Ciudades;
+import org.example.VistaHorario;
+import org.example.VistaListaHorarios;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -10,6 +13,7 @@ import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class PanelDestinoIda extends JPanel implements ItemListener {
     private BufferedImage imagen;
@@ -23,6 +27,7 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     private JComboBox Origen;
     private JComboBox Destino;
     private PanelHorarios panelHorarios;
+    private ArrayList<VistaHorario> lista;
     public PanelDestinoIda(){
         cargarSonidos();
         panelHorarios = new PanelHorarios();
@@ -63,7 +68,7 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
         Fecha.setBounds(670,450,250,50);
         add(Fecha);
 
-
+        lista = panelHorarios.getListaHorariosdepanel().getListaHorarios();
 
         /*Falta añadir cambio al presionar enter en Fecha  by: mrc.
 
@@ -90,10 +95,12 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     public void itemStateChanged(ItemEvent e) {
         if (e.getSource() == Origen) {
             seleccion_origen = Origen.getSelectedItem().toString();
-            System.out.println("Origen: " + seleccion_origen);
         } else if (e.getSource() == Destino) {
             seleccion_destino = Destino.getSelectedItem().toString();
-            System.out.println("Destino: " + seleccion_destino);
+        }
+        for(int i=0;i<panelHorarios.getListaHorariosdepanel().getListaHorarios().size();i++){
+            panelHorarios.getListaHorariosdepanel().getListaHorarios().get(i).setDestino(seleccion_destino);
+            panelHorarios.getListaHorariosdepanel().getListaHorarios().get(i).setOrigen(seleccion_origen);
         }
     }
     public boolean aceptar(){
