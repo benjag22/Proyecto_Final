@@ -20,7 +20,7 @@ public class BusUnPiso extends Bus {
     public void añadirAsientosPiso1() {
 
     }
-
+    @Override
     public int getPisos() {
         return pisos;
     }

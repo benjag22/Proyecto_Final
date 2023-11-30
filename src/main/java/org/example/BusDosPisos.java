@@ -28,6 +28,7 @@ public class BusDosPisos extends Bus {
 
     }
 
+    @Override
     public int getPisos() {
         return pisos;
     }

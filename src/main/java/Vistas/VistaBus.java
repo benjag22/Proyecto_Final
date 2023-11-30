@@ -1,31 +1,53 @@
 package Vistas;
 import javax.swing.*;
-import org.example.Asiento;
-import org.example.Bus;
-import org.example.BusUnPiso;
-
+import org.example.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VistaBus extends JFrame {
+public class VistaBus extends JPanel {
     private Bus bus;
     private List<VistasAsientos>listaAsientos;
-    public VistaBus(Bus bus, int cantidad){
+    private BuilderCorridasAsientos builder;
+    public VistaBus(Bus bus,BuilderCorridasAsientos builder){
         super();
         this.bus=bus;
         listaAsientos = new ArrayList<>();
-        bus.añadirAsientosPiso1();
-        setLayout(new FlowLayout());
+        this.builder = builder;
+    }
 
-        Asiento asiento=bus.getListaAsientos().remove(0);
-        while (asiento!=null){
-            listaAsientos.add(new VistasAsientos(asiento));
-            asiento=bus.getListaAsientos().remove(0);
-        }
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        builder.paint(g);
+    }
 
-        for (VistasAsientos vistaAsiento : listaAsientos) {
-            add(vistaAsiento);
+    public void agregarAsientos(Asiento asiento, int cualCorridaAsiento){
+        if(bus.getPisos()==1){
+            bus=new BusUnPiso();
+            if(cualCorridaAsiento==1){
+              builder.dibujarCorridaAsientosNormal(asiento);
+            }else if(cualCorridaAsiento==2){
+              builder.dibujarCorridaAsientosReducido(asiento);
+            }
+        }else if(bus.getPisos()==2){
+            bus=new BusDosPisos();
+            if(cualCorridaAsiento==1){
+                builder.dibujarCorridaAsientosNormal(asiento);
+            }else if(cualCorridaAsiento==2){
+                builder.dibujarCorridaAsientosReducido(asiento);
+            }
         }
+        repaint();
+    }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            BuilderCorridasAsientos builder = new BuilderCorridasAsientos();
+            BusDosPisos bus1 = new BusDosPisos();
+            VistaBus bus1Vista = new VistaBus(bus1, builder);
+            builder.add(bus1Vista);
+            builder.setVisible(true);
+            bus1Vista.agregarAsientos(new AsientoCama("A", 1), 1);
+        });
     }
 }

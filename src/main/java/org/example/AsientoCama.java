@@ -11,8 +11,8 @@ public class AsientoCama extends Asiento{
     private BufferedImage imagenSeleccionada;
     public AsientoCama(String fila, int columna){
         super(fila,columna);
-        imagenDeseleccionada = cargarImagen("src/main/resources/asiento_cama.png");
-        imagenSeleccionada = cargarImagen("src/main/resources/asiento_cama_elegido.png");
+        imagenDeseleccionada = cargarImagen("src/main/java/resources/asiento_cama.png");
+        imagenSeleccionada = cargarImagen("src/main/java/resources/asiento_cama_elegido.png");
     }
     @Override
     public void setHabilitado(boolean habilitado) {

@@ -1,74 +1,74 @@
 package org.example;
 
+import Vistas.VistaBus;
 import Vistas.VistasAsientos;
-
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
-public class BuilderCorridasAsientos extends JFrame {
+public class BuilderCorridasAsientos extends JPanel {
+    ArrayList<VistasAsientos> listaVistaAsientos;
+    private int filas;
+    private int columnas;
     public BuilderCorridasAsientos(){
         super();
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 1080);
+        listaVistaAsientos = new ArrayList<>();
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-
-    }
-    public void dibujarCorridaAsientosNormal(Graphics g,Asiento asiento) {
-        int filas = CantidadesAsientoPisos.PISONORMAL.getFILAS();
-        int columnas = CantidadesAsientoPisos.PISONORMAL.getCOLUMNAS();
-
         int anchoAsiento = getWidth() / columnas;
         int altoAsiento = getHeight() / filas;
 
+        int index = 0;
+
+        for (int i = 1; i <= filas; i++) {
+            for (int j = 1; j <= columnas; j++) {
+                int x = (j - 1) * anchoAsiento;
+                int y = (i - 1) * altoAsiento;
+                listaVistaAsientos.get(index++).paint(g, x, y, anchoAsiento, altoAsiento);
+            }
+        }
+    }
+    public void dibujarCorridaAsientosNormal(Asiento asiento) {
+        this.filas = CantidadesAsientoPisos.PISONORMAL.getFILAS();
+        this.columnas = CantidadesAsientoPisos.PISONORMAL.getCOLUMNAS();
         for (int i = 1; i <= filas; i++) {
             for (int j = 1; j <= columnas; j++) {
                 char y = (char) ('A' + i - 1);
-                int x = j;
-
-                Asiento nuevoAsiento;
+                Asiento nuevoAsiento = null;
                 if (asiento.getClass() == AsientoSemiCama.class) {
-                    nuevoAsiento = new AsientoSemiCama(String.valueOf(y), x);
-                } else {
-                    nuevoAsiento = new AsientoCama(String.valueOf(y), x);
-                }
+                    nuevoAsiento = new AsientoSemiCama(String.valueOf(y), j);
+                    VistasAsientos vistaNuevoAsiento = new VistasAsientos(nuevoAsiento);
+                    listaVistaAsientos.add(vistaNuevoAsiento);
 
-                VistasAsientos vistaAsiento = new VistasAsientos(nuevoAsiento);
-                vistaAsiento.setBounds((j - 1) * anchoAsiento, (i - 1) * altoAsiento, anchoAsiento, altoAsiento);
-                add(vistaAsiento);
+                }else if(asiento.getClass() == AsientoCama.class)
+                    nuevoAsiento = new AsientoCama(String.valueOf(y), j);
+                    VistasAsientos vistaNuevoAsiento = new VistasAsientos(nuevoAsiento);
+                    listaVistaAsientos.add(vistaNuevoAsiento);
             }
         }
     }
 
-    public void dibujarCorridaAsientosReducido(Graphics g, Asiento asiento){
-        int filas = CantidadesAsientoPisos.PISOREDUCIDO.getFILAS();
-        int columnas = CantidadesAsientoPisos.PISOREDUCIDO.getCOLUMNAS();
-
-        int anchoAsiento = getWidth() / columnas;
-        int altoAsiento = getHeight() / filas;
-
+    public void dibujarCorridaAsientosReducido(Asiento asiento) {
+        this.filas = CantidadesAsientoPisos.PISOREDUCIDO.getFILAS();
+        this.columnas = CantidadesAsientoPisos.PISOREDUCIDO.getCOLUMNAS();
         for (int i = 1; i <= filas; i++) {
             for (int j = 1; j <= columnas; j++) {
-                char fila = (char) ('A' + i - 1);
-
-                Asiento nuevoAsiento;
+                char y = (char) ('A' + i - 1);
+                Asiento nuevoAsiento = null;
                 if (asiento.getClass() == AsientoSemiCama.class) {
-                    nuevoAsiento = new AsientoSemiCama(String.valueOf(fila), j);
-                } else {
-                    nuevoAsiento = new AsientoCama(String.valueOf(fila), j);
+                    nuevoAsiento = new AsientoSemiCama(String.valueOf(y), j);
+                    VistasAsientos vistaNuevoAsiento = new VistasAsientos(nuevoAsiento);
+                    listaVistaAsientos.add(vistaNuevoAsiento);
+                } else if (asiento.getClass() == AsientoCama.class) {
+                    nuevoAsiento = new AsientoCama(String.valueOf(y), j);
+                    VistasAsientos vistaNuevoAsiento = new VistasAsientos(nuevoAsiento);
+                    listaVistaAsientos.add(vistaNuevoAsiento);
                 }
-                VistasAsientos vistaAsiento = new VistasAsientos(nuevoAsiento);
-                vistaAsiento.setBounds((j - 1) * anchoAsiento, (i - 1) * altoAsiento, anchoAsiento, altoAsiento);
-                add(vistaAsiento);
             }
         }
     }
-    public static void main(String[] args) {
-        BuilderCorridasAsientos builder = new BuilderCorridasAsientos();
-        builder.setVisible(true);
-    }
-
 }

@@ -31,13 +31,12 @@ public class VistasAsientos extends JFrame {
 
     }
 
-    @Override
-    public void paint(Graphics g) {
+    public void paint(Graphics g, int x, int y, int ancho, int alto) {
         super.paint(g);
         if (presionada) {
-            g.drawImage(imagenPresionada, 0, 0, this);
+            g.drawImage(imagenPresionada, x, y, ancho, alto, this);
         } else {
-            g.drawImage(imagenOriginal, 0, 0, this);
+            g.drawImage(imagenOriginal, x, y, ancho, alto, this);
         }
     }
 }
