@@ -14,7 +14,8 @@ import java.io.IOException;
 public class PanelDestinoIda extends JPanel implements ItemListener {
     private BufferedImage imagen;
     private JLabel Seleccionar;
-    private String seleccion;
+    private String seleccion_origen;
+    private String seleccion_destino;
     private JTextField Fecha;
     private JLabel Introducir;
     private Clip clipMouseOver;
@@ -75,9 +76,6 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
             return null;
         }
     }
-    public JTextField getFecha() {
-        return Fecha;
-    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -89,14 +87,21 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getSource() == Origen) {
-            seleccion = Origen.getSelectedItem().toString();
-            System.out.println("Origen: " + seleccion);
+            seleccion_origen = Origen.getSelectedItem().toString();
+            System.out.println("Origen: " + seleccion_origen);
         } else if (e.getSource() == Destino) {
-            seleccion = Destino.getSelectedItem().toString();
-            System.out.println("Destino: " + seleccion);
+            seleccion_destino = Destino.getSelectedItem().toString();
+            System.out.println("Destino: " + seleccion_destino);
         }
     }
-
+    public boolean aceptar(){
+        if(!seleccion_origen.equals(seleccion_destino)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     private void cargarSonidos() {
         try {
             String basePath = new File("").getAbsolutePath();
@@ -119,5 +124,16 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
             clip.setMicrosecondPosition(0);
             clip.start();
         }
+    }
+
+    public String getSeleccion_origen() {
+        return seleccion_origen;
+    }
+
+    public String getSeleccion_destino() {
+        return seleccion_destino;
+    }
+    public JTextField getFecha() {
+        return Fecha;
     }
 }
