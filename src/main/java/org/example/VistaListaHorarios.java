@@ -11,7 +11,7 @@ import java.util.List;
 
 public class VistaListaHorarios extends JPanel {
     private List<VistaHorario> listaHorarios;
-    private int elementosPorPagina = 5;
+    private int elementosPorPagina = 20;
     private int paginaActual = 1;
     private JButton btnPaginaAnterior;
     private JButton btnPaginaSiguiente;
@@ -42,7 +42,6 @@ public class VistaListaHorarios extends JPanel {
             listaHorarios.add(vistaHorario);
         }
     }
-
     private void actualizarInterfaz() {
         removeAll();
         int inicio = (paginaActual - 1) * elementosPorPagina;
@@ -64,7 +63,7 @@ public class VistaListaHorarios extends JPanel {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Título del Marco Principal");
-            VistaListaHorarios vistaListaHorarios = new VistaListaHorarios(25);
+            VistaListaHorarios vistaListaHorarios = new VistaListaHorarios(10);
             frame.add(vistaListaHorarios);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();

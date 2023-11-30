@@ -3,6 +3,8 @@ package GUIInterface;
 import org.example.Ciudades;
 import org.example.Horario;
 import org.example.VistaHorario;
+import org.example.VistaListaHorarios;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -14,31 +16,30 @@ import java.io.File;
 import java.io.IOException;
 import  java.util.Random;
 
-public class PanelHorarios extends JPanel implements ItemListener {
+public class PanelHorarios extends JPanel {
     private BufferedImage imagen;
     private JLabel Seleccionar;
-    private String seleccion;
     private Clip clipMouseOver;
     private Clip clipClick;
-    private JList<VistaHorario> listaHorarios;
+    private VistaListaHorarios listaHorarios;
+    private JList<VistaListaHorarios> listapanel;
 
 public PanelHorarios(){
     cargarSonidos();
     this.setLayout(null);
     setPreferredSize(new Dimension(1920,1080));
     this.imagen = cargarImagen("src/main/java/resources/Fondo.jpg");
-    this.listaHorarios= new JList<>();
     Font font = new Font("Arial",Font.PLAIN,30);
     Seleccionar = new JLabel("Seleccionar Horario");
     Seleccionar.setFont(font);
     Seleccionar.setBounds(650,150,1000,50);
     Seleccionar.setForeground(Color.BLACK);
     add(Seleccionar);
-    Random numeroDeHorarios= new Random();
-    int cantidad=numeroDeHorarios.nextInt(10,20);
-    for(int i=0;i<cantidad;i++){
-        listaHorarios.add(new VistaHorario(new Horario(), Ciudades.ANGOL.getNombre(), Ciudades.CONCEPCION.getNombre()));
-    }
+    listaHorarios = new VistaListaHorarios(15);
+    JScrollPane scrollPane = new JScrollPane(listaHorarios);
+    scrollPane.setBounds(260,200,1035,480);
+    add(scrollPane);
+
 }
 
     private BufferedImage cargarImagen(String ruta) {
@@ -56,14 +57,6 @@ public PanelHorarios(){
         if(imagen != null){
             g.drawImage(imagen, 0, 0, 1920, 1080, this);
         }
-    }
-
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        /*if(e.getSource() == horarios){
-            seleccion = horarios.getSelectedItem().toString();
-            System.out.println(seleccion);
-        }*/
     }
     private void cargarSonidos() {
         try {
