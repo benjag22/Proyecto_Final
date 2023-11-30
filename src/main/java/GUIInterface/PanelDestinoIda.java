@@ -1,6 +1,9 @@
 package GUIInterface;
 
 import org.example.Ciudades;
+import org.example.VistaHorario;
+import org.example.VistaListaHorarios;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -10,19 +13,24 @@ import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class PanelDestinoIda extends JPanel implements ItemListener {
     private BufferedImage imagen;
     private JLabel Seleccionar;
-    private String seleccion;
+    private String seleccion_origen;
+    private String seleccion_destino;
     private JTextField Fecha;
     private JLabel Introducir;
     private Clip clipMouseOver;
     private Clip clipClick;
     private JComboBox Origen;
     private JComboBox Destino;
+    private PanelHorarios panelHorarios;
+    private ArrayList<VistaHorario> lista;
     public PanelDestinoIda(){
         cargarSonidos();
+        panelHorarios = new PanelHorarios();
         this.setLayout(null);
         setPreferredSize(new Dimension(1920,1080));
         String basePath = new File("").getAbsolutePath();
@@ -60,7 +68,7 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
         Fecha.setBounds(670,450,250,50);
         add(Fecha);
 
-
+        lista = panelHorarios.getListaHorariosdepanel().getListaHorarios();
 
         /*Falta añadir cambio al presionar enter en Fecha  by: mrc.
 
@@ -75,9 +83,6 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
             return null;
         }
     }
-    public JTextField getFecha() {
-        return Fecha;
-    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -89,14 +94,23 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getSource() == Origen) {
-            seleccion = Origen.getSelectedItem().toString();
-            System.out.println("Origen: " + seleccion);
+            seleccion_origen = Origen.getSelectedItem().toString();
         } else if (e.getSource() == Destino) {
-            seleccion = Destino.getSelectedItem().toString();
-            System.out.println("Destino: " + seleccion);
+            seleccion_destino = Destino.getSelectedItem().toString();
+        }
+        for(int i=0;i<panelHorarios.getListaHorariosdepanel().getListaHorarios().size();i++){
+            panelHorarios.getListaHorariosdepanel().getListaHorarios().get(i).setDestino(seleccion_destino);
+            panelHorarios.getListaHorariosdepanel().getListaHorarios().get(i).setOrigen(seleccion_origen);
         }
     }
-
+    public boolean aceptar(){
+        if(!seleccion_origen.equals(seleccion_destino)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     private void cargarSonidos() {
         try {
             String basePath = new File("").getAbsolutePath();
@@ -119,5 +133,20 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
             clip.setMicrosecondPosition(0);
             clip.start();
         }
+    }
+
+    public String getSeleccion_origen() {
+        return seleccion_origen;
+    }
+
+    public String getSeleccion_destino() {
+        return seleccion_destino;
+    }
+    public JTextField getFecha() {
+        return Fecha;
+    }
+
+    public PanelHorarios getPanelHorarios() {
+        return panelHorarios;
     }
 }

@@ -9,11 +9,12 @@ import java.io.IOException;
 import javax.sound.sampled.*;
 
 public class PanelPrincipal extends JPanel implements MouseListener {
-    private PanelDestinoIda destinoIda;
+
     private PanelCompra compra;
     private Clip clipMouseOver;
     private Clip clipClick;
     private PanelHorarios horarios;
+    private PanelDestinoIda destinoIda;
 
     public PanelPrincipal(){
         this.addMouseListener(this);
@@ -21,16 +22,21 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         compra.setVisible(true);
         cargarSonidos();
 
-        destinoIda = new PanelDestinoIda();
+        destinoIda = compra.getPanelDestinoIda();
         destinoIda.setVisible(false);
 
-        horarios = new PanelHorarios();
+        horarios = destinoIda.getPanelHorarios();
         horarios.setVisible(false);
         ActionListener horaselec = e -> {
+            if(destinoIda.aceptar()) {
                 destinoIda.setVisible(false);
                 horarios.setVisible(true);
+            }
+            else{
+                System.out.println("No se puede viajar desde tu ciudad a tu misma ciudad tontito");
+            }
         };
-
+        destinoIda.getFecha().addActionListener(horaselec);
 
         compra.getComprarAsiento().addMouseListener(this);
 

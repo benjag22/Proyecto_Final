@@ -7,9 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
-public class VistaHorario extends JPanel {  // Cambiado de JFrame a JPanel
-
+public class VistaHorario extends JPanel {
     private Horario horario;
     private BufferedImage imagenComprar;
     private BufferedImage imagenComprarPresionada;
@@ -17,8 +15,6 @@ public class VistaHorario extends JPanel {  // Cambiado de JFrame a JPanel
     private String origen;
     private String destino;
     private JButton botonCompra;
-
-    // Constructor de la clase
     public VistaHorario(Horario horario, String origen, String destino) {
         this.horario = horario;
         this.origen = origen;
@@ -73,6 +69,13 @@ public class VistaHorario extends JPanel {  // Cambiado de JFrame a JPanel
             return null;
         }
     }
+    public void setOrigen(String origen) {
+        this.origen = origen;
+    }
+
+    public void setDestino(String destino) {
+        this.destino = destino;
+    }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Ejemplo VistaHorario");
@@ -80,7 +83,6 @@ public class VistaHorario extends JPanel {  // Cambiado de JFrame a JPanel
             String origen = Ciudades.ANGOL.getNombre();
             String destino = Ciudades.ARAUCO.getNombre();
             VistaHorario horarioPanel = new VistaHorario(horarioAleatorio, origen, destino);
-
             frame.add(horarioPanel);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
