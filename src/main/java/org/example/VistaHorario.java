@@ -94,6 +94,14 @@ public class VistaHorario extends JPanel {  // Cambiado de JFrame a JPanel
         }
     }
 
+    public void setOrigen(String origen) {
+        this.origen = origen;
+    }
+
+    public void setDestino(String destino) {
+        this.destino = destino;
+    }
+
     // Método principal para probar la clase
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
