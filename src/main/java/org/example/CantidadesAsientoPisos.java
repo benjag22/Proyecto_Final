@@ -1,7 +1,7 @@
 package org.example;
 
 public enum CantidadesAsientoPisos {
-    PISONORMAL(20, 4),
+    PISONORMAL(14, 4),
     PISOREDUCIDO(10, 4);
     private final int FILAS;
     private final int COLUMNAS;

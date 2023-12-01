@@ -1,5 +1,7 @@
 package Vistas;
 import org.example.Asiento;
+import org.example.AsientoCama;
+import org.example.AsientoSemiCama;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -7,20 +9,20 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 
-public class VistasAsientos extends JFrame {
+public class VistasAsientos extends JPanel {
     private Asiento asiento;
     private BufferedImage imagenOriginal;
     private BufferedImage imagenPresionada;
-
     private boolean presionada = false;
-
-    public VistasAsientos(Asiento asiento) {
+    private int xposiicion;
+    private int yposicion;
+    public VistasAsientos(Asiento asiento,int x, int y) {
+        this.xposiicion=x;
+        this.yposicion=y;
         this.asiento = asiento;
         this.imagenOriginal = asiento.getImagenDeseleccionada();
         this.imagenPresionada = asiento.getImagenSeleccionada();
-
         setPreferredSize(new Dimension(imagenOriginal.getWidth(), imagenOriginal.getHeight()));
-
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -31,13 +33,17 @@ public class VistasAsientos extends JFrame {
 
     }
 
-    public void paint(Graphics g, int x, int y, int ancho, int alto) {
+    public void paint(Graphics g) {
         super.paint(g);
         if (presionada) {
-            g.drawImage(imagenPresionada, x, y, ancho, alto, this);
+            g.drawImage(imagenPresionada, xposiicion,yposicion, this);
         } else {
-            g.drawImage(imagenOriginal, x, y, ancho, alto, this);
+            g.drawImage(imagenOriginal, xposiicion,yposicion, this);
         }
+    }
+
+    public Asiento getAsiento() {
+        return asiento;
     }
 }
 

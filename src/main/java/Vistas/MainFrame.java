@@ -1,6 +1,7 @@
 package Vistas;
 
 import org.example.AsientoCama;
+import org.example.AsientoSemiCama;
 import org.example.BuilderCorridasAsientos;
 import org.example.BusDosPisos;
 
@@ -16,7 +17,8 @@ public class MainFrame extends JFrame {
 
         builder = new BuilderCorridasAsientos();
         vistaBus = new VistaBus(new BusDosPisos(), builder);
-        vistaBus.agregarAsientos(new AsientoCama("A",1),1);
+        vistaBus.agregarAsientos(new AsientoCama("A", 1), 1);
+        repaint();
 
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.add(builder, BorderLayout.CENTER);

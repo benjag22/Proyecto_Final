@@ -67,12 +67,7 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
         Fecha.setFont(font);
         Fecha.setBounds(670,450,250,50);
         add(Fecha);
-
         lista = panelHorarios.getListaHorariosdepanel().getListaHorarios();
-
-        /*Falta añadir cambio al presionar enter en Fecha  by: mrc.
-
-         */
     }
 
     private BufferedImage cargarImagen(String ruta) {
