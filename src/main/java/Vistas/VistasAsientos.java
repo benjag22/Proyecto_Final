@@ -16,9 +16,7 @@ public class VistasAsientos extends JPanel {
     private boolean presionada = false;
     private int xposiicion;
     private int yposicion;
-    public VistasAsientos(Asiento asiento,int x, int y) {
-        this.xposiicion=x;
-        this.yposicion=y;
+    public VistasAsientos(Asiento asiento) {
         this.asiento = asiento;
         this.imagenOriginal = asiento.getImagenDeseleccionada();
         this.imagenPresionada = asiento.getImagenSeleccionada();
@@ -36,9 +34,9 @@ public class VistasAsientos extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         if (presionada) {
-            g.drawImage(imagenPresionada, xposiicion,yposicion, this);
+            g.drawImage(imagenPresionada,0,0, this);
         } else {
-            g.drawImage(imagenOriginal, xposiicion,yposicion, this);
+            g.drawImage(imagenOriginal,0,0, this);
         }
     }
 

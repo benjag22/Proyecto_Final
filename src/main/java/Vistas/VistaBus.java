@@ -6,44 +6,86 @@ import java.util.ArrayList;
 
 public class VistaBus extends JPanel {
     private Bus bus;
-    private ArrayList<VistasAsientos>listaAsientos;
-    private BuilderCorridasAsientos builder;
-    public VistaBus(Bus bus,BuilderCorridasAsientos builder){
+    private JButton btnPaginaAnterior;
+    private JButton btnPaginaSiguiente;
+    private ArrayList<VistasAsientos> listaAsientos;
+    private int paginaActual = 1;
+
+    public VistaBus(Bus bus) {
         super();
-        this.bus=bus;
+        this.bus = bus;
         listaAsientos = new ArrayList<>();
-        this.builder = builder;
+        if (bus.getPisos() == 2) {
+            btnPaginaAnterior = new JButton("<< Anterior");
+            btnPaginaSiguiente = new JButton("Siguiente >>");
+            btnPaginaAnterior.addActionListener(e -> cambiarPagina(-1));
+            btnPaginaSiguiente.addActionListener(e -> cambiarPagina(1));
+        }
+    }
+    private void cambiarPagina(int delta) {
+        paginaActual += delta;
+        if (paginaActual < 1) {
+            paginaActual = 1;
+        } else if (paginaActual > 2) {
+            paginaActual = 2;
+        }
+        limpiarAsientos();
+        agregarAsientos(new AsientoCama("A", 1), paginaActual);
     }
 
-   /* @Override
+    private void limpiarAsientos() {
+        removeAll();
+        listaAsientos.clear();
+    }
+
+   @Override
     public void paint(Graphics g) {
         super.paint(g);
-        int index = 0;
-        if(!listaAsientos.isEmpty() && listaAsientos.get(0).getAsiento() instanceof AsientoCama) {
-            for(int i=1; i<=builder.getFilas()*builder.getColumnas();i++){
-                listaAsientos.get(index++).paint(g);
-            }
-        }else if(!listaAsientos.isEmpty() && listaAsientos.get(0).getAsiento() instanceof AsientoSemiCama){
-            for(int i=1; i<=builder.getFilas()*builder.getColumnas();i++){
-                listaAsientos.get(index++).paint(g);
-            }
-        }
-    }*/
+
+    }
    public void agregarAsientos(Asiento asiento, int cualCorridaAsiento) {
+       int filas=0;
+       int columnas=0;
+       int xposicion;
+       int yposicion;
            if (cualCorridaAsiento == 1) {
-               builder.agregarCorridaAsientosNormal(asiento);
+               filas = CantidadesAsientoPisos.PISONORMAL.getFILAS();
+               columnas = CantidadesAsientoPisos.PISONORMAL.getCOLUMNAS();
            } else if (cualCorridaAsiento == 2) {
-               builder.agregarCorridaAsientosReducido(asiento);
+               filas = CantidadesAsientoPisos.PISOREDUCIDO.getFILAS();
+               columnas = CantidadesAsientoPisos.PISOREDUCIDO.getCOLUMNAS();
+           }
+           if(asiento instanceof AsientoCama){
+               xposicion=90;
+               yposicion=60;
+           }else{
+               xposicion=70;
+               yposicion=70;
+           }
+       for (int i = 1; i <= filas; i++) {
+           for (int j = 1; j <= columnas; j++) {
+               char letra = (char) ('A' + i - 1);
+               int x= xposicion*(i - 1);
+               int y= yposicion*(j - 1);
+               Asiento nuevoAsiento;
+               if (asiento instanceof AsientoCama) {
+                   nuevoAsiento = new AsientoCama(String.valueOf(letra), j);
+               } else {
+                   nuevoAsiento = new AsientoSemiCama(String.valueOf(letra), j);
+               }
+               VistasAsientos vistanuevoAsiento = new VistasAsientos(nuevoAsiento);
+               vistanuevoAsiento.setLocation(x, y);
+               add(vistanuevoAsiento);
+               listaAsientos.add(vistanuevoAsiento);
+               }
+           }
        }
-       listaAsientos.clear();
-       listaAsientos.addAll(builder.getListaVistaAsientos());
-   }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            BuilderCorridasAsientos builder = new BuilderCorridasAsientos();
-            VistaBus vistaBus = new VistaBus(new BusDosPisos(), builder);
-            vistaBus.agregarAsientos(new AsientoCama("A", 1), 1);
+            BusDosPisos bus= new BusDosPisos();
+            VistaBus vistaBus = new VistaBus(bus);
+            vistaBus.agregarAsientos(new AsientoCama("A", 1), 2);
             JFrame frame = new JFrame("VistaBus Test");
             frame.setSize(1920, 1080);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
