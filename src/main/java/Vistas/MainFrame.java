@@ -1,8 +1,6 @@
 package Vistas;
 
 import org.example.AsientoCama;
-import org.example.AsientoSemiCama;
-import org.example.BuilderCorridasAsientos;
 import org.example.BusDosPisos;
 
 import javax.swing.*;

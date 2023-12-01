@@ -2,8 +2,6 @@ package Vistas;
 import javax.swing.*;
 import org.example.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class VistaBus extends JPanel {
@@ -32,18 +30,10 @@ public class VistaBus extends JPanel {
         }
     }*/
    public void agregarAsientos(Asiento asiento, int cualCorridaAsiento) {
-       if (bus.getPisos() == 1) {
            if (cualCorridaAsiento == 1) {
                builder.agregarCorridaAsientosNormal(asiento);
            } else if (cualCorridaAsiento == 2) {
                builder.agregarCorridaAsientosReducido(asiento);
-           }
-       } else if (bus.getPisos() == 2) {
-           if (cualCorridaAsiento == 1) {
-               builder.agregarCorridaAsientosNormal(asiento);
-           } else if (cualCorridaAsiento == 2) {
-               builder.agregarCorridaAsientosReducido(asiento);
-           }
        }
        listaAsientos.clear();
        listaAsientos.addAll(builder.getListaVistaAsientos());

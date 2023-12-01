@@ -1,5 +1,10 @@
-package org.example;
+package Vistas;
 import Vistas.VistasAsientos;
+import org.example.Asiento;
+import org.example.AsientoCama;
+import org.example.AsientoSemiCama;
+import org.example.CantidadesAsientoPisos;
+
 import javax.swing.*;
 import java.util.ArrayList;
 
