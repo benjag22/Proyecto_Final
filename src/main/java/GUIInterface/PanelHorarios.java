@@ -26,7 +26,7 @@ public class PanelHorarios extends JPanel {
 public PanelHorarios(){
     cargarSonidos();
     this.setLayout(null);
-    setPreferredSize(new Dimension(1920,1080));
+    setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
     this.imagen = cargarImagen("src/main/java/resources/Fondo.jpg");
     Font font = new Font("Arial",Font.PLAIN,30);
     Seleccionar = new JLabel("Seleccionar Horario");
@@ -38,7 +38,6 @@ public PanelHorarios(){
     JScrollPane scrollPane = new JScrollPane(listaHorarios);
     scrollPane.setBounds(260,200,1035,480);
     add(scrollPane);
-
 }
 
     private BufferedImage cargarImagen(String ruta) {

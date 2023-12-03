@@ -24,7 +24,9 @@ public class VistaHorario extends JPanel {
         this.imagenComprarPresionada = cargarImagen("src/main/java/resources/botonCompraPresionado.png");
         int ancho = 180;
         int alto = 70;
-
+        setPreferredSize(new Dimension(680, 150));
+        setMinimumSize(new Dimension(680, 150));
+        setMaximumSize(new Dimension(680, 150));
         ImageIcon iconoOriginal = new ImageIcon(imagenComprar);
         Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
         ImageIcon iconoPersonalizado = new ImageIcon(imagenEscalada);
@@ -60,6 +62,7 @@ public class VistaHorario extends JPanel {
         g.drawString("Hora de fin: " + horario.getHoraFin(), 35, 105);
         g.drawString("_____________________________________________________________________________", 35, 115);
         g.drawString("Descripción: " + horario + ", " + "Fecha: " + horario.getLocalDate(), 35, 135);
+        g.drawRect(0,0,680,150);
     }
     private BufferedImage cargarImagen(String ruta) {
         try {
@@ -75,19 +78,5 @@ public class VistaHorario extends JPanel {
 
     public void setDestino(String destino) {
         this.destino = destino;
-    }
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Ejemplo VistaHorario");
-            Horario horarioAleatorio = Horario.generarHorarioAleatorio();
-            String origen = Ciudades.ANGOL.getNombre();
-            String destino = Ciudades.ARAUCO.getNombre();
-            VistaHorario horarioPanel = new VistaHorario(horarioAleatorio, origen, destino);
-            frame.add(horarioPanel);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.pack();
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-        });
     }
 }

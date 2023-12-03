@@ -1,4 +1,5 @@
 package Vistas;
+
 import org.example.*;
 
 import javax.swing.*;
@@ -20,10 +21,10 @@ public class VistaBus extends JPanel {
         cardLayout = new CardLayout();
         seatingArea.setLayout(cardLayout);
 
-        if (bus.getPisos() == 2) {
+        if (bus.getPisos() == 1) {
+        } else if (bus.getPisos() == 2) {
             agregarPagina(1);
             agregarPagina(2);
-            cardLayout.show(seatingArea, "1");
 
             JButton btnPaginaAnterior = new JButton("<< Anterior");
             btnPaginaAnterior.addActionListener(e -> cambiarPagina(-1));
@@ -54,7 +55,7 @@ public class VistaBus extends JPanel {
     private void agregarPagina(int pagina) {
         JPanel paginaPanel = new JPanel(new BorderLayout());
         JPanel asientoPanel = new JPanel(new GridLayout());
-        agregarAsientos(new AsientoCama("A", 1), pagina, asientoPanel);
+        agregarAsientos(new AsientoCama("A", 1), asientoPanel);
         JScrollPane scrollPane = new JScrollPane(asientoPanel);
         paginaPanel.add(scrollPane, BorderLayout.CENTER);
         paginaPanel.setName(String.valueOf(pagina));
@@ -62,46 +63,45 @@ public class VistaBus extends JPanel {
         cardLayout.show(seatingArea, String.valueOf(pagina));
     }
 
-    private void agregarAsientos(Asiento asiento, int cualCorridaAsiento,JPanel pagina) {
-        int filas = obtenerFilas(cualCorridaAsiento);
-        int columnas = obtenerColumnas(cualCorridaAsiento);
+
+    private void agregarAsientos(Asiento asiento, JPanel asientoPanel) {
+        int filas = obtenerFilas(asiento);
+        int columnas = obtenerColumnas(asiento);
         int xposicion = obtenerXPosicion(asiento);
         int yposicion = obtenerYPosicion(asiento);
-        for (int i = 1; i <= filas; i++) {
-            for (int j = 1; j <= columnas; j++) {
+
+        for (int i = 1; i <= columnas; i++) {
+            for (int j = 1; j <= filas; j++) {
                 char letra = (char) ('A' + i - 1);
-                int x = xposicion * (j - 1);
-                int y = yposicion * (i - 1);
-                Asiento nuevoAsiento = crearNuevoAsiento(asiento, letra,j);
+                int x = xposicion*(j - 1);
+                int y = yposicion*(i - 1);
+                Asiento nuevoAsiento = crearNuevoAsiento(asiento, letra, i);
                 VistasAsientos vistanuevoAsiento = new VistasAsientos(nuevoAsiento);
                 vistanuevoAsiento.setLocation(x, y);
-                pagina.add(vistanuevoAsiento);
+                asientoPanel.add(vistanuevoAsiento);
                 listaAsientos.add(vistanuevoAsiento);
             }
         }
     }
 
 
-    private int obtenerFilas(int cualCorridaAsiento) {
-        return (cualCorridaAsiento == 1) ? CantidadesAsientoPisos.PISONORMAL.getFILAS() : CantidadesAsientoPisos.PISOREDUCIDO.getFILAS();
+    private int obtenerFilas(Asiento asiento) {
+        return (asiento instanceof AsientoCama) ? CantidadesAsientoPisos.PISONORMAL.getFILAS() : CantidadesAsientoPisos.PISOREDUCIDO.getFILAS();
     }
 
-    private int obtenerColumnas(int cualCorridaAsiento) {
-        return (cualCorridaAsiento == 1) ? CantidadesAsientoPisos.PISONORMAL.getCOLUMNAS() : CantidadesAsientoPisos.PISOREDUCIDO.getCOLUMNAS();
-    }
-
-    private int obtenerXPosicion(Asiento asiento) {
-        return (asiento instanceof AsientoCama) ? 90 : 70;
-    }
-
-    private int obtenerYPosicion(Asiento asiento) {
-        return (asiento instanceof AsientoCama) ? 70 : 70;
+    private int obtenerColumnas(Asiento asiento) {
+        return (asiento instanceof AsientoCama) ? CantidadesAsientoPisos.PISONORMAL.getCOLUMNAS() : CantidadesAsientoPisos.PISOREDUCIDO.getCOLUMNAS();
     }
 
     private Asiento crearNuevoAsiento(Asiento asiento, char letra, int numero) {
         return (asiento instanceof AsientoCama) ? new AsientoCama(String.valueOf(letra), numero) : new AsientoSemiCama(String.valueOf(letra), numero);
     }
-
+    private int obtenerXPosicion(Asiento asiento) {
+        return (asiento instanceof AsientoCama) ? 90 : 60;
+    }
+    private int obtenerYPosicion(Asiento asiento) {
+        return (asiento instanceof AsientoCama) ? 70 : 70;
+    }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             BusDosPisos bus = new BusDosPisos();
@@ -114,5 +114,3 @@ public class VistaBus extends JPanel {
         });
     }
 }
-
-

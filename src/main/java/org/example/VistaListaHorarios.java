@@ -14,20 +14,17 @@ public class VistaListaHorarios extends JPanel {
 
     public VistaListaHorarios(int cantidad) {
         listaHorarios = new ArrayList<>();
-        Horario horarioRandom = Horario.generarHorarioAleatorio();
-        for(int i=0;i<cantidad;i++){
-            listaHorarios.add(new VistaHorario(horarioRandom, Ciudades.CONCEPCION.getNombre(), Ciudades.SANTIAGO.getNombre()));
-        }
-        setLayout(new BorderLayout());
+        setLayout(new GridLayout(cantidad, 1));
+
         cargarHorarios(cantidad);
 
     }
+
     private void cargarHorarios(int cantidad) {
         for (int i = 0; i < cantidad; i++) {
             Horario horarioRandom = Horario.generarHorarioAleatorio();
             VistaHorario vistaHorario = new VistaHorario(horarioRandom, Ciudades.CONCEPCION.getNombre(), Ciudades.SANTIAGO.getNombre());
             listaHorarios.add(vistaHorario);
-            setLayout(new GridLayout(0,1));
             add(vistaHorario);
         }
     }

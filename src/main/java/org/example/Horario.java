@@ -38,8 +38,6 @@ public class Horario {
         int horaFin = horaInicio + random.nextInt(24 - horaInicio);
         int minutoFin = random.nextInt(60);
         LocalTime horarioFin = LocalTime.of(horaFin, minutoFin);
-
-        // Crea un nuevo Horario con las horas aleatorias generadas
         Horario horarioGenerado = new Horario();
         horarioGenerado.horaInicio = horarioInicio;
         horarioGenerado.horaFin = horarioFin;
