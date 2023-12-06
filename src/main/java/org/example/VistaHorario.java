@@ -20,8 +20,8 @@ public class VistaHorario extends JPanel {
         this.origen = origen;
         this.destino = destino;
 
-        this.imagenComprar = cargarImagen("src/main/java/resources/botonCompra.png");
-        this.imagenComprarPresionada = cargarImagen("src/main/java/resources/botonCompraPresionado.png");
+        this.imagenComprar = cargarImagen("src/main/java/resources/botonCompra2.png");
+        this.imagenComprarPresionada = cargarImagen("src/main/java/resources/botonCompraPresionado2.png");
         int ancho = 180;
         int alto = 70;
         setPreferredSize(new Dimension(680, 150));

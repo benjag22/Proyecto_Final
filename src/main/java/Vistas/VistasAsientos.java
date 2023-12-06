@@ -14,8 +14,6 @@ public class VistasAsientos extends JPanel {
     private BufferedImage imagenOriginal;
     private BufferedImage imagenPresionada;
     private boolean presionada = false;
-    private int xposiicion;
-    private int yposicion;
     public VistasAsientos(Asiento asiento) {
         this.asiento = asiento;
         this.imagenOriginal = asiento.getImagenDeseleccionada();

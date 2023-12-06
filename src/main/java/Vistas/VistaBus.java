@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class VistaBusDosPisos extends JPanel {
+public class VistaBus extends JPanel {
 
     private Bus bus;
     private JPanel seatingArea;
@@ -16,26 +16,30 @@ public class VistaBusDosPisos extends JPanel {
     private int columnas;
     private int paginaActual = 1;
 
-    public VistaBusDosPisos(Bus bus) {
+    public VistaBus(Bus bus) {
         this.bus = bus;
         listaAsientos = new ArrayList<>();
         seatingArea = new JPanel();
         cardLayout = new CardLayout();
         seatingArea.setLayout(cardLayout);
+        if(bus.getPisos()==2) {
+            JButton btnPaginaAnterior = new JButton("<< Anterior");
+            btnPaginaAnterior.addActionListener(e -> cambiarPagina(-1));
 
-        JButton btnPaginaAnterior = new JButton("<< Anterior");
-        btnPaginaAnterior.addActionListener(e -> cambiarPagina(-1));
+            JButton btnPaginaSiguiente = new JButton("Siguiente >>");
+            btnPaginaSiguiente.addActionListener(e -> cambiarPagina(1));
 
-        JButton btnPaginaSiguiente = new JButton("Siguiente >>");
-        btnPaginaSiguiente.addActionListener(e -> cambiarPagina(1));
+            JPanel navigationPanel = new JPanel();
+            navigationPanel.add(btnPaginaAnterior);
+            navigationPanel.add(btnPaginaSiguiente);
 
-        JPanel navigationPanel = new JPanel();
-        navigationPanel.add(btnPaginaAnterior);
-        navigationPanel.add(btnPaginaSiguiente);
-
-        setLayout(new BorderLayout());
-        add(seatingArea, BorderLayout.CENTER);
-        add(navigationPanel, BorderLayout.SOUTH);
+            setLayout(new BorderLayout());
+            add(seatingArea, BorderLayout.CENTER);
+            add(navigationPanel, BorderLayout.SOUTH);
+        }else{
+            setLayout(new BorderLayout());
+            add(seatingArea, BorderLayout.CENTER);
+        }
     }
     private void cambiarPagina(int delta) {
         paginaActual += delta;
@@ -51,8 +55,6 @@ public class VistaBusDosPisos extends JPanel {
         this.columnas = obtenerColumnas(cual);
 
         JPanel paginaPanel = new JPanel(new BorderLayout());
-        JScrollPane scrollPane = new JScrollPane();
-
         JPanel asientoPanelSur = new JPanel(new GridLayout(columnas/2, filas));
         JPanel asientoPanelNorte = new JPanel(new GridLayout(columnas/2, filas));
 
@@ -69,12 +71,12 @@ public class VistaBusDosPisos extends JPanel {
                 }
             }
         }
-
         paginaPanel.add(asientoPanelSur, BorderLayout.NORTH);
         paginaPanel.add(asientoPanelNorte, BorderLayout.SOUTH);
-        paginaPanel.setName(String.valueOf(seatingArea.getComponentCount() + 1));
         cardLayout.show(seatingArea, String.valueOf(seatingArea.getComponentCount()));
-        paginaActual++;
+        if(bus.getPisos()==2){
+          paginaActual++;
+        }
         seatingArea.add(paginaPanel, String.valueOf(seatingArea.getComponentCount() + 1));
     }
 
@@ -107,16 +109,15 @@ public class VistaBusDosPisos extends JPanel {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             BusDosPisos bus = new BusDosPisos();
-            JFrame frame = new JFrame("VistaBusDosPisos Test");
+            JFrame frame = new JFrame("VistaBus Test");
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            VistaBusDosPisos vistaBusDosPisos = new VistaBusDosPisos(bus);
+            VistaBus vistaBusDosPisos = new VistaBus(bus);
             frame.setContentPane(vistaBusDosPisos);
             AsientoSemiCama asiento1= new AsientoSemiCama();
             AsientoCama asiento2 = new AsientoCama();
-            vistaBusDosPisos.agregarAsientos(asiento1,1); /*Aqui agrego 4x14 asientos semicama*/
-            vistaBusDosPisos.agregarAsientos(asiento2,2); /*Aqui agrego 4x10 asientos cama*/
-
+            vistaBusDosPisos.agregarAsientos(asiento2,2); /*Aqui agrego 4x14 asientos semicama*/
+            vistaBusDosPisos.agregarAsientos(asiento1,1);
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
         });
