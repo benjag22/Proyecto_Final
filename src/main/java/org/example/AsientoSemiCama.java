@@ -9,8 +9,8 @@ public class AsientoSemiCama extends Asiento{
     private Boolean habilitado;
     private BufferedImage imagenDeseleccionada;
     private BufferedImage imagenSeleccionada;
-    public AsientoSemiCama(String fila, int columna){
-        super(fila, columna);
+    public AsientoSemiCama(){
+        super();
         this.imagenDeseleccionada=cargarImagen("src/main/java/resources/asiento_semicama.png");
         this.imagenSeleccionada=cargarImagen("src/main/java/resources/asiento_semicama_elegida.png");
     }
@@ -40,5 +40,14 @@ public class AsientoSemiCama extends Asiento{
     }
     public AsientoSemiCama getThis(){
         return this;
+    }
+    @Override
+    public void setColumna(int columna) {
+        super.setColumna(columna);
+    }
+
+    @Override
+    public void setFila(String fila) {
+        super.setFila(fila);
     }
 }

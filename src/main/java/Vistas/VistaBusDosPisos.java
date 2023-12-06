@@ -69,13 +69,13 @@ public class VistaBusDosPisos extends JPanel {
                 }
             }
         }
-        scrollPane.setViewportView(asientoPanelSur);
-        paginaPanel.add(scrollPane, BorderLayout.SOUTH);
-        paginaPanel.add(asientoPanelNorte, BorderLayout.NORTH);
+
+        paginaPanel.add(asientoPanelSur, BorderLayout.NORTH);
+        paginaPanel.add(asientoPanelNorte, BorderLayout.SOUTH);
         paginaPanel.setName(String.valueOf(seatingArea.getComponentCount() + 1));
-        seatingArea.add(paginaPanel, String.valueOf(seatingArea.getComponentCount() + 1));
         cardLayout.show(seatingArea, String.valueOf(seatingArea.getComponentCount()));
         paginaActual++;
+        seatingArea.add(paginaPanel, String.valueOf(seatingArea.getComponentCount() + 1));
     }
 
 
@@ -89,8 +89,20 @@ public class VistaBusDosPisos extends JPanel {
 
 
     private Asiento crearNuevoAsiento(Asiento asiento, char letra, int numero) {
-        return (asiento instanceof AsientoCama) ? new AsientoCama(String.valueOf(letra), numero) : new AsientoSemiCama(String.valueOf(letra), numero);
+        Asiento nuevoAsiento;
+
+        if (asiento instanceof AsientoCama) {
+            nuevoAsiento = new AsientoCama();
+        } else {
+            nuevoAsiento = new AsientoSemiCama();
+        }
+
+        nuevoAsiento.setFila(String.valueOf(letra));
+        nuevoAsiento.setColumna(numero);
+
+        return nuevoAsiento;
     }
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -100,8 +112,8 @@ public class VistaBusDosPisos extends JPanel {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             VistaBusDosPisos vistaBusDosPisos = new VistaBusDosPisos(bus);
             frame.setContentPane(vistaBusDosPisos);
-            AsientoSemiCama asiento1= new AsientoSemiCama("A",1);
-             AsientoCama asiento2 = new AsientoCama("A",1);
+            AsientoSemiCama asiento1= new AsientoSemiCama();
+            AsientoCama asiento2 = new AsientoCama();
             vistaBusDosPisos.agregarAsientos(asiento1,1); /*Aqui agrego 4x14 asientos semicama*/
             vistaBusDosPisos.agregarAsientos(asiento2,2); /*Aqui agrego 4x10 asientos cama*/
 

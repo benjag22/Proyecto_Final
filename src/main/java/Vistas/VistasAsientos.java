@@ -39,9 +39,12 @@ public class VistasAsientos extends JPanel {
             g.drawImage(imagenOriginal,0,0, this);
         }
     }
-
     public Asiento getAsiento() {
         return asiento;
+    }
+
+    public boolean isPresionada() {
+        return presionada;
     }
 }
 

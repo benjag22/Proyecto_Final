@@ -9,8 +9,8 @@ public class AsientoCama extends Asiento{
     private Boolean habilitado;
     private BufferedImage imagenDeseleccionada;
     private BufferedImage imagenSeleccionada;
-    public AsientoCama(String fila, int columna){
-        super(fila,columna);
+    public AsientoCama(){
+        super();
         imagenDeseleccionada = cargarImagen("src/main/java/resources/asiento_cama.png");
         imagenSeleccionada = cargarImagen("src/main/java/resources/asiento_cama_elegido.png");
     }
@@ -38,7 +38,14 @@ public class AsientoCama extends Asiento{
     public String toString() {
         return super.getFila()+super.getColumna();
     }
-    public AsientoCama getThis(){
-        return this;
+
+    @Override
+    public void setColumna(int columna) {
+        super.setColumna(columna);
+    }
+
+    @Override
+    public void setFila(String fila) {
+        super.setFila(fila);
     }
 }
