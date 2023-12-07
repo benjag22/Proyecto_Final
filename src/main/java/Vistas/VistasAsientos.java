@@ -1,6 +1,7 @@
 package Vistas;
 import org.example.Asiento;
 import org.example.AsientoCama;
+import org.example.AsientoClickListener;
 import org.example.AsientoSemiCama;
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,7 @@ public class VistasAsientos extends JPanel {
     private BufferedImage imagenPresionada;
     private boolean presionada = false;
     private double precio;
+    private AsientoClickListener listener;
     public VistasAsientos(Asiento asiento) {
         this.asiento = asiento;
         this.precio=0.0;
@@ -26,6 +28,10 @@ public class VistasAsientos extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 presionada = !presionada;
                 repaint();
+
+                if (listener != null) {
+                    listener.onAsientoClick(); // Notificar al oyente(funciona como observador)
+                }
             }
         });
 
@@ -47,6 +53,9 @@ public class VistasAsientos extends JPanel {
 
     public boolean isPresionada() {
         return presionada;
+    }
+    public void setAsientoClickListener(AsientoClickListener listener) {
+        this.listener = listener;
     }
 }
 

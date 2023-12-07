@@ -24,9 +24,9 @@ public class VistaHorario extends JPanel {
         this.imagenComprarPresionada = cargarImagen("src/main/java/resources/botonCompraPresionado2.png");
         int ancho = 180;
         int alto = 70;
-        setPreferredSize(new Dimension(800, 150));
-        setMinimumSize(new Dimension(800, 150));
-        setMaximumSize(new Dimension(800, 150));
+        setPreferredSize(new Dimension(1000, 150));
+        setMinimumSize(new Dimension(1000, 150));
+        setMaximumSize(new Dimension(1000, 150));
         ImageIcon iconoOriginal = new ImageIcon(imagenComprar);
         Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
         ImageIcon iconoPersonalizado = new ImageIcon(imagenEscalada);

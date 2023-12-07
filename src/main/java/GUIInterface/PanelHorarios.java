@@ -36,7 +36,7 @@ public PanelHorarios(){
     add(Seleccionar);
     listaHorarios = new VistaListaHorarios(15);
     JScrollPane scrollPane = new JScrollPane(listaHorarios);
-    scrollPane.setBounds(260,200,1035,480);
+    scrollPane.setBounds(260,200,1000,480);
     add(scrollPane);
 }
 

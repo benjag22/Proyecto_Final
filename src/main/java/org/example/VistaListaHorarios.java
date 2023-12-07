@@ -9,7 +9,7 @@ public class VistaListaHorarios extends JPanel {
         listaHorarios = new ArrayList<>();
         setLayout(new GridLayout(cantidad, 1));
         cargarHorarios(cantidad);
-        setPreferredSize(new Dimension(1035, cantidad * 150));
+        setPreferredSize(new Dimension(1000, cantidad * 150));
     }
 
     private void cargarHorarios(int cantidad) {
