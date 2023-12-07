@@ -15,6 +15,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     private Clip clipClick;
     private PanelHorarios horarios;
     private PanelDestinoIda destinoIda;
+    private PanelEleccionAsientos eleccionAsientos;
 
     public PanelPrincipal(){
         this.addMouseListener(this);
@@ -27,6 +28,10 @@ public class PanelPrincipal extends JPanel implements MouseListener {
 
         horarios = destinoIda.getPanelHorarios();
         horarios.setVisible(false);
+
+        eleccionAsientos = horarios.getPanelEleccion();
+        eleccionAsientos.setVisible(false);
+
         ActionListener horaselec = e -> {
             if(destinoIda.aceptar()) {
                 destinoIda.setVisible(false);
@@ -39,11 +44,13 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         destinoIda.getFecha().addActionListener(horaselec);
 
         compra.getComprarAsiento().addMouseListener(this);
+        horarios.getBoton1().addMouseListener(this);
 
         setPreferredSize(new Dimension(1920,1080));
         add(compra);
         add(destinoIda);
         add(horarios);
+        add(eleccionAsientos);
 
     }
 
@@ -53,6 +60,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         destinoIda.setLocation(0,0);
         compra.setLocation(0,0);
         horarios.setLocation(0,0);
+        eleccionAsientos.setLocation(0,0);
 
         if(compra.isVisible()){
             compra.paintComponent(g);
@@ -65,12 +73,21 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         else if(horarios.isVisible()){
             horarios.paintComponent(g);
         }
+        else if(eleccionAsientos.isVisible()){
+            eleccionAsientos.paint(g);
+        }
     }
     @Override
     public void mouseClicked(MouseEvent e) {
         if(e.getComponent()==compra.getComprarAsiento()){
             compra.setVisible(false);
             destinoIda.setVisible(true);
+            revalidate();
+            repaint();
+        }
+        else if(e.getComponent()==horarios.getBoton1()){
+            horarios.setVisible(false);
+            eleccionAsientos.setVisible(true);
             revalidate();
             repaint();
         }
