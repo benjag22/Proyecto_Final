@@ -14,8 +14,10 @@ public class VistasAsientos extends JPanel {
     private BufferedImage imagenOriginal;
     private BufferedImage imagenPresionada;
     private boolean presionada = false;
+    private double precio;
     public VistasAsientos(Asiento asiento) {
         this.asiento = asiento;
+        this.precio=0.0;
         this.imagenOriginal = asiento.getImagenDeseleccionada();
         this.imagenPresionada = asiento.getImagenSeleccionada();
         setPreferredSize(new Dimension(imagenOriginal.getWidth(), imagenOriginal.getHeight()));
@@ -33,8 +35,10 @@ public class VistasAsientos extends JPanel {
         super.paint(g);
         if (presionada) {
             g.drawImage(imagenPresionada,0,0, this);
+            this.precio=asiento.getPrecio();
         } else {
             g.drawImage(imagenOriginal,0,0, this);
+            this.precio=0;
         }
     }
     public Asiento getAsiento() {

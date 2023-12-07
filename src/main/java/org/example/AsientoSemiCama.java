@@ -9,11 +9,18 @@ public class AsientoSemiCama extends Asiento{
     private Boolean habilitado;
     private BufferedImage imagenDeseleccionada;
     private BufferedImage imagenSeleccionada;
+    private final double precio=15000.0;
     public AsientoSemiCama(){
         super();
         this.imagenDeseleccionada=cargarImagen("src/main/java/resources/asiento_semicama.png");
         this.imagenSeleccionada=cargarImagen("src/main/java/resources/asiento_semicama_elegida.png");
     }
+
+    @Override
+    public double getPrecio() {
+        return precio;
+    }
+
     @Override
     public void setHabilitado(boolean habilitado){
         this.habilitado=habilitado;

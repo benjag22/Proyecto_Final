@@ -4,9 +4,11 @@ import org.example.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
-public class VistaBus extends JPanel {
+public class VistaBus extends JPanel{
 
     private Bus bus;
     private JPanel seatingArea;
@@ -15,8 +17,10 @@ public class VistaBus extends JPanel {
     private int filas;
     private int columnas;
     private int paginaActual = 1;
+    private double precioTotal;
 
     public VistaBus(Bus bus) {
+        this.precioTotal=0.0;
         this.bus = bus;
         listaAsientos = new ArrayList<>();
         seatingArea = new JPanel();
@@ -24,10 +28,20 @@ public class VistaBus extends JPanel {
         seatingArea.setLayout(cardLayout);
         if(bus.getPisos()==2) {
             JButton btnPaginaAnterior = new JButton("<< Anterior");
-            btnPaginaAnterior.addActionListener(e -> cambiarPagina(-1));
+            btnPaginaAnterior.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    cambiarPagina(-1);
+                }
+            });
 
             JButton btnPaginaSiguiente = new JButton("Siguiente >>");
-            btnPaginaSiguiente.addActionListener(e -> cambiarPagina(1));
+            btnPaginaSiguiente.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    cambiarPagina(1);
+                }
+            });
 
             JPanel navigationPanel = new JPanel();
             navigationPanel.add(btnPaginaAnterior);
@@ -36,7 +50,7 @@ public class VistaBus extends JPanel {
             setLayout(new BorderLayout());
             add(seatingArea, BorderLayout.CENTER);
             add(navigationPanel, BorderLayout.SOUTH);
-        }else{
+        } else {
             setLayout(new BorderLayout());
             add(seatingArea, BorderLayout.CENTER);
         }
@@ -80,7 +94,6 @@ public class VistaBus extends JPanel {
         seatingArea.add(paginaPanel, String.valueOf(seatingArea.getComponentCount() + 1));
     }
 
-
     private int obtenerFilas(int tipoAsiento) {
         return (tipoAsiento == 1) ? CantidadesAsientoPisos.PISONORMAL.getFILAS() : CantidadesAsientoPisos.PISOREDUCIDO.getFILAS();
     }
@@ -89,19 +102,19 @@ public class VistaBus extends JPanel {
         return (tipoAsiento == 1) ? CantidadesAsientoPisos.PISONORMAL.getCOLUMNAS() : CantidadesAsientoPisos.PISOREDUCIDO.getCOLUMNAS();
     }
 
+    public ArrayList<VistasAsientos> getListaAsientos() {
+        return listaAsientos;
+    }
 
     private Asiento crearNuevoAsiento(Asiento asiento, char letra, int numero) {
         Asiento nuevoAsiento;
-
         if (asiento instanceof AsientoCama) {
             nuevoAsiento = new AsientoCama();
         } else {
             nuevoAsiento = new AsientoSemiCama();
         }
-
         nuevoAsiento.setFila(String.valueOf(letra));
         nuevoAsiento.setColumna(numero);
-
         return nuevoAsiento;
     }
 
@@ -113,11 +126,11 @@ public class VistaBus extends JPanel {
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             VistaBus vistaBusDosPisos = new VistaBus(bus);
-            frame.setContentPane(vistaBusDosPisos);
             AsientoSemiCama asiento1= new AsientoSemiCama();
             AsientoCama asiento2 = new AsientoCama();
             vistaBusDosPisos.agregarAsientos(asiento2,2); /*Aqui agrego 4x14 asientos semicama*/
             vistaBusDosPisos.agregarAsientos(asiento1,1);
+            frame.setContentPane(vistaBusDosPisos);
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
         });

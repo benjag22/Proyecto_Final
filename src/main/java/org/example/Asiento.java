@@ -6,10 +6,16 @@ import java.awt.image.BufferedImage;
 public abstract class Asiento {
 private String fila;
 private int columna;
+private double precio;
 
 public Asiento(){
 
 }
+
+    public double getPrecio() {
+        return precio;
+    }
+
     public abstract void setHabilitado(boolean habilitado);
 
     public String getFila() {

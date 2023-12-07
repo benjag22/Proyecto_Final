@@ -9,10 +9,15 @@ public class AsientoCama extends Asiento{
     private Boolean habilitado;
     private BufferedImage imagenDeseleccionada;
     private BufferedImage imagenSeleccionada;
+    private final double precio=20000.0;
     public AsientoCama(){
         super();
         imagenDeseleccionada = cargarImagen("src/main/java/resources/asiento_cama.png");
         imagenSeleccionada = cargarImagen("src/main/java/resources/asiento_cama_elegido.png");
+    }
+    @Override
+    public double getPrecio() {
+        return precio;
     }
     @Override
     public void setHabilitado(boolean habilitado) {
