@@ -11,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +24,9 @@ public class PanelHorarios extends JPanel {
     private Clip clipMouseOver;
     private Clip clipClick;
     private VistaListaHorarios listaHorarios;
+    private PanelEleccionAsientos panelEleccion;
+    private JButton boton1;
+    private JButton boton2;
 
 public PanelHorarios(){
     cargarSonidos();
@@ -38,6 +43,11 @@ public PanelHorarios(){
     JScrollPane scrollPane = new JScrollPane(listaHorarios);
     scrollPane.setBounds(260,200,1000,480);
     add(scrollPane);
+    boton1 = listaHorarios.getListaHorarios().get(0).getBotonCompra();
+    boton2 = listaHorarios.getListaHorarios().get(1).getBotonCompra();
+    for(int i=0;i<listaHorarios.getListaHorarios().size();i++) {
+        panelEleccion = new PanelEleccionAsientos(0, listaHorarios.getListaHorarios().get(i).getHorario(), listaHorarios.getListaHorarios().get(i).getOrigen(), listaHorarios.getListaHorarios().get(i).getDestino());
+    }
 }
 
     private BufferedImage cargarImagen(String ruta) {
@@ -81,6 +91,16 @@ public PanelHorarios(){
 
     public VistaListaHorarios getListaHorariosdepanel() {
         return listaHorarios;
+    }
+    public JButton getBoton1(){
+    return boton1;
+    }
+    public JButton getBoton2(){
+    return boton2;
+    }
+
+    public PanelEleccionAsientos getPanelEleccion() {
+        return panelEleccion;
     }
 
     public static void main(String[] args) {

@@ -38,6 +38,7 @@ public class PanelEleccionAsientos extends JPanel implements MouseListener {
         panelInterno.add(busAsociado, BorderLayout.CENTER);
         panelInterno.add(panelDatos,BorderLayout.SOUTH);
         add(panelInterno);
+        this.setPreferredSize(new Dimension(1550,840));
     }
 
     @Override
