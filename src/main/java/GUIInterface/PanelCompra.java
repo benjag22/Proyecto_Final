@@ -23,14 +23,13 @@ public class PanelCompra extends JPanel implements MouseListener {
         panelDestinoIda = new PanelDestinoIda();
         this.setLayout(null);
         setPreferredSize(new Dimension(1920,1080));
-        String basePath = new File("").getAbsolutePath();
-        this.imagen = cargarImagen(basePath + "/src/Main/java/resources/Fondo.jpg");
+        this.imagen = cargarImagen("src/main/java/resources/Fondo.png");
 
 
         ComprarAsiento = new JButton("Comprar asiento");
         ComprarAsiento.addMouseListener(this);
-        ComprarAsiento.setBounds(775, 400,200,25);
-        ComprarAsiento.setFont(new Font("Arial",Font.PLAIN,20));
+        ComprarAsiento.setBounds(550, 300,500,200);
+        ComprarAsiento.setFont(new Font("Arial",Font.PLAIN,50));
         add(ComprarAsiento);
 
         botoncomprar = true;

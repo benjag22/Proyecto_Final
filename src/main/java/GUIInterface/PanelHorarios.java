@@ -27,11 +27,11 @@ public PanelHorarios(){
     cargarSonidos();
     this.setLayout(null);
     setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
-    this.imagen = cargarImagen("src/main/java/resources/Fondo.jpg");
+    this.imagen = cargarImagen("src/main/java/resources/Fondo3.png");
     Font font = new Font("Arial",Font.PLAIN,30);
     Seleccionar = new JLabel("Seleccionar Horario");
     Seleccionar.setFont(font);
-    Seleccionar.setBounds(650,150,1000,50);
+    Seleccionar.setBounds(650,120,1000,50);
     Seleccionar.setForeground(Color.BLACK);
     add(Seleccionar);
     listaHorarios = new VistaListaHorarios(15);

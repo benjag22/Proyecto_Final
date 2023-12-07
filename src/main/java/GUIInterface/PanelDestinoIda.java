@@ -34,7 +34,7 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
         this.setLayout(null);
         setPreferredSize(new Dimension(1920,1080));
         String basePath = new File("").getAbsolutePath();
-        this.imagen = cargarImagen(basePath + "/src/Main/java/resources/Fondo.jpg");
+        this.imagen = cargarImagen(basePath + "/src/Main/java/resources/Fondo2.png");
 
         Font font = new Font("Arial",Font.PLAIN,30);
         Seleccionar = new JLabel("Seleccionar Horario");
