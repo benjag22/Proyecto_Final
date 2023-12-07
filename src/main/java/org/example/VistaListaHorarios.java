@@ -1,23 +1,15 @@
 package org.example;
-
-import org.example.Ciudades;
-import org.example.Horario;
-import org.example.VistaHorario;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
-
 public class VistaListaHorarios extends JPanel {
     private ArrayList<VistaHorario> listaHorarios;
 
     public VistaListaHorarios(int cantidad) {
         listaHorarios = new ArrayList<>();
         setLayout(new GridLayout(cantidad, 1));
-
         cargarHorarios(cantidad);
-
+        setPreferredSize(new Dimension(1035, cantidad * 150));
     }
 
     private void cargarHorarios(int cantidad) {

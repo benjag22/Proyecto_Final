@@ -24,9 +24,9 @@ public class VistaHorario extends JPanel {
         this.imagenComprarPresionada = cargarImagen("src/main/java/resources/botonCompraPresionado2.png");
         int ancho = 180;
         int alto = 70;
-        setPreferredSize(new Dimension(680, 150));
-        setMinimumSize(new Dimension(680, 150));
-        setMaximumSize(new Dimension(680, 150));
+        setPreferredSize(new Dimension(800, 150));
+        setMinimumSize(new Dimension(800, 150));
+        setMaximumSize(new Dimension(800, 150));
         ImageIcon iconoOriginal = new ImageIcon(imagenComprar);
         Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
         ImageIcon iconoPersonalizado = new ImageIcon(imagenEscalada);
@@ -62,7 +62,7 @@ public class VistaHorario extends JPanel {
         g.drawString("Hora de fin: " + horario.getHoraFin(), 35, 105);
         g.drawString("_____________________________________________________________________________", 35, 115);
         g.drawString("Descripción: " + horario + ", " + "Fecha: " + horario.getLocalDate(), 35, 135);
-        g.drawRect(0,0,680,150);
+        g.drawRect(0,0,this.getWidth(),this.getHeight());
     }
     private BufferedImage cargarImagen(String ruta) {
         try {

@@ -87,11 +87,10 @@ public PanelHorarios(){
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Panel de Horarios");
+            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
             PanelHorarios panelHorarios = new PanelHorarios();
             frame.getContentPane().add(panelHorarios);
-
             frame.pack();
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);

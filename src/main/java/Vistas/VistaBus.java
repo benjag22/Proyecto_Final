@@ -128,7 +128,7 @@ public class VistaBus extends JPanel{
             VistaBus vistaBusDosPisos = new VistaBus(bus);
             AsientoSemiCama asiento1= new AsientoSemiCama();
             AsientoCama asiento2 = new AsientoCama();
-            vistaBusDosPisos.agregarAsientos(asiento2,2); /*Aqui agrego 4x14 asientos semicama*/
+            vistaBusDosPisos.agregarAsientos(asiento2,2);
             vistaBusDosPisos.agregarAsientos(asiento1,1);
             frame.setContentPane(vistaBusDosPisos);
             frame.setLocationRelativeTo(null);
