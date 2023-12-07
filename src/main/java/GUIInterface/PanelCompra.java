@@ -84,9 +84,8 @@ public class PanelCompra extends JPanel implements MouseListener {
     }
     private void cargarSonidos() {
         try {
-            String basePath = new File("").getAbsolutePath();
-            String audioFileMouseOverPath = basePath + "/src/Main/java/resources/Sobre.wav";
-            String audioFileClickPath = basePath + "/src/Main/java/resources/ClickExpendedor.wav";
+            String audioFileMouseOverPath = "src/main/java/resources/Sobre.wav";
+            String audioFileClickPath ="src/main/java/resources/Click.wav";
 
             AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(new File(audioFileMouseOverPath));
             clipMouseOver = AudioSystem.getClip();
