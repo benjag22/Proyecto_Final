@@ -2,6 +2,12 @@ package GUIInterface;
 
 import javax.swing.*;
 import java.io.File;
+
+/**
+ * @author Gabriel Huerta, Martin Rubilar y Benjmaín González
+ *
+ */
+
 public class VentanaMain {
     public static void main(String[] args) {
         MusicaFondo.reproducirMusicaFondo("src/main/java/resources/Fondo.wav");

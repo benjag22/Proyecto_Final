@@ -4,8 +4,16 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.*;
+/**
+ * Implementación Música Fondo que sonará en todo momento.
+ * */
 public class MusicaFondo {
 
+
+    /**
+     * Método comprarProducto: reproducirMusicaFondo Carga el archivo y lo reproduce en LOOP
+     * continuamente mientras el programa se está ejecutando.
+     **/
     public static void reproducirMusicaFondo(String filepath) {
         try {
             File audioFile = new File(filepath);

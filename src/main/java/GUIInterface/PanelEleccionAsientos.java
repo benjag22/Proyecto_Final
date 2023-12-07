@@ -4,10 +4,13 @@ import Vistas.VistasListaBuses;
 import Vistas.vistaDatosBus;
 import org.example.Horario;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 
 public class PanelEleccionAsientos extends JPanel implements MouseListener {
     VistasListaBuses listaBuses = new VistasListaBuses();
@@ -15,6 +18,7 @@ public class PanelEleccionAsientos extends JPanel implements MouseListener {
     vistaDatosBus panelDatos;
     JLabel origenAsociado;
     JLabel destinoAsociado;
+
     /*De esta clase ira acompañada con un panel de detalles y total de compra que incluye vista bus
      * se inicializaran varias en panelHorariosr*/
 
