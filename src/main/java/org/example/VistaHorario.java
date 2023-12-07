@@ -79,4 +79,20 @@ public class VistaHorario extends JPanel {
     public void setDestino(String destino) {
         this.destino = destino;
     }
+
+    public Horario getHorario() {
+        return horario;
+    }
+
+    public String getOrigen() {
+        return origen;
+    }
+
+    public String getDestino() {
+        return destino;
+    }
+
+    public JButton getBotonCompra() {
+        return botonCompra;
+    }
 }
