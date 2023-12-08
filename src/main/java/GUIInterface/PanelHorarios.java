@@ -1,21 +1,14 @@
 package GUIInterface;
 
-import org.example.Ciudades;
-import org.example.Horario;
-import org.example.VistaHorario;
 import org.example.VistaListaHorarios;
-
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import  java.util.Random;
 
 public class PanelHorarios extends JPanel {
@@ -25,28 +18,33 @@ public class PanelHorarios extends JPanel {
     private Clip clipClick;
     private VistaListaHorarios listaHorarios;
     private PanelEleccionAsientos panelEleccion;
-    private JButton boton1;
-    private JButton boton2;
+    private ArrayList<JButton> listaBotonesAsociado;
 
 public PanelHorarios(){
     cargarSonidos();
     this.setLayout(null);
     setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
+    Random random = new Random();
     this.imagen = cargarImagen("src/main/java/resources/Fondo3.png");
     Font font = new Font("Arial",Font.PLAIN,30);
+
     Seleccionar = new JLabel("Seleccionar Horario");
     Seleccionar.setFont(font);
     Seleccionar.setBounds(650,120,1000,50);
     Seleccionar.setForeground(Color.BLACK);
     add(Seleccionar);
-    listaHorarios = new VistaListaHorarios(15);
+    int cantidad=random.nextInt(1,15);
+    listaHorarios = new VistaListaHorarios(cantidad);
+    listaBotonesAsociado = new ArrayList<>(cantidad);
     JScrollPane scrollPane = new JScrollPane(listaHorarios);
     scrollPane.setBounds(260,200,1000,480);
     add(scrollPane);
-    boton1 = listaHorarios.getListaHorarios().get(0).getBotonCompra();
-    boton2 = listaHorarios.getListaHorarios().get(1).getBotonCompra();
-    for(int i=0;i<listaHorarios.getListaHorarios().size();i++) {
-        panelEleccion = new PanelEleccionAsientos(0, listaHorarios.getListaHorarios().get(i).getHorario(), listaHorarios.getListaHorarios().get(i).getOrigen(), listaHorarios.getListaHorarios().get(i).getDestino());
+int index=0;
+    JButton boton;
+    for(int i=0;i<cantidad;i++) {
+        panelEleccion = new PanelEleccionAsientos(random.nextInt(0,5), listaHorarios.getListaHorarios().get(i).getHorario(), listaHorarios.getListaHorarios().get(i).getOrigen(), listaHorarios.getListaHorarios().get(i).getDestino());
+        boton = listaHorarios.getListaHorarios().get(index++).getBotonCompra();
+        listaBotonesAsociado.add(boton);
     }
 }
 
@@ -92,27 +90,11 @@ public PanelHorarios(){
     public VistaListaHorarios getListaHorariosdepanel() {
         return listaHorarios;
     }
-    public JButton getBoton1(){
-    return boton1;
-    }
-    public JButton getBoton2(){
-    return boton2;
-    }
+public ArrayList<JButton> getListaBotonesAsociado(){
+    return listaBotonesAsociado;
+}
 
     public PanelEleccionAsientos getPanelEleccion() {
         return panelEleccion;
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Panel de Horarios");
-            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            PanelHorarios panelHorarios = new PanelHorarios();
-            frame.getContentPane().add(panelHorarios);
-            frame.pack();
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-        });
     }
 }

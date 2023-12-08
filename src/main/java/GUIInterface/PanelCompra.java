@@ -22,8 +22,8 @@ public class PanelCompra extends JPanel implements MouseListener {
         cargarSonidos();
         panelDestinoIda = new PanelDestinoIda();
         this.setLayout(null);
-        setPreferredSize(new Dimension(1920,1080));
         this.imagen = cargarImagen("src/main/java/resources/Fondo1.png");
+        setPreferredSize(new Dimension(imagen.getWidth(),imagen.getHeight()));
 
 
         ComprarAsiento = new JButton("Comprar asiento");

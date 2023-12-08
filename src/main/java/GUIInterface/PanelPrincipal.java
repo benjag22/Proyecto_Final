@@ -44,8 +44,9 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         destinoIda.getFecha().addActionListener(horaselec);
 
         compra.getComprarAsiento().addMouseListener(this);
-        horarios.getBoton1().addMouseListener(this);
-
+        for(int i=0;i<horarios.getListaBotonesAsociado().size();i++) {
+            horarios.getListaBotonesAsociado().get(i).addMouseListener(this);
+        }
         setPreferredSize(new Dimension(1920,1080));
         add(compra);
         add(destinoIda);
@@ -79,17 +80,20 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getComponent()==compra.getComprarAsiento()){
+        if (e.getComponent() == compra.getComprarAsiento()) {
             compra.setVisible(false);
             destinoIda.setVisible(true);
             revalidate();
             repaint();
         }
-        else if(e.getComponent()==horarios.getBoton1()){
-            horarios.setVisible(false);
-            eleccionAsientos.setVisible(true);
-            revalidate();
-            repaint();
+        for (JButton boton : horarios.getListaBotonesAsociado()) {
+            if (e.getComponent() == boton) {
+                // Realizar acciones específicas para el botón clicado
+                horarios.setVisible(false);
+                eleccionAsientos.setVisible(true);
+                revalidate();
+                repaint();
+            }
         }
     }
     @Override

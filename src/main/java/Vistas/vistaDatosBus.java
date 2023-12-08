@@ -39,7 +39,7 @@ public class vistaDatosBus extends JPanel implements AsientoClickListener {
         panelBoton.add(comprar);
         panelBoton.setLocation(1000,250);
         add(panelBoton);
-        setPreferredSize(new Dimension(1920, 300));
+        setPreferredSize(new Dimension(1920, 380));
         for (VistasAsientos asiento : busAsociado.getListaAsientos()) {
             asiento.setAsientoClickListener(this);
         }
@@ -61,7 +61,7 @@ public class vistaDatosBus extends JPanel implements AsientoClickListener {
         BufferedImage imagenAsientoNocupadoReferencial = cargarImagen("src/main/java/resources/asiento_semicama.png");
         BufferedImage imagenAsientoSeleccionadoReferencial = cargarImagen("src/main/java/resources/asiento_semicama_elegida.png");
         BufferedImage imagenAsientoOcupadoReferencial = cargarImagen("src/main/java/resources/asiento_semicama_ocupado.png");
-        Font fuente = new Font("Impact", Font.PLAIN , 18);
+        Font fuente = new Font("Impact", Font.PLAIN , 20);
         g.setFont(fuente);
         g.setColor(Color.BLACK);
         g.drawString("Hora de inicio: " + horarioAsociado.getHoraInicio(), 20, 50);

@@ -23,6 +23,7 @@ public class PanelEleccionAsientos extends JPanel implements MouseListener {
      * se inicializaran varias en panelHorariosr*/
 
     public PanelEleccionAsientos(int randomBus, Horario horario,String origen, String destino) {
+        setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
         this.busAsociado = listaBuses.getBus(randomBus);
         origenAsociado= new JLabel(origen);
         destinoAsociado = new JLabel(destino);
@@ -38,7 +39,6 @@ public class PanelEleccionAsientos extends JPanel implements MouseListener {
         panelInterno.add(busAsociado, BorderLayout.CENTER);
         panelInterno.add(panelDatos,BorderLayout.SOUTH);
         add(panelInterno);
-        this.setPreferredSize(new Dimension(1550,840));
     }
 
     @Override
@@ -59,16 +59,5 @@ public class PanelEleccionAsientos extends JPanel implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
-    }
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame();
-            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            PanelEleccionAsientos panel1= new PanelEleccionAsientos(4,new Horario(),"xd","xd");
-            frame.setContentPane(panel1);
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-        });
     }
 }
