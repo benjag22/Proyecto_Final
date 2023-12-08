@@ -73,8 +73,10 @@ public class vistaDatosBus extends JPanel implements AsientoClickListener {
         Font fuente = new Font("Impact", Font.PLAIN , 20);
         g.setFont(fuente);
         g.setColor(Color.BLACK);
-        g.drawString("Hora de inicio: " +horaInicioAsociada, 20, 50);
-        g.drawString("Hora de llegada: " + horaFinAsociada, 20, 120);
+        int x=40;
+        int y=50;
+        g.drawString("Hora de inicio: " +horaInicioAsociada, x, y);
+        g.drawString("Hora de llegada: " + horaFinAsociada, x, y+70);
         g.drawString("Origen: "+origen,400,50);
         g.drawString("Destino: "+destino,400,120);
         g.drawRect(360,0,0,300);

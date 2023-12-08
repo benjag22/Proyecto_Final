@@ -3,15 +3,10 @@ import Vistas.VistaBus;
 import Vistas.VistasListaBuses;
 import Vistas.vistaDatosBus;
 import org.example.Horario;
-
-import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
-
 public class PanelEleccionAsientos extends JPanel implements MouseListener {
     VistasListaBuses listaBuses = new VistasListaBuses();
     VistaBus busAsociado;

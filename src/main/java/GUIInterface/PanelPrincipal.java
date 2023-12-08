@@ -51,6 +51,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
                     horarios.getListaHorariosdepanel().getListaHorarios().get(i).setFecha(fechalocal);
                 }
                 destinoIda.setVisible(false);
+                horarios.actualizarHorarios(destinoIda.getSeleccion_origen(),destinoIda.getSeleccion_destino(),fechalocal);
                 horarios.setVisible(true);
             }
             else{
@@ -162,19 +163,19 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
     }
-/*
-    public static void main (String[] args){
-        MusicaFondo.reproducirMusicaFondo("main/java/resources/Fondo.wav");
-        JFrame frame = new JFrame();
-        PanelPrincipal panelPrincipal = new PanelPrincipal();
-        frame.add(panelPrincipal);
-        frame.setTitle("Venta de pasajes");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(1500,1020);
-        frame.setVisible(true);
-    }
+    /*
+        public static void main (String[] args){
+            MusicaFondo.reproducirMusicaFondo("main/java/resources/Fondo.wav");
+            JFrame frame = new JFrame();
+            PanelPrincipal panelPrincipal = new PanelPrincipal();
+            frame.add(panelPrincipal);
+            frame.setTitle("Venta de pasajes");
+            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            frame.setSize(1500,1020);
+            frame.setVisible(true);
+        }
 
- */
+     */
     private void cargarSonidos() {
         try {
             String audioFileMouseOverPath = "src/main/java/resources/Sobre.wav";

@@ -53,16 +53,4 @@ public class VistasListaBuses {
         VistaBus busSeleccionado = listaVistaBuses.get(random);
         return busSeleccionado;
     }
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Panel de Horarios");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            VistasListaBuses xd = new VistasListaBuses();
-            frame.getContentPane().add(xd.getBus(6));
-            frame.pack();
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-            System.out.println(xd.getBus(6));
-        });
-    }
 }
