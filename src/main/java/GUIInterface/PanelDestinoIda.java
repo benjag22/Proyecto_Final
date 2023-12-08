@@ -63,7 +63,7 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
         Destino.setBounds(830,300,300,50);
         add(Destino);
 
-        Fecha = new JTextField("Fecha");
+        Fecha = new JTextField("xx-xx-xxxx");
         Fecha.setFont(font);
         Fecha.setBounds(670,450,250,50);
         add(Fecha);
@@ -127,14 +127,6 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
             clip.setMicrosecondPosition(0);
             clip.start();
         }
-    }
-
-    public String getSeleccion_origen() {
-        return seleccion_origen;
-    }
-
-    public String getSeleccion_destino() {
-        return seleccion_destino;
     }
     public JTextField getFecha() {
         return Fecha;

@@ -1,6 +1,7 @@
 package org.example;
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 public class VistaListaHorarios extends JPanel {
     private ArrayList<VistaHorario> listaHorarios;
@@ -15,7 +16,7 @@ public class VistaListaHorarios extends JPanel {
     private void cargarHorarios(int cantidad) {
         for (int i = 0; i < cantidad; i++) {
             Horario horarioRandom = Horario.generarHorarioAleatorio();
-            VistaHorario vistaHorario = new VistaHorario(horarioRandom, Ciudades.CONCEPCION.getNombre(), Ciudades.SANTIAGO.getNombre());
+            VistaHorario vistaHorario = new VistaHorario(horarioRandom, Ciudades.CONCEPCION.getNombre(), Ciudades.SANTIAGO.getNombre(),horarioRandom.getLocalDate());
             listaHorarios.add(vistaHorario);
             add(vistaHorario);
         }

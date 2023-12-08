@@ -44,6 +44,7 @@ int index=0;
     for(int i=0;i<cantidad;i++) {
         panelEleccion = new PanelEleccionAsientos(random.nextInt(0,5), listaHorarios.getListaHorarios().get(i).getHorario(), listaHorarios.getListaHorarios().get(i).getOrigen(), listaHorarios.getListaHorarios().get(i).getDestino());
         boton = listaHorarios.getListaHorarios().get(index++).getBotonCompra();
+        boton.setText("Boton: "+i);
         listaBotonesAsociado.add(boton);
     }
 }

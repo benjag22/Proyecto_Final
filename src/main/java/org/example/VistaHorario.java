@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import javax.imageio.ImageIO;
 public class VistaHorario extends JPanel {
     private Horario horario;
@@ -15,10 +16,13 @@ public class VistaHorario extends JPanel {
     private String origen;
     private String destino;
     private JButton botonCompra;
-    public VistaHorario(Horario horario, String origen, String destino) {
+    private LocalDate fecha;
+    public VistaHorario(Horario horario, String origen, String destino, LocalDate fecha) {
         this.horario = horario;
         this.origen = origen;
         this.destino = destino;
+        this.fecha=fecha;
+        fecha=horario.getLocalDate();
 
         this.imagenComprar = cargarImagen("src/main/java/resources/botonCompra2.png");
         this.imagenComprarPresionada = cargarImagen("src/main/java/resources/botonCompraPresionado2.png");
@@ -61,7 +65,7 @@ public class VistaHorario extends JPanel {
         g.drawString("Hora de inicio: " + horario.getHoraInicio(), 35, 45);
         g.drawString("Hora de fin: " + horario.getHoraFin(), 35, 105);
         g.drawString("_____________________________________________________________________________", 35, 115);
-        g.drawString("Descripción: " + horario + ", " + "Fecha: " + horario.getLocalDate(), 35, 135);
+        g.drawString("Descripción: " + horario + ", " + "Fecha: " + fecha, 35, 135);
         g.drawRect(0,0,this.getWidth(),this.getHeight());
     }
     private BufferedImage cargarImagen(String ruta) {
@@ -90,6 +94,14 @@ public class VistaHorario extends JPanel {
 
     public String getDestino() {
         return destino;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
     public JButton getBotonCompra() {

@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class PanelPrincipal extends JPanel implements MouseListener {
 
@@ -16,6 +18,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     private PanelDestinoIda destinoIda;
     private PanelEleccionAsientos eleccionAsientos;
     private JButton atras;
+    private LocalDate fechalocal;
 
     public PanelPrincipal(){
         this.addMouseListener(this);
@@ -37,6 +40,16 @@ public class PanelPrincipal extends JPanel implements MouseListener {
 
         ActionListener horaselec = e -> {
             if(destinoIda.aceptar()) {
+                for(int i=0;i<horarios.getListaHorariosdepanel().getListaHorarios().size();i++){
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    try {
+                        fechalocal = LocalDate.parse(destinoIda.getFecha().getText(), formatter);
+                    }
+                    catch(Exception f) {
+                        System.out.println("Error");
+                    }
+                    horarios.getListaHorariosdepanel().getListaHorarios().get(i).setFecha(fechalocal);
+                }
                 destinoIda.setVisible(false);
                 horarios.setVisible(true);
             }
@@ -74,20 +87,23 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         }
 
         else if(destinoIda.isVisible()){
-            destinoIda.paintComponent(g);
             destinoIda.add(atras);
             atras.setBounds(1350,650,150,50);
+            destinoIda.paintComponent(g);
+
         }
 
         else if(horarios.isVisible()){
-            horarios.paintComponent(g);
             horarios.add(atras);
             atras.setBounds(1350,650,150,50);
+            horarios.paintComponent(g);
+
         }
         else if(eleccionAsientos.isVisible()){
-            eleccionAsientos.paint(g);
             eleccionAsientos.add(atras);
             atras.setBounds(1350,650,150,50);
+            eleccionAsientos.paint(g);
+
         }
     }
     @Override
@@ -125,6 +141,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
                 eleccionAsientos.setVisible(true);
                 revalidate();
                 repaint();
+                System.out.println("en que boton hize click ?:"+boton.getText());
             }
         }
     }
