@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
-import javax.sound.sampled.*;
 
 public class PanelPrincipal extends JPanel implements MouseListener {
 
@@ -16,9 +15,13 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     private PanelHorarios horarios;
     private PanelDestinoIda destinoIda;
     private PanelEleccionAsientos eleccionAsientos;
+    private JButton atras;
 
     public PanelPrincipal(){
         this.addMouseListener(this);
+        atras = new JButton("Regresar");
+        atras.addMouseListener(this);
+
         compra = new PanelCompra();
         compra.setVisible(true);
         cargarSonidos();
@@ -53,6 +56,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         add(horarios);
         add(eleccionAsientos);
 
+
     }
 
     @Override
@@ -63,24 +67,53 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         horarios.setLocation(0,0);
         eleccionAsientos.setLocation(0,0);
 
+
         if(compra.isVisible()){
             compra.paintComponent(g);
+
         }
 
         else if(destinoIda.isVisible()){
             destinoIda.paintComponent(g);
+            destinoIda.add(atras);
+            atras.setBounds(1350,650,150,50);
         }
 
         else if(horarios.isVisible()){
             horarios.paintComponent(g);
+            horarios.add(atras);
+            atras.setBounds(1350,650,150,50);
         }
         else if(eleccionAsientos.isVisible()){
             eleccionAsientos.paint(g);
+            eleccionAsientos.add(atras);
+            atras.setBounds(1350,650,150,50);
         }
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getComponent() == compra.getComprarAsiento()) {
+        System.out.println(e.getLocationOnScreen());
+        if (e.getComponent() == atras){
+            if(destinoIda.isVisible()){
+                compra.setVisible(true);
+                destinoIda.setVisible(false);
+                revalidate();
+                repaint();
+            }
+            else if(horarios.isVisible()){
+                destinoIda.setVisible(true);
+                horarios.setVisible(false);
+                revalidate();
+                repaint();
+            }
+            else if(eleccionAsientos.isVisible()){
+                horarios.setVisible(true);
+                eleccionAsientos.setVisible(false);
+                revalidate();
+                repaint();
+            }
+        }
+        else if (e.getComponent() == compra.getComprarAsiento()) {
             compra.setVisible(false);
             destinoIda.setVisible(true);
             revalidate();
