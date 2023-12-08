@@ -11,22 +11,26 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalTime;
 
 public class vistaDatosBus extends JPanel implements AsientoClickListener {
-    String origen;
-    String destino;
-    JButton comprar;
-    Horario horarioAsociado;
-    VistaBus busAsociado;
+    private String origen;
+    private String destino;
+    private JButton comprar;
+    private Horario horarioAsociado;
+    private VistaBus busAsociado;
+    private LocalTime horaInicioAsociada;
+    private LocalTime horaFinAsociada;
     private double precioAsientos;
     private double precioIVA;
     private double precioTotal;
 
-    public vistaDatosBus(VistaBus busAsociado, Horario horario, String origen, String destino) {
+    public vistaDatosBus(VistaBus busAsociado, LocalTime horaInicioAsociada,LocalTime horaFinAsociada, String origen, String destino) {
         this.origen = origen;
         this.destino = destino;
         this.busAsociado = busAsociado;
-        this.horarioAsociado = horario;
+        this.horaInicioAsociada=horaInicioAsociada;
+        this.horaFinAsociada=horaFinAsociada;
         this.precioAsientos = 0;
         this.precioTotal=0;
         this.precioIVA=0;
@@ -64,8 +68,8 @@ public class vistaDatosBus extends JPanel implements AsientoClickListener {
         Font fuente = new Font("Impact", Font.PLAIN , 20);
         g.setFont(fuente);
         g.setColor(Color.BLACK);
-        g.drawString("Hora de inicio: " + horarioAsociado.getHoraInicio(), 20, 50);
-        g.drawString("Hora de llegada: " + horarioAsociado.getHoraFin(), 20, 120);
+        g.drawString("Hora de inicio: " +horaInicioAsociada, 20, 50);
+        g.drawString("Hora de llegada: " + horaFinAsociada, 20, 120);
         g.drawString("Origen: "+origen,400,50);
         g.drawString("Destino: "+destino,400,120);
         g.drawRect(360,0,0,300);

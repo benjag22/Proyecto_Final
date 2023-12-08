@@ -88,7 +88,6 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         }
         for (JButton boton : horarios.getListaBotonesAsociado()) {
             if (e.getComponent() == boton) {
-                // Realizar acciones específicas para el botón clicado
                 horarios.setVisible(false);
                 eleccionAsientos.setVisible(true);
                 revalidate();

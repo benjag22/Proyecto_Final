@@ -31,7 +31,7 @@ public class PanelEleccionAsientos extends JPanel implements MouseListener {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // BoxLayout con eje Y para que se ordene
 
         JPanel panelInterno = new JPanel(new BorderLayout());
-        panelDatos = new vistaDatosBus(busAsociado,horario,origen,destino);
+        panelDatos = new vistaDatosBus(busAsociado,horario.getHoraInicio(),horario.getHoraFin(),origen,destino);
 
         panelInterno.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         panelDatos.setBorder(BorderFactory.createLineBorder(Color.GREEN));
