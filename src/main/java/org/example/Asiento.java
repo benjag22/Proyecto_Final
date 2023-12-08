@@ -36,4 +36,5 @@ public Asiento(){
 
     public abstract BufferedImage getImagenSeleccionada();
     public abstract BufferedImage getImagenDeseleccionada();
+    public abstract BufferedImage getImagenOcupado();
 }

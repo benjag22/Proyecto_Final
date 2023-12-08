@@ -9,11 +9,13 @@ public class AsientoSemiCama extends Asiento{
     private Boolean habilitado;
     private BufferedImage imagenDeseleccionada;
     private BufferedImage imagenSeleccionada;
+    private BufferedImage imagenOcupada;
     private final double precio=15000.0;
     public AsientoSemiCama(){
         super();
         this.imagenDeseleccionada=cargarImagen("src/main/java/resources/asiento_semicama.png");
         this.imagenSeleccionada=cargarImagen("src/main/java/resources/asiento_semicama_elegida.png");
+        this.imagenOcupada=cargarImagen("src/main/java/resources/asiento_semicama_ocupado.png");
     }
 
     @Override
@@ -41,6 +43,12 @@ public class AsientoSemiCama extends Asiento{
     public BufferedImage getImagenSeleccionada() {
         return imagenSeleccionada;
     }
+
+    @Override
+    public BufferedImage getImagenOcupado() {
+        return imagenOcupada;
+    }
+
     @Override
     public String toString() {
         return super.getFila()+super.getColumna();

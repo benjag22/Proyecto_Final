@@ -9,11 +9,13 @@ public class AsientoCama extends Asiento{
     private Boolean habilitado;
     private BufferedImage imagenDeseleccionada;
     private BufferedImage imagenSeleccionada;
+    private BufferedImage imagenOcupada;
     private final double precio=20000.0;
     public AsientoCama(){
         super();
-        imagenDeseleccionada = cargarImagen("src/main/java/resources/asiento_cama.png");
-        imagenSeleccionada = cargarImagen("src/main/java/resources/asiento_cama_elegido.png");
+        this.imagenDeseleccionada = cargarImagen("src/main/java/resources/asiento_cama.png");
+        this.imagenSeleccionada = cargarImagen("src/main/java/resources/asiento_cama_elegido.png");
+        this.imagenOcupada = cargarImagen("src/main/java/resources/asiento_cama_ocupado.png");
     }
     @Override
     public double getPrecio() {
@@ -39,6 +41,12 @@ public class AsientoCama extends Asiento{
     public BufferedImage getImagenSeleccionada() {
         return imagenSeleccionada;
     }
+
+    @Override
+    public BufferedImage getImagenOcupado() {
+        return imagenOcupada;
+    }
+
     @Override
     public String toString() {
         return super.getFila()+super.getColumna();

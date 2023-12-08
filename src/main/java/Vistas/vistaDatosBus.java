@@ -17,7 +17,6 @@ public class vistaDatosBus extends JPanel implements AsientoClickListener {
     private String origen;
     private String destino;
     private JButton comprar;
-    private Horario horarioAsociado;
     private VistaBus busAsociado;
     private LocalTime horaInicioAsociada;
     private LocalTime horaFinAsociada;
@@ -47,9 +46,15 @@ public class vistaDatosBus extends JPanel implements AsientoClickListener {
         for (VistasAsientos asiento : busAsociado.getListaAsientos()) {
             asiento.setAsientoClickListener(this);
         }
-        comprar.addActionListener(new ActionListener() { /*Para usar despues*/
+        comprar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                for (VistasAsientos asiento : busAsociado.getListaAsientos()) {
+                    if (asiento.isPresionada()) {
+                        asiento.cambiarAsientoOCupado();
+                        asiento.setAsientoClickListener(null);
+                    }
+                }
             }
         });
     }
@@ -98,7 +103,6 @@ public class vistaDatosBus extends JPanel implements AsientoClickListener {
         this.precioIVA = this.precioAsientos * 0.19;
         this.precioTotal = this.precioAsientos + this.precioIVA;
     }
-
     private BufferedImage cargarImagen(String ruta) {
         try {
             return ImageIO.read(new File(ruta));
