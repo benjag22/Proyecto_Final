@@ -24,7 +24,6 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     private Clip clipClick;
     private JComboBox Origen;
     private JComboBox Destino;
-    private LocalDate fecha;
     public PanelDestinoIda(){
         cargarSonidos();
         this.setLayout(null);
@@ -63,15 +62,6 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
         Fecha.setFont(font);
         Fecha.setBounds(670,450,250,50);
         add(Fecha);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        try {
-            fecha = LocalDate.parse(Fecha.getText(), formatter);
-        }
-        catch(Exception f) {
-            System.out.println("Error");
-        }
-
     }
 
     private BufferedImage cargarImagen(String ruta) {
@@ -145,11 +135,5 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     }
     public JComboBox getDestinoComboBox() {
         return Destino;
-    }
-    public JTextField getFechaTextField() {
-        return Fecha;
-    }
-    public LocalDate getlocalfecha(){
-        return fecha;
     }
 }

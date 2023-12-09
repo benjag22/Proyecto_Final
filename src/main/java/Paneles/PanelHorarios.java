@@ -117,4 +117,8 @@ public ArrayList<JButton> getListaBotonesAsociado(){
     public ArrayList<PanelEleccionAsientos> getListaEleccionAsientos() {
         return listaEleccionAsientos;
     }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
 }
