@@ -121,4 +121,12 @@ public ArrayList<JButton> getListaBotonesAsociado(){
     public LocalDate getFecha() {
         return fecha;
     }
+
+    public String getOrigen() {
+        return origen;
+    }
+
+    public String getDestino() {
+        return destino;
+    }
 }

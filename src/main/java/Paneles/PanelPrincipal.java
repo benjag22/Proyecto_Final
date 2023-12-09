@@ -42,6 +42,8 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         ActionListener horaselec = e -> {
             if(destinoIda.aceptar()) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                String origen = destinoIda.getSeleccion_origen();
+                String destino = destinoIda.getSeleccion_destino();
                 try {
                     fechalocal = LocalDate.parse(destinoIda.getFecha().getText(), formatter);
                 } catch (Exception f) {
@@ -66,7 +68,9 @@ public class PanelPrincipal extends JPanel implements MouseListener {
                         PanelHorarios panelHorarios = listapanelHorario.get(i);
                         System.out.println("buscamos por un panelhorario");
                         System.out.println(fechalocal);
-                        if (fechalocal.equals(panelHorarios.getFecha())) {
+                        if (fechalocal.equals(panelHorarios.getFecha()) &&
+                                origen.equals(panelHorarios.getOrigen()) &&
+                                destino.equals(panelHorarios.getDestino())) {
                             System.out.println("encontramos el mismo panel horario de antes");
                             horarios = panelHorarios;
                             horarios.setVisible(true);
