@@ -31,7 +31,7 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
         String basePath = new File("").getAbsolutePath();
         this.imagen = cargarImagen(basePath + "/src/Main/java/Recursos/Fondo2.png");
 
-        Font font = new Font("Arial",Font.PLAIN,30);
+        Font font = new Font("Mongolian Baiti",Font.PLAIN,30);
         Seleccionar = new JLabel("Seleccionar Horario");
         Seleccionar.setFont(font);
         Seleccionar.setBounds(650,150,1000,50);
@@ -58,7 +58,7 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
         Destino.setBounds(830,300,300,50);
         add(Destino);
 
-        Fecha = new JTextField("xx-xx-xxxx");
+        Fecha = new JTextField("dd-mm-yyyy");
         Fecha.setFont(font);
         Fecha.setBounds(670,450,250,50);
         add(Fecha);

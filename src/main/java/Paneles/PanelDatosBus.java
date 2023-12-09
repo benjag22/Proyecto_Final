@@ -80,24 +80,24 @@ public class PanelDatosBus extends JPanel implements AsientoClickListener {
         int x=40;
         int y=50;
         g.drawString("Hora de inicio: " +horaInicioAsociada, 45, 65);
-        g.drawString("Hora de llegada: " + horaFinAsociada, 45, 150);
-        g.drawString("Origen: "+origen,400,65);
-        g.drawString("Destino: "+destino,400,150);
+        g.drawString("Hora de llegada: " + horaFinAsociada, 45, 160);
+        g.drawString("Origen: "+origen,380,65);
+        g.drawString("Destino: "+destino,380,160);
         g.drawRect(360,0,0,400);
-        g.drawRect(680,0,0,400);
-        g.drawRect(1000,0,0,400);
+        g.drawRect(600,0,0,400);
+        g.drawRect(950,0,0,400);
         g.drawString("Asiento Desocupado",1080,115);
-        g.drawString("Asiento Seleccionado",1080,187);
-        g.drawString("Asiento Ocupado",1080,257);
-        g.drawImage(imagenAsientoNocupadoReferencial,1010,84,this);
-        g.drawImage(imagenAsientoSeleccionadoReferencial,1010,156,this);
-        g.drawImage(imagenAsientoOcupadoReferencial,1010,226,this);
-        g.drawImage(imagenAsiento2NocupadoReferencial,1280,84,this);
-        g.drawImage(imagenAsiento2SeleccionadoReferencial,1280,156,this);
-        g.drawImage(imagenAsientoOcupado2Referencial,1280,226,this);
-        g.drawString("Precio Asientos: "+precioAsientos,700,50);
-        g.drawString("Precio IVA : "+precioIVA,700,100);
-        g.drawString("Precio total con impuestos : "+precioTotal,700,150);
+        g.drawString("Asiento Seleccionado",1085,187);
+        g.drawString("Asiento Ocupado",1088,257);
+        g.drawImage(imagenAsientoNocupadoReferencial,1010,87,this);
+        g.drawImage(imagenAsientoSeleccionadoReferencial,1010,159,this);
+        g.drawImage(imagenAsientoOcupadoReferencial,1010,229,this);
+        g.drawImage(imagenAsiento2NocupadoReferencial,1280,87,this);
+        g.drawImage(imagenAsiento2SeleccionadoReferencial,1280,159,this);
+        g.drawImage(imagenAsientoOcupado2Referencial,1280,229,this);
+        g.drawString("Precio Asientos: "+precioAsientos,630,50);
+        g.drawString("Precio IVA : "+precioIVA,630,100);
+        g.drawString("Precio total con impuestos : "+precioTotal,630,150);
 
     }
     public void contarTotal() {

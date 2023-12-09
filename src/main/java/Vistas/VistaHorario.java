@@ -61,11 +61,12 @@ public class VistaHorario extends JPanel {
         g.drawImage(flecha, 45, 30, flecha.getWidth(), flecha.getHeight(), this);
         Font fuente = new Font("Yu Gothic UI Semilight", Font.BOLD, 18);
         g.setFont(fuente);
+        g.drawRect(690,0,0,105);
         g.drawString("Origen:  " + origen, 700, 45);
         g.drawString("Destino:  " + destino, 700, 105);
         g.drawString("Hora de inicio:  " + horario.getHoraInicio(), 80, 45);
         g.drawString("Hora de fin:  " + horario.getHoraFin(), 80, 105);
-        g.drawString("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _", 80, 115);
+        g.drawString("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _", 80, 115);
         g.drawString("Descripción: " + horario + ", " + "Fecha: " + fecha, 150, 138);
         g.drawRect(0,0,this.getWidth(),this.getHeight());
     }

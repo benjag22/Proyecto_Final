@@ -1,5 +1,3 @@
-package TestUnitario;
-
 import Paneles.PanelHorarios;
 import org.junit.Test;
 import static org.junit.Assert.*;

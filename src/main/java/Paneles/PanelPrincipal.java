@@ -21,19 +21,15 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     private JButton atras;
     private LocalDate fechalocal;
     private ArrayList<PanelHorarios> listapanelHorario;
-    private ArrayList<PanelEleccionAsientos> listapanelEleccion;
-    private boolean verdad=false;
 
     public PanelPrincipal(){
         listapanelHorario = new ArrayList<>();
-        listapanelEleccion = new ArrayList<>();
         this.addMouseListener(this);
         atras = new JButton("Regresar");
         atras.addMouseListener(this);
 
         compra = new PanelCompra();
         compra.setVisible(true);
-
 
         cargarSonidos();
 
@@ -63,54 +59,60 @@ public class PanelPrincipal extends JPanel implements MouseListener {
                     listapanelHorario.add(horarios);
                 } else {
                     remove(horarios);
-                    System.out.println("se removio el horario anterior(sigue en la lista de horarios)");
-                    for (int i = 0; i < listapanelHorario.size(); i++) {
-                        PanelHorarios panelHorarios = listapanelHorario.get(i);
+                    System.out.println("se removio el horario anterior (sigue en la lista de horarios)");
+                    boolean horarioEncontrado = false;
+
+                    for (PanelHorarios panelHorarios : listapanelHorario) {
                         System.out.println("buscamos por un panelhorario");
                         System.out.println(fechalocal);
+
                         if (fechalocal.equals(panelHorarios.getFecha()) &&
                                 origen.equals(panelHorarios.getOrigen()) &&
                                 destino.equals(panelHorarios.getDestino())) {
+
                             System.out.println("encontramos el mismo panel horario de antes");
                             horarios = panelHorarios;
                             horarios.setVisible(true);
+
                             for (int z = 0; z < horarios.getListaBotonesAsociado().size(); z++) {
                                 horarios.getListaBotonesAsociado().get(z).addMouseListener(this);
                             }
+
                             add(horarios);
                             horarios.setLocation(0, 0);
                             destinoIda.setVisible(false);
+                            horarioEncontrado = true;
                             break;
                         }
-                        else{
-                            System.out.println("no encontramos ninguna fecha igual a alguna de la lista de paneles horarios, asi que crearemos un nuevo panelhorario");
-                            horarios = new PanelHorarios(destinoIda.getSeleccion_origen(), destinoIda.getSeleccion_destino(), fechalocal);
-                            horarios.setVisible(false);
-                            for (int z = 0; z < horarios.getListaBotonesAsociado().size(); z++) {
-                                horarios.getListaBotonesAsociado().get(z).addMouseListener(this);
-                            }
-                            destinoIda.setVisible(false);
-                            horarios.setVisible(true);
-                            add(horarios);
-                            horarios.setLocation(0, 0);
-                            listapanelHorario.add(horarios);
+                    }
+
+                    if (!horarioEncontrado) {
+                        // No encontramos un horario correspondiente, así que creamos uno nuevo//
+                        System.out.println("no encontramos un horario correspondiente, así que crearemos un nuevo panelhorario");
+                        horarios = new PanelHorarios(destinoIda.getSeleccion_origen(), destinoIda.getSeleccion_destino(), fechalocal);
+                        horarios.setVisible(false);
+
+                        for (int z = 0; z < horarios.getListaBotonesAsociado().size(); z++) {
+                            horarios.getListaBotonesAsociado().get(z).addMouseListener(this);
                         }
+
+                        destinoIda.setVisible(false);
+                        horarios.setVisible(true);
+                        add(horarios);
+                        horarios.setLocation(0, 0);
+                        listapanelHorario.add(horarios);
                     }
                 }
             }
             else{
-                System.out.println("No se puede viajar desde tu ciudad a tu misma ciudad tontito");
+                System.out.println("No se puede viajar desde tu ciudad a tu misma ciudad");
             }
         };
         destinoIda.getFecha().addActionListener(horaselec);
-
         compra.getComprarAsiento().addMouseListener(this);
         setPreferredSize(new Dimension(1920,1080));
         add(compra);
         add(destinoIda);
-
-
-
     }
 
     @Override
@@ -210,19 +212,6 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
     }
-    /*
-        public static void main (String[] args){
-            MusicaFondo.reproducirMusicaFondo("main/java/resources/Fondo.wav");
-            JFrame frame = new JFrame();
-            PanelPrincipal panelPrincipal = new PanelPrincipal();
-            frame.add(panelPrincipal);
-            frame.setTitle("Venta de pasajes");
-            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            frame.setSize(1500,1020);
-            frame.setVisible(true);
-        }
-
-     */
     private void cargarSonidos() {
         try {
             String audioFileMouseOverPath = "src/main/java/Recursos/Sobre.wav";

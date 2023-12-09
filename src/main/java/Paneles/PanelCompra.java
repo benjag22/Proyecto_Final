@@ -28,7 +28,7 @@ public class PanelCompra extends JPanel implements MouseListener {
         ComprarAsiento = new JButton("Comprar asiento");
         ComprarAsiento.addMouseListener(this);
         ComprarAsiento.setBounds(550, 300,500,200);
-        ComprarAsiento.setFont(new Font("Arial",Font.PLAIN,50));
+        ComprarAsiento.setFont(new Font("Mongolian Baiti",Font.PLAIN,50));
         add(ComprarAsiento);
 
         botoncomprar = true;
