@@ -105,15 +105,6 @@ public class vistaDatosBus extends JPanel implements AsientoClickListener {
         this.precioIVA = this.precioAsientos * 0.19;
         this.precioTotal = this.precioAsientos + this.precioIVA;
     }
-    public void actualizarDatos(VistaBus busAsociado, LocalTime horaInicioAsociada,LocalTime horaFinAsociada, String origen, String destino){
-        this.busAsociado=busAsociado;
-        this.horaInicioAsociada=horaInicioAsociada;
-        this.horaFinAsociada=horaFinAsociada;
-        this.origen=origen;
-        this.destino=destino;
-        repaint();
-        revalidate();
-    }
     private BufferedImage cargarImagen(String ruta) {
         try {
             return ImageIO.read(new File(ruta));
@@ -121,5 +112,21 @@ public class vistaDatosBus extends JPanel implements AsientoClickListener {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public LocalTime getHoraInicioAsociada() {
+        return horaInicioAsociada;
+    }
+
+    public void setHoraInicioAsociada(LocalTime horaInicioAsociada) {
+        this.horaInicioAsociada = horaInicioAsociada;
+    }
+
+    public LocalTime getHoraFinAsociada() {
+        return horaFinAsociada;
+    }
+
+    public void setHoraFinAsociada(LocalTime horaFinAsociada) {
+        this.horaFinAsociada = horaFinAsociada;
     }
 }
