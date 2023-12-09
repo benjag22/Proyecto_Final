@@ -3,7 +3,7 @@ package GUIInterface;
 import org.example.Ciudades;
 import org.example.VistaHorario;
 import org.example.VistaListaHorarios;
-
+import java.time.LocalDate;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -143,5 +143,18 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
 
     public PanelHorarios getPanelHorarios() {
         return panelHorarios;
+    }
+    public JComboBox getOrigenComboBox() {
+        return Origen;
+    }
+    public JComboBox getDestinoComboBox() {
+        return Destino;
+    }
+    public JTextField getFechaTextField() {
+        return Fecha;
+    }
+
+    public void actualizarHorarios() {
+        panelHorarios.actualizarHorarios(seleccion_origen, seleccion_destino, LocalDate.parse(Fecha.getText()));
     }
 }
