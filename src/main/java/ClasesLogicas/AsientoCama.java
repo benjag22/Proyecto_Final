@@ -1,4 +1,4 @@
-package org.example;
+package ClasesLogicas;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -6,24 +6,19 @@ import java.io.File;
 import java.io.IOException;
 
 public class AsientoCama extends Asiento{
-    private Boolean habilitado;
     private BufferedImage imagenDeseleccionada;
     private BufferedImage imagenSeleccionada;
     private BufferedImage imagenOcupada;
     private final double precio=20000.0;
     public AsientoCama(){
         super();
-        this.imagenDeseleccionada = cargarImagen("src/main/java/resources/asiento_cama.png");
-        this.imagenSeleccionada = cargarImagen("src/main/java/resources/asiento_cama_elegido.png");
-        this.imagenOcupada = cargarImagen("src/main/java/resources/asiento_cama_ocupado.png");
+        this.imagenDeseleccionada = cargarImagen("src/main/java/Recursos/asiento_cama.png");
+        this.imagenSeleccionada = cargarImagen("src/main/java/Recursos/asiento_cama_elegido.png");
+        this.imagenOcupada = cargarImagen("src/main/java/Recursos/asiento_cama_ocupado.png");
     }
     @Override
     public double getPrecio() {
         return precio;
-    }
-    @Override
-    public void setHabilitado(boolean habilitado) {
-        this.habilitado=habilitado;
     }
     private BufferedImage cargarImagen(String ruta) {
         try {

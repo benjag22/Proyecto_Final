@@ -1,8 +1,6 @@
-package GUIInterface;
+package Paneles;
 
-import Vistas.VistaBus;
-import org.example.Horario;
-import org.example.VistaListaHorarios;
+import Vistas.VistaListaHorarios;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -36,7 +34,7 @@ public class PanelHorarios extends JPanel {
         this.fecha=fecha;
         setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
         Random random = new Random();
-        this.imagen = cargarImagen("src/main/java/resources/Fondo3.png");
+        this.imagen = cargarImagen("src/main/java/Recursos/Fondo3.png");
         Font font = new Font("Arial",Font.PLAIN,30);
 
         Seleccionar = new JLabel("Seleccionar Horario");
@@ -84,8 +82,8 @@ public class PanelHorarios extends JPanel {
     }
     private void cargarSonidos() {
         try {
-            String audioFileMouseOverPath = "src/main/java/resources/Sobre.wav";
-            String audioFileClickPath = "src/main/java/resources/Click.wav";
+            String audioFileMouseOverPath = "src/main/java/Recursos/Sobre.wav";
+            String audioFileClickPath = "src/main/java/Recursos/Click.wav";
 
             AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(new File(audioFileMouseOverPath));
             clipMouseOver = AudioSystem.getClip();

@@ -1,4 +1,4 @@
-package org.example;
+package ClasesLogicas;
 import java.awt.GraphicsEnvironment;
 
 public class ListaFuentesFONT {

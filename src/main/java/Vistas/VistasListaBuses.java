@@ -1,12 +1,10 @@
 package Vistas;
 
-import GUIInterface.PanelHorarios;
-import org.example.AsientoCama;
-import org.example.AsientoSemiCama;
-import org.example.BusDosPisos;
-import org.example.BusUnPiso;
+import ClasesLogicas.AsientoCama;
+import ClasesLogicas.AsientoSemiCama;
+import ClasesLogicas.BusDosPisos;
+import ClasesLogicas.BusUnPiso;
 
-import javax.swing.*;
 import java.util.ArrayList;
 public class VistasListaBuses {
     ArrayList<VistaBus> listaVistaBuses;

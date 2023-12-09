@@ -1,8 +1,7 @@
-package GUIInterface;
+package Paneles;
 
-import org.example.Ciudades;
-import org.example.VistaHorario;
-import org.example.VistaListaHorarios;
+import ClasesLogicas.Ciudades;
+
 import java.time.LocalDate;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
@@ -14,7 +13,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class PanelDestinoIda extends JPanel implements ItemListener {
     private BufferedImage imagen;
@@ -32,7 +30,7 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
         this.setLayout(null);
         setPreferredSize(new Dimension(1920,1080));
         String basePath = new File("").getAbsolutePath();
-        this.imagen = cargarImagen(basePath + "/src/Main/java/resources/Fondo2.png");
+        this.imagen = cargarImagen(basePath + "/src/Main/java/Recursos/Fondo2.png");
 
         Font font = new Font("Arial",Font.PLAIN,30);
         Seleccionar = new JLabel("Seleccionar Horario");
@@ -119,8 +117,8 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
 
     private void cargarSonidos() {
         try {
-            String audioFileMouseOverPath = "src/main/java/resources/Sobre.wav";
-            String audioFileClickPath = "src/main/java/resources/Click.wav";
+            String audioFileMouseOverPath = "src/main/java/Recursos/Sobre.wav";
+            String audioFileClickPath = "src/main/java/Recursos/Click.wav";
 
             AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(new File(audioFileMouseOverPath));
             clipMouseOver = AudioSystem.getClip();

@@ -1,11 +1,10 @@
-package GUIInterface;
+package Paneles;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseAdapter;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +21,7 @@ public class PanelCompra extends JPanel implements MouseListener {
         cargarSonidos();
         panelDestinoIda = new PanelDestinoIda();
         this.setLayout(null);
-        this.imagen = cargarImagen("src/main/java/resources/Fondo1.png");
+        this.imagen = cargarImagen("src/main/java/Recursos/Fondo1.png");
         setPreferredSize(new Dimension(imagen.getWidth(),imagen.getHeight()));
 
 
@@ -84,8 +83,8 @@ public class PanelCompra extends JPanel implements MouseListener {
     }
     private void cargarSonidos() {
         try {
-            String audioFileMouseOverPath = "src/main/java/resources/Sobre.wav";
-            String audioFileClickPath ="src/main/java/resources/Click.wav";
+            String audioFileMouseOverPath = "src/main/java/Recursos/Sobre.wav";
+            String audioFileClickPath ="src/main/java/Recursos/Click.wav";
 
             AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(new File(audioFileMouseOverPath));
             clipMouseOver = AudioSystem.getClip();

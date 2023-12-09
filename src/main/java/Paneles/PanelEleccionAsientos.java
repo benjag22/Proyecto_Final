@@ -1,20 +1,17 @@
-package GUIInterface;
+package Paneles;
 import Vistas.VistaBus;
 import Vistas.VistasListaBuses;
-import Vistas.vistaDatosBus;
-import org.example.Horario;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class PanelEleccionAsientos extends JPanel implements MouseListener {
     private VistasListaBuses listaBuses = new VistasListaBuses();
     private VistaBus busAsociado;
-    private vistaDatosBus panelDatos;
+    private PanelDatosBus panelDatos;
     private JLabel origenAsociado;
     private JLabel destinoAsociado;
     private LocalTime horaInicio;
@@ -32,7 +29,7 @@ public class PanelEleccionAsientos extends JPanel implements MouseListener {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // BoxLayout con eje Y para que se ordene
 
         JPanel panelInterno = new JPanel(new BorderLayout());
-        panelDatos = new vistaDatosBus(busAsociado,horaInicio,horaFinal,origen,destino);
+        panelDatos = new PanelDatosBus(busAsociado,horaInicio,horaFinal,origen,destino);
 
         panelInterno.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         panelDatos.setBorder(BorderFactory.createLineBorder(Color.GREEN));
@@ -61,7 +58,7 @@ public class PanelEleccionAsientos extends JPanel implements MouseListener {
     public void mouseExited(MouseEvent e) {
     }
 
-    public vistaDatosBus getPanelDatos() {
+    public PanelDatosBus getPanelDatos() {
         return panelDatos;
     }
 }

@@ -1,4 +1,4 @@
-package org.example;
+package ClasesLogicas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,15 +9,6 @@ public class BusUnPiso extends Bus {
     public BusUnPiso() {
         super();
         listaAsientosPiso1 = new ArrayList<>();
-
-    }
-
-    @Override
-    public List<Asiento> getListaAsientos() {
-        return new ArrayList<>(listaAsientosPiso1);
-    }
-    @Override
-    public void añadirAsientosPiso1() {
 
     }
     @Override

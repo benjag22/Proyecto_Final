@@ -1,4 +1,6 @@
-package org.example;
+package Vistas;
+import ClasesLogicas.Horario;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,10 +24,9 @@ public class VistaHorario extends JPanel {
         this.origen = origen;
         this.destino = destino;
         this.fecha=fecha;
-        fecha=horario.getLocalDate();
 
-        this.imagenComprar = cargarImagen("src/main/java/resources/botonCompra2.png");
-        this.imagenComprarPresionada = cargarImagen("src/main/java/resources/botonCompraPresionado2.png");
+        this.imagenComprar = cargarImagen("src/main/java/Recursos/botonCompra2.png");
+        this.imagenComprarPresionada = cargarImagen("src/main/java/Recursos/botonCompraPresionado2.png");
         int ancho = 180;
         int alto = 70;
         setPreferredSize(new Dimension(1000, 150));
@@ -56,16 +57,16 @@ public class VistaHorario extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        BufferedImage flecha = cargarImagen("src/main/java/resources/flecha.png");
-        g.drawImage(flecha, 10, 30, flecha.getWidth(), flecha.getHeight(), this);
+        BufferedImage flecha = cargarImagen("src/main/java/Recursos/flecha.png");
+        g.drawImage(flecha, 45, 30, flecha.getWidth(), flecha.getHeight(), this);
         Font fuente = new Font("Yu Gothic UI Semilight", Font.BOLD, 18);
         g.setFont(fuente);
-        g.drawString("---" + "Origen: " + origen, 200, 45);
-        g.drawString("---" + "Destino: " + destino, 180, 105);
-        g.drawString("Hora de inicio: " + horario.getHoraInicio(), 35, 45);
-        g.drawString("Hora de fin: " + horario.getHoraFin(), 35, 105);
-        g.drawString("_____________________________________________________________________________", 35, 115);
-        g.drawString("Descripción: " + horario + ", " + "Fecha: " + fecha, 35, 135);
+        g.drawString("Origen:  " + origen, 700, 45);
+        g.drawString("Destino:  " + destino, 700, 105);
+        g.drawString("Hora de inicio:  " + horario.getHoraInicio(), 80, 45);
+        g.drawString("Hora de fin:  " + horario.getHoraFin(), 80, 105);
+        g.drawString("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _", 80, 115);
+        g.drawString("Descripción: " + horario + ", " + "Fecha: " + fecha, 150, 138);
         g.drawRect(0,0,this.getWidth(),this.getHeight());
     }
     private BufferedImage cargarImagen(String ruta) {
@@ -76,14 +77,6 @@ public class VistaHorario extends JPanel {
             return null;
         }
     }
-    public void setOrigen(String origen) {
-        this.origen = origen;
-    }
-
-    public void setDestino(String destino) {
-        this.destino = destino;
-    }
-
     public Horario getHorario() {
         return horario;
     }
@@ -94,14 +87,6 @@ public class VistaHorario extends JPanel {
 
     public String getDestino() {
         return destino;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
     }
 
     public JButton getBotonCompra() {

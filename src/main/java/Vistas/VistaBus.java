@@ -1,12 +1,10 @@
 package Vistas;
 
-import org.example.*;
-
+import ClasesLogicas.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 public class VistaBus extends JPanel{
 
@@ -118,21 +116,4 @@ public class VistaBus extends JPanel{
         return nuevoAsiento;
     }
 
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            BusDosPisos bus = new BusDosPisos();
-            JFrame frame = new JFrame("VistaBus Test");
-            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            VistaBus vistaBusDosPisos = new VistaBus(bus);
-            AsientoSemiCama asiento1= new AsientoSemiCama();
-            AsientoCama asiento2 = new AsientoCama();
-            vistaBusDosPisos.agregarAsientos(asiento2,2);
-            vistaBusDosPisos.agregarAsientos(asiento1,1);
-            frame.setContentPane(vistaBusDosPisos);
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-        });
-    }
 }

@@ -1,6 +1,5 @@
-package GUIInterface;
+package Paneles;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.*;

@@ -1,4 +1,6 @@
-package org.example;
+package Vistas;
+import ClasesLogicas.Horario;
+
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;

@@ -1,8 +1,7 @@
 package Vistas;
-import org.example.Asiento;
-import org.example.AsientoCama;
-import org.example.AsientoClickListener;
-import org.example.AsientoSemiCama;
+import ClasesLogicas.Asiento;
+import ClasesLogicas.AsientoClickListener;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;

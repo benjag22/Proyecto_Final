@@ -1,8 +1,7 @@
-package GUIInterface;
+package Paneles;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 
 /**
  * @author Gabriel Huerta, Martin Rubilar y Benjmaín González
@@ -11,7 +10,7 @@ import java.io.File;
 
 public class VentanaMain {
     public static void main(String[] args) {
-        MusicaFondo.reproducirMusicaFondo("src/main/java/resources/Fondo.wav");
+        MusicaFondo.reproducirMusicaFondo("src/main/java/Recursos/Fondo.wav");
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame();
             frame.setSize(new Dimension(1920,1080));

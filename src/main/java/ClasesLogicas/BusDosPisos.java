@@ -1,4 +1,4 @@
-package org.example;
+package ClasesLogicas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,20 +12,6 @@ public class BusDosPisos extends Bus {
         super();
         listaAsientosPiso1 = new ArrayList<>();
         listaAsientosPiso2 = new ArrayList<>();
-    }
-
-    @Override
-    public List<Asiento> getListaAsientos() {
-        List<Asiento> listaTotalAsientos = new ArrayList<>(listaAsientosPiso1);
-        listaTotalAsientos.addAll(listaAsientosPiso2);
-        return listaTotalAsientos;
-    }
-    @Override
-    public void añadirAsientosPiso1() {
-
-    }
-    public void añadirAsientosPiso2() {
-
     }
 
     @Override

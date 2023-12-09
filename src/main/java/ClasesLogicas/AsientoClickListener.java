@@ -1,4 +1,4 @@
-package org.example;
+package ClasesLogicas;
 
 public interface AsientoClickListener {
     void onAsientoClick();

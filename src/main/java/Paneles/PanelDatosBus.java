@@ -1,7 +1,8 @@
-package Vistas;
+package Paneles;
 
-import org.example.AsientoClickListener;
-import org.example.Horario;
+import ClasesLogicas.AsientoClickListener;
+import Vistas.VistaBus;
+import Vistas.VistasAsientos;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -13,7 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalTime;
 
-public class vistaDatosBus extends JPanel implements AsientoClickListener {
+public class PanelDatosBus extends JPanel implements AsientoClickListener {
     private String origen;
     private String destino;
     private JButton comprar;
@@ -24,7 +25,7 @@ public class vistaDatosBus extends JPanel implements AsientoClickListener {
     private double precioIVA;
     private double precioTotal;
 
-    public vistaDatosBus(VistaBus busAsociado, LocalTime horaInicioAsociada,LocalTime horaFinAsociada, String origen, String destino) {
+    public PanelDatosBus(VistaBus busAsociado, LocalTime horaInicioAsociada, LocalTime horaFinAsociada, String origen, String destino) {
         this.origen = origen;
         this.destino = destino;
         this.busAsociado = busAsociado;
@@ -67,27 +68,33 @@ public class vistaDatosBus extends JPanel implements AsientoClickListener {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        BufferedImage imagenAsientoNocupadoReferencial = cargarImagen("src/main/java/resources/asiento_semicama.png");
-        BufferedImage imagenAsientoSeleccionadoReferencial = cargarImagen("src/main/java/resources/asiento_semicama_elegida.png");
-        BufferedImage imagenAsientoOcupadoReferencial = cargarImagen("src/main/java/resources/asiento_semicama_ocupado.png");
+        BufferedImage imagenAsientoNocupadoReferencial = cargarImagen("src/main/java/Recursos/asiento_semicama.png");
+        BufferedImage imagenAsientoSeleccionadoReferencial = cargarImagen("src/main/java/Recursos/asiento_semicama_elegida.png");
+        BufferedImage imagenAsientoOcupadoReferencial = cargarImagen("src/main/java/Recursos/asiento_semicama_ocupado.png");
+        BufferedImage imagenAsiento2NocupadoReferencial = cargarImagen("src/main/java/Recursos/asiento_cama.png");
+        BufferedImage imagenAsiento2SeleccionadoReferencial = cargarImagen("src/main/java/Recursos/asiento_cama_elegido.png");
+        BufferedImage imagenAsientoOcupado2Referencial = cargarImagen("src/main/java/Recursos/asiento_cama_ocupado.png");
         Font fuente = new Font("Impact", Font.PLAIN , 20);
         g.setFont(fuente);
         g.setColor(Color.BLACK);
         int x=40;
         int y=50;
-        g.drawString("Hora de inicio: " +horaInicioAsociada, x, y);
-        g.drawString("Hora de llegada: " + horaFinAsociada, x, y+70);
-        g.drawString("Origen: "+origen,400,50);
-        g.drawString("Destino: "+destino,400,120);
-        g.drawRect(360,0,0,300);
-        g.drawRect(680,0,0,300);
-        g.drawRect(1000,0,0,300);
-        g.drawString("Asiento Desocupado",1080,123);
-        g.drawString("Asiento Seleccionado",1080,195);
-        g.drawString("Asiento Ocupado",1080,265);
-        g.drawImage(imagenAsientoNocupadoReferencial,1010,88,this);
-        g.drawImage(imagenAsientoSeleccionadoReferencial,1010,160,this);
-        g.drawImage(imagenAsientoOcupadoReferencial,1010,230,this);
+        g.drawString("Hora de inicio: " +horaInicioAsociada, 45, 65);
+        g.drawString("Hora de llegada: " + horaFinAsociada, 45, 150);
+        g.drawString("Origen: "+origen,400,65);
+        g.drawString("Destino: "+destino,400,150);
+        g.drawRect(360,0,0,400);
+        g.drawRect(680,0,0,400);
+        g.drawRect(1000,0,0,400);
+        g.drawString("Asiento Desocupado",1080,115);
+        g.drawString("Asiento Seleccionado",1080,187);
+        g.drawString("Asiento Ocupado",1080,257);
+        g.drawImage(imagenAsientoNocupadoReferencial,1010,84,this);
+        g.drawImage(imagenAsientoSeleccionadoReferencial,1010,156,this);
+        g.drawImage(imagenAsientoOcupadoReferencial,1010,226,this);
+        g.drawImage(imagenAsiento2NocupadoReferencial,1280,84,this);
+        g.drawImage(imagenAsiento2SeleccionadoReferencial,1280,156,this);
+        g.drawImage(imagenAsientoOcupado2Referencial,1280,226,this);
         g.drawString("Precio Asientos: "+precioAsientos,700,50);
         g.drawString("Precio IVA : "+precioIVA,700,100);
         g.drawString("Precio total con impuestos : "+precioTotal,700,150);
@@ -113,17 +120,8 @@ public class vistaDatosBus extends JPanel implements AsientoClickListener {
             return null;
         }
     }
-
-    public LocalTime getHoraInicioAsociada() {
-        return horaInicioAsociada;
-    }
-
     public void setHoraInicioAsociada(LocalTime horaInicioAsociada) {
         this.horaInicioAsociada = horaInicioAsociada;
-    }
-
-    public LocalTime getHoraFinAsociada() {
-        return horaFinAsociada;
     }
 
     public void setHoraFinAsociada(LocalTime horaFinAsociada) {

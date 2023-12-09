@@ -1,4 +1,4 @@
-package org.example;
+package ClasesLogicas;
 
 import java.awt.image.BufferedImage;
 
@@ -15,8 +15,6 @@ public Asiento(){
     public double getPrecio() {
         return precio;
     }
-
-    public abstract void setHabilitado(boolean habilitado);
 
     public String getFila() {
         return fila;

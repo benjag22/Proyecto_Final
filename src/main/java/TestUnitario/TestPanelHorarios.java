@@ -1,10 +1,9 @@
 package TestUnitario;
 
-import GUIInterface.PanelHorarios;
+import Paneles.PanelHorarios;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class TestPanelHorarios {
 

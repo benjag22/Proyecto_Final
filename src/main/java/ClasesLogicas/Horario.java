@@ -1,33 +1,20 @@
-package org.example;
-
-import java.time.LocalDate;
+package ClasesLogicas;
 import java.time.LocalTime;
 import java.util.Random;
 
 public class Horario {
-
     private LocalTime horaInicio;
     private LocalTime horaFin;
-    private LocalDate localDate;
-
     public Horario() {
         this.horaInicio = LocalTime.MIN;  // Inicializa con el valor mínimo de LocalTime
         this.horaFin = LocalTime.MIN;     // Inicializa con el valor mínimo de LocalTime
-        this.localDate = LocalDate.now();
     }
-
-    public LocalDate getLocalDate() {
-        return localDate;
-    }
-
     public LocalTime getHoraInicio() {
         return horaInicio;
     }
-
     public LocalTime getHoraFin() {
         return horaFin;
     }
-
     public static Horario generarHorarioAleatorio() {
         Random random = new Random();
 
@@ -44,16 +31,8 @@ public class Horario {
 
         return horarioGenerado;
     }
-
     @Override
     public String toString() {
         return "Salida del bus: " + horaInicio.toString() + ", " + "Llegada del bus:" + horaFin.toString();
-    }
-
-    public static void main(String[] args) {
-        Horario horarioAleatorio = Horario.generarHorarioAleatorio();
-        System.out.println("Hora de inicio: " + horarioAleatorio.getHoraInicio());
-        System.out.println("Hora de fin: " + horarioAleatorio.getHoraFin());
-        System.out.println(horarioAleatorio.getLocalDate());
     }
 }

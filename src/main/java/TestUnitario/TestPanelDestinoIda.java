@@ -1,10 +1,9 @@
 package TestUnitario;
 
-import GUIInterface.PanelDestinoIda;
+import Paneles.PanelDestinoIda;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import java.time.LocalDate;
 public class TestPanelDestinoIda {
 
     @Test

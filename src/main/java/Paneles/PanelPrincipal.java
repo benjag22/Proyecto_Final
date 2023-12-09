@@ -1,4 +1,4 @@
-package GUIInterface;
+package Paneles;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -7,7 +7,6 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class PanelPrincipal extends JPanel implements MouseListener {
 
@@ -171,8 +170,8 @@ public class PanelPrincipal extends JPanel implements MouseListener {
      */
     private void cargarSonidos() {
         try {
-            String audioFileMouseOverPath = "src/main/java/resources/Sobre.wav";
-            String audioFileClickPath = "src/main/java/resources/Click.wav";
+            String audioFileMouseOverPath = "src/main/java/Recursos/Sobre.wav";
+            String audioFileClickPath = "src/main/java/Recursos/Click.wav";
 
             AudioInputStream audioStreamMouseOver = AudioSystem.getAudioInputStream(new File(audioFileMouseOverPath));
             clipMouseOver = AudioSystem.getClip();

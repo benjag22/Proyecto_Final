@@ -1,4 +1,4 @@
-package org.example;
+package ClasesLogicas;
 
 public enum CantidadesAsientoPisos {
     PISONORMAL(14, 4),
