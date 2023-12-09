@@ -26,10 +26,14 @@ public class PanelHorarios extends JPanel {
     private String destino;
     private LocalDate fecha;
     private int cantidad;
+    private ArrayList<PanelEleccionAsientos> listaEleccionAsientos;
 
-    public PanelHorarios() {
+    public PanelHorarios(String origen,String destino,LocalDate fecha) {
         cargarSonidos();
         this.setLayout(null);
+        this.origen=origen;
+        this.destino=destino;
+        this.fecha=fecha;
         setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
         Random random = new Random();
         this.imagen = cargarImagen("src/main/java/resources/Fondo3.png");
@@ -40,12 +44,10 @@ public class PanelHorarios extends JPanel {
         Seleccionar.setBounds(650,120,1000,50);
         Seleccionar.setForeground(Color.BLACK);
         add(Seleccionar);
-        this.origen="";
-        this.destino="";
-        this.fecha=LocalDate.now();
         int cantidad=random.nextInt(1,15);
         listaHorarios = new VistaListaHorarios(cantidad,origen,destino,fecha);
         listaBotonesAsociado = new ArrayList<>(cantidad);
+        listaEleccionAsientos = new ArrayList<>();
         JScrollPane scrollPane = new JScrollPane(listaHorarios);
         scrollPane.setBounds(260,200,1000,480);
         add(scrollPane);
@@ -55,10 +57,12 @@ public class PanelHorarios extends JPanel {
                     random.nextInt(0, 5),
                     listaHorarios.getListaHorarios().get(i).getHorario().getHoraInicio(),
                     listaHorarios.getListaHorarios().get(i).getHorario().getHoraFin(),
-                    listaHorarios.getListaHorarios().get(i).getOrigen().
+                    listaHorarios.getListaHorarios().get(i).getOrigen(),
                     listaHorarios.getListaHorarios().get(i).getDestino());
             boton = listaHorarios.getListaHorarios().get(i).getBotonCompra();
             listaBotonesAsociado.add(boton);
+            listaEleccionAsientos.add(panelEleccion);
+
         }
     }
 
@@ -111,28 +115,8 @@ public ArrayList<JButton> getListaBotonesAsociado(){
     public PanelEleccionAsientos getPanelEleccion() {
         return panelEleccion;
     }
-    public void actualizarHorarios(String origen, String destino, LocalDate fechaSeleccionada) {
-        listaHorarios.getListaHorarios().clear();
-       cargarNuevosHorarios(origen,destino,fechaSeleccionada);
-    }
 
-    public void cargarNuevosHorarios(String origen, String destino, LocalDate fechaSeleccionada) {
-        Random random = new Random();
-        this.cantidad = random.nextInt(1, 15);
-        this.origen = origen;
-        this.destino = destino;
-        this.fecha = fechaSeleccionada;
-        this.listaHorarios = new VistaListaHorarios(cantidad, this.origen, this.destino, this.fecha);
-        for (int i = 0; i < cantidad; i++) {
-            PanelEleccionAsientos panelEleccion = new PanelEleccionAsientos(
-                    random.nextInt(0, 5),
-                    listaHorarios.getListaHorarios().get(i).getHorario().getHoraInicio(),
-                    listaHorarios.getListaHorarios().get(i).getHorario().getHoraFin(),
-                    listaHorarios.getListaHorarios().get(i).getOrigen(),
-                    listaHorarios.getListaHorarios().get(i).getDestino()
-            );
-            JButton boton = listaHorarios.getListaHorarios().get(i).getBotonCompra();
-            listaBotonesAsociado.add(boton);
-        }
+    public ArrayList<PanelEleccionAsientos> getListaEleccionAsientos() {
+        return listaEleccionAsientos;
     }
 }

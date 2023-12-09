@@ -8,17 +8,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class PanelEleccionAsientos extends JPanel implements MouseListener {
-    VistasListaBuses listaBuses = new VistasListaBuses();
-    VistaBus busAsociado;
-    vistaDatosBus panelDatos;
-    JLabel origenAsociado;
-    JLabel destinoAsociado;
+    private VistasListaBuses listaBuses = new VistasListaBuses();
+    private VistaBus busAsociado;
+    private vistaDatosBus panelDatos;
+    private JLabel origenAsociado;
+    private JLabel destinoAsociado;
+    private LocalTime horaInicio;
+    private LocalTime horaFinal;
+
 
     public PanelEleccionAsientos(int randomBus, LocalTime horaInicio, LocalTime horaFinal, String origen, String destino) {
         setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
+        this.horaFinal=horaFinal;
+        this.horaInicio=horaInicio;
         this.busAsociado = listaBuses.getBus(randomBus);
         origenAsociado= new JLabel(origen);
         destinoAsociado = new JLabel(destino);
@@ -35,17 +41,6 @@ public class PanelEleccionAsientos extends JPanel implements MouseListener {
         panelInterno.add(panelDatos,BorderLayout.SOUTH);
         add(panelInterno);
     }
-    public void actualizarDatos(VistaBus busAsociado, LocalTime horaInicio, LocalTime horaFinal, String origen, String destino) {
-        this.origenAsociado.setText(origen);
-        this.destinoAsociado.setText(destino);
-        this.panelDatos.actualizarDatos(busAsociado, horaInicio, horaFinal, origen, destino);
-        add(origenAsociado);
-        add(destinoAsociado);
-        add(panelDatos);
-        revalidate();
-        repaint();
-    }
-
     @Override
     public void mouseClicked(MouseEvent e) {
     }
@@ -64,5 +59,9 @@ public class PanelEleccionAsientos extends JPanel implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+
+    public vistaDatosBus getPanelDatos() {
+        return panelDatos;
     }
 }

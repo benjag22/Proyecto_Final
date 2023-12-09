@@ -31,28 +31,17 @@ public class PanelPrincipal extends JPanel implements MouseListener {
 
         destinoIda = compra.getPanelDestinoIda();
         destinoIda.setVisible(false);
-
-        horarios = destinoIda.getPanelHorarios();
-        horarios.setVisible(false);
-
-        eleccionAsientos = horarios.getPanelEleccion();
-        eleccionAsientos.setVisible(false);
-
         ActionListener horaselec = e -> {
             if(destinoIda.aceptar()) {
-                for(int i=0;i<horarios.getListaHorariosdepanel().getListaHorarios().size();i++){
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                    try {
-                        fechalocal = LocalDate.parse(destinoIda.getFecha().getText(), formatter);
-                    }
-                    catch(Exception f) {
-                        System.out.println("Error");
-                    }
-                    horarios.getListaHorariosdepanel().getListaHorarios().get(i).setFecha(fechalocal);
+                horarios = new PanelHorarios(destinoIda.getSeleccion_origen(),destinoIda.getSeleccion_destino(),destinoIda.getlocalfecha());
+                horarios.setVisible(false);
+                for(int i=0;i<horarios.getListaBotonesAsociado().size();i++) {
+                    horarios.getListaBotonesAsociado().get(i).addMouseListener(this);
                 }
                 destinoIda.setVisible(false);
-                horarios.actualizarHorarios(destinoIda.getSeleccion_origen(),destinoIda.getSeleccion_destino(),fechalocal);
                 horarios.setVisible(true);
+                add(horarios);
+                horarios.setLocation(0,0);
             }
             else{
                 System.out.println("No se puede viajar desde tu ciudad a tu misma ciudad tontito");
@@ -61,14 +50,10 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         destinoIda.getFecha().addActionListener(horaselec);
 
         compra.getComprarAsiento().addMouseListener(this);
-        for(int i=0;i<horarios.getListaBotonesAsociado().size();i++) {
-            horarios.getListaBotonesAsociado().get(i).addMouseListener(this);
-        }
         setPreferredSize(new Dimension(1920,1080));
         add(compra);
         add(destinoIda);
-        add(horarios);
-        add(eleccionAsientos);
+
 
 
     }
@@ -78,8 +63,6 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         super.paintComponent(g);
         destinoIda.setLocation(0,0);
         compra.setLocation(0,0);
-        horarios.setLocation(0,0);
-        eleccionAsientos.setLocation(0,0);
 
 
         if(compra.isVisible()){
@@ -104,6 +87,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
             eleccionAsientos.add(atras);
             atras.setBounds(1350,650,150,50);
             eleccionAsientos.paint(g);
+            eleccionAsientos.setLocation(0,0);
 
         }
     }
@@ -136,13 +120,22 @@ public class PanelPrincipal extends JPanel implements MouseListener {
             revalidate();
             repaint();
         }
-        for (JButton boton : horarios.getListaBotonesAsociado()) {
-            if (e.getComponent() == boton) {
-                horarios.setVisible(false);
-                eleccionAsientos.setVisible(true);
-                revalidate();
-                repaint();
-                System.out.println("en que boton hize click ?:"+boton.getText());
+        else if(horarios.isVisible()) {
+            for (int i=0;i<horarios.getListaBotonesAsociado().size();i++) {
+                JButton boton =horarios.getListaBotonesAsociado().get(i);
+                if (e.getComponent() == boton) {
+                    horarios.setVisible(false);
+                    eleccionAsientos = horarios.getListaEleccionAsientos().get(i);
+                    add(eleccionAsientos);
+                    eleccionAsientos.setVisible(true);
+                    eleccionAsientos.getPanelDatos().setHoraInicioAsociada((horarios.getListaHorariosdepanel().getListaHorarios().get(i).getHorario().getHoraInicio()));
+                    eleccionAsientos.getPanelDatos().setHoraFinAsociada(horarios.getListaHorariosdepanel().getListaHorarios().get(i).getHorario().getHoraFin());
+                    revalidate();
+                    repaint();
+                    System.out.println("en que boton hize click ?:" + boton.getText());
+                    i++;
+
+                }
             }
         }
     }

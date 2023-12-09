@@ -15,20 +15,4 @@ public class TestPanelDestinoIda {
 
         assertTrue(panelDestinoIda.aceptar());
     }
-
-    @Test
-    public void testActualizarHorarios() {
-        PanelDestinoIda panelDestinoIda = new PanelDestinoIda();
-        panelDestinoIda.getOrigenComboBox().setSelectedItem("CiudadOrigen");
-        panelDestinoIda.getDestinoComboBox().setSelectedItem("CiudadDestino");
-
-        LocalDate fechaSeleccionada = LocalDate.now();
-        panelDestinoIda.getFechaTextField().setText(fechaSeleccionada.toString());
-
-        panelDestinoIda.actualizarHorarios();
-
-        assertNotNull(panelDestinoIda.getPanelHorarios());
-        assertNotNull(panelDestinoIda.getPanelHorarios().getListaHorariosdepanel());
-        assertFalse(panelDestinoIda.getPanelHorarios().getListaHorariosdepanel().getListaHorarios().isEmpty());
-    }
 }

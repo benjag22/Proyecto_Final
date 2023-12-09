@@ -13,6 +13,7 @@ import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class PanelDestinoIda extends JPanel implements ItemListener {
@@ -21,16 +22,13 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     private String seleccion_origen;
     private String seleccion_destino;
     private JTextField Fecha;
-    private JLabel Introducir;
     private Clip clipMouseOver;
     private Clip clipClick;
     private JComboBox Origen;
     private JComboBox Destino;
-    private PanelHorarios panelHorarios;
-    private ArrayList<VistaHorario> lista;
+    private LocalDate fecha;
     public PanelDestinoIda(){
         cargarSonidos();
-        panelHorarios = new PanelHorarios();
         this.setLayout(null);
         setPreferredSize(new Dimension(1920,1080));
         String basePath = new File("").getAbsolutePath();
@@ -67,7 +65,15 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
         Fecha.setFont(font);
         Fecha.setBounds(670,450,250,50);
         add(Fecha);
-        lista = panelHorarios.getListaHorariosdepanel().getListaHorarios();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        try {
+            fecha = LocalDate.parse(Fecha.getText(), formatter);
+        }
+        catch(Exception f) {
+            System.out.println("Error");
+        }
+
     }
 
     private BufferedImage cargarImagen(String ruta) {
@@ -92,10 +98,6 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
             seleccion_origen = Origen.getSelectedItem().toString();
         } else if (e.getSource() == Destino) {
             seleccion_destino = Destino.getSelectedItem().toString();
-        }
-        for(int i=0;i<panelHorarios.getListaHorariosdepanel().getListaHorarios().size();i++){
-            panelHorarios.getListaHorariosdepanel().getListaHorarios().get(i).setDestino(seleccion_destino);
-            panelHorarios.getListaHorariosdepanel().getListaHorarios().get(i).setOrigen(seleccion_origen);
         }
     }
     public boolean aceptar(){
@@ -140,10 +142,6 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     public JTextField getFecha() {
         return Fecha;
     }
-
-    public PanelHorarios getPanelHorarios() {
-        return panelHorarios;
-    }
     public JComboBox getOrigenComboBox() {
         return Origen;
     }
@@ -153,8 +151,7 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     public JTextField getFechaTextField() {
         return Fecha;
     }
-
-    public void actualizarHorarios() {
-        panelHorarios.actualizarHorarios(seleccion_origen, seleccion_destino, LocalDate.parse(Fecha.getText()));
+    public LocalDate getlocalfecha(){
+        return fecha;
     }
 }
