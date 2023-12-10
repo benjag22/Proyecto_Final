@@ -55,7 +55,6 @@ public class PanelDatosBus extends JPanel implements AsientoClickListener {
                         asiento.setAsientoClickListener(null);
                         precioAsientos=0.0;
                         precioIVA=0.0;
-                        precioTotal=0.0;
                         repaint();
                     }
                 }
@@ -130,5 +129,13 @@ public class PanelDatosBus extends JPanel implements AsientoClickListener {
     }
     public JButton getBotonCompra() {
         return comprar;
+    }
+
+    public double getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(double precioTotal) {
+        this.precioTotal = precioTotal;
     }
 }

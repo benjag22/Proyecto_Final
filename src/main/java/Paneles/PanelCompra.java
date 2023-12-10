@@ -13,7 +13,6 @@ import javax.sound.sampled.*;
 public class PanelCompra extends JPanel implements MouseListener {
     private JButton ComprarAsiento;
     private BufferedImage imagen;
-    private boolean botoncomprar;
     private Clip clipMouseOver;
     private Clip clipClick;
     private PanelDestinoIda panelDestinoIda;
@@ -31,7 +30,6 @@ public class PanelCompra extends JPanel implements MouseListener {
         ComprarAsiento.setFont(new Font("Mongolian Baiti",Font.PLAIN,50));
         add(ComprarAsiento);
 
-        botoncomprar = true;
     }
     private BufferedImage cargarImagen(String ruta) {
         try {
@@ -51,15 +49,9 @@ public class PanelCompra extends JPanel implements MouseListener {
     public JButton getComprarAsiento() {
         return ComprarAsiento;
     }
-
-    public Boolean getBotoncomprar() {
-        return botoncomprar;
-    }
     @Override
     public void mouseClicked(MouseEvent e) {
-            botoncomprar = false;
         reproducirSonido(clipClick);
-        System.out.println(botoncomprar);
     }
 
     @Override

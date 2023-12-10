@@ -2,7 +2,6 @@ package Paneles;
 
 import ClasesLogicas.Ciudades;
 
-import java.time.LocalDate;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -12,7 +11,6 @@ import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 
 public class PanelDestinoIda extends JPanel implements ItemListener {
     private BufferedImage imagen;
@@ -24,6 +22,8 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     private Clip clipClick;
     private JComboBox Origen;
     private JComboBox Destino;
+    private String Org;
+    private String Dest;
     public PanelDestinoIda(){
         cargarSonidos();
         this.setLayout(null);
@@ -40,7 +40,8 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
 
         Origen = new JComboBox();
         Origen.addItemListener(this);
-        Origen.addItem("Elija su Origen");
+        Org = "Elija su Origen";
+        Origen.addItem(Org);
         for (Ciudades ciudad : Ciudades.values()) {
             Origen.addItem(ciudad.getNombre());
         }
@@ -50,11 +51,11 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
 
         Destino = new JComboBox();
         Destino.addItemListener(this);
-        Destino.addItem("Elija su Destino");
+        Dest = "Elija su Destino";
+        Destino.addItem(Dest);
         for (Ciudades ciudad : Ciudades.values()) {
             Destino.addItem(ciudad.getNombre());
         }
-
         Destino.setBounds(830,300,300,50);
         add(Destino);
 
@@ -89,12 +90,7 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
         }
     }
     public boolean aceptar(){
-        if(!seleccion_origen.equals(seleccion_destino)){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return !seleccion_origen.equals(seleccion_destino);
     }
 
     public String getSeleccion_origen() {
@@ -135,5 +131,13 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     }
     public JComboBox getDestinoComboBox() {
         return Destino;
+    }
+
+    public String getOrg() {
+        return Org;
+    }
+
+    public String getDest() {
+        return Dest;
     }
 }

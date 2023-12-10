@@ -21,6 +21,11 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     private JButton atras;
     private LocalDate fechalocal;
     private ArrayList<PanelHorarios> listapanelHorario;
+    private JButton botonCompra;
+    private PanelDatosBus datosBus;
+    private String origen;
+    private String destino;
+    private Boolean horarioEncontrado = false;
 
     public PanelPrincipal() {
         listapanelHorario = new ArrayList<>();
@@ -38,73 +43,70 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         ActionListener horaselec = e -> {
             if (destinoIda.aceptar()) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                String origen = destinoIda.getSeleccion_origen();
-                String destino = destinoIda.getSeleccion_destino();
+                origen = destinoIda.getSeleccion_origen();
+                destino = destinoIda.getSeleccion_destino();
                 try {
                     fechalocal = LocalDate.parse(destinoIda.getFecha().getText(), formatter);
                 } catch (Exception f) {
-                    System.out.println("Error");
+                    fechalocal=null;
                 }
-                if (listapanelHorario.isEmpty()) {
-                    System.out.println("estas en listapanelHorario.isempty");
-                    horarios = new PanelHorarios(destinoIda.getSeleccion_origen(), destinoIda.getSeleccion_destino(), fechalocal);
-                    horarios.setVisible(false);
-                    for (int i = 0; i < horarios.getListaBotonesAsociado().size(); i++) {
-                        horarios.getListaBotonesAsociado().get(i).addMouseListener(this);
-                    }
-                    destinoIda.setVisible(false);
-                    horarios.setVisible(true);
-                    add(horarios);
-                    horarios.setLocation(0, 0);
-                    listapanelHorario.add(horarios);
-                } else {
-                    remove(horarios);
-                    System.out.println("se removio el horario anterior (sigue en la lista de horarios)");
-                    boolean horarioEncontrado = false;
-
-                    for (PanelHorarios panelHorarios : listapanelHorario) {
-                        System.out.println("buscamos por un panelhorario");
-                        System.out.println(fechalocal);
-
-                        if (fechalocal.equals(panelHorarios.getFecha()) &&
-                                origen.equals(panelHorarios.getOrigen()) &&
-                                destino.equals(panelHorarios.getDestino())) {
-
-                            System.out.println("encontramos el mismo panel horario de antes");
-                            horarios = panelHorarios;
-                            horarios.setVisible(true);
-
-                            for (int z = 0; z < horarios.getListaBotonesAsociado().size(); z++) {
-                                horarios.getListaBotonesAsociado().get(z).addMouseListener(this);
-                            }
-
-                            add(horarios);
-                            horarios.setLocation(0, 0);
-                            destinoIda.setVisible(false);
-                            horarioEncontrado = true;
-                            break;
-                        }
-                    }
-
-                    if (!horarioEncontrado) {
-                        // No encontramos un horario correspondiente, así que creamos uno nuevo//
-                        System.out.println("no encontramos un horario correspondiente, así que crearemos un nuevo panelhorario");
+                if (fechalocal != null && !origen.equals(destinoIda.getOrg()) && !destino.equals(destinoIda.getDest())) {
+                    if (listapanelHorario.isEmpty()) {
                         horarios = new PanelHorarios(destinoIda.getSeleccion_origen(), destinoIda.getSeleccion_destino(), fechalocal);
                         horarios.setVisible(false);
-
-                        for (int z = 0; z < horarios.getListaBotonesAsociado().size(); z++) {
-                            horarios.getListaBotonesAsociado().get(z).addMouseListener(this);
+                        for (int i = 0; i < horarios.getListaBotonesAsociado().size(); i++) {
+                            horarios.getListaBotonesAsociado().get(i).addMouseListener(this);
                         }
-
                         destinoIda.setVisible(false);
                         horarios.setVisible(true);
                         add(horarios);
                         horarios.setLocation(0, 0);
                         listapanelHorario.add(horarios);
+                    } else {
+                        remove(horarios);
+                        horarioEncontrado = false;
+
+                        for (PanelHorarios panelHorarios : listapanelHorario) {
+                            System.out.println(fechalocal);
+
+                            if (fechalocal.equals(panelHorarios.getFecha()) &&
+                                    origen.equals(panelHorarios.getOrigen()) &&
+                                    destino.equals(panelHorarios.getDestino())) {
+
+                                horarios = panelHorarios;
+                                horarios.setVisible(true);
+
+                                for (int z = 0; z < horarios.getListaBotonesAsociado().size(); z++) {
+                                    horarios.getListaBotonesAsociado().get(z).addMouseListener(this);
+                                }
+
+                                add(horarios);
+                                horarios.setLocation(0, 0);
+                                destinoIda.setVisible(false);
+                                horarioEncontrado = true;
+                                break;
+                            }
+                        }
+
+                        if (!horarioEncontrado) {
+
+                            horarios = new PanelHorarios(destinoIda.getSeleccion_origen(), destinoIda.getSeleccion_destino(), fechalocal);
+                            horarios.setVisible(false);
+
+                            for (int z = 0; z < horarios.getListaBotonesAsociado().size(); z++) {
+                                horarios.getListaBotonesAsociado().get(z).addMouseListener(this);
+                            }
+
+                            destinoIda.setVisible(false);
+                            horarios.setVisible(true);
+                            add(horarios);
+                            horarios.setLocation(0, 0);
+                            listapanelHorario.add(horarios);
+                        }
                     }
+                } else {
+                    JOptionPane.showConfirmDialog(null,"Verifique que la seleccion de origen,destino o la fecha ingresada sean correctas","Error en alguna seleccion",JOptionPane.DEFAULT_OPTION);
                 }
-            } else {
-                System.out.println("No se puede viajar desde tu ciudad a tu misma ciudad");
             }
         };
 
@@ -150,7 +152,6 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println(e.getLocationOnScreen());
         if (e.getComponent() == atras){
             if(destinoIda.isVisible()){
                 compra.setVisible(true);
@@ -185,23 +186,28 @@ public class PanelPrincipal extends JPanel implements MouseListener {
                     eleccionAsientos = horarios.getListaEleccionAsientos().get(i);
                     add(eleccionAsientos);
                     eleccionAsientos.setVisible(true);
-                    eleccionAsientos.getPanelDatos().setHoraInicioAsociada((horarios.getListaHorariosdepanel().getListaHorarios().get(i).getHorario().getHoraInicio()));
-                    eleccionAsientos.getPanelDatos().setHoraFinAsociada(horarios.getListaHorariosdepanel().getListaHorarios().get(i).getHorario().getHoraFin());
-                    revalidate();
-                    repaint();
-                    System.out.println("en que boton hize click ?:" + boton.getText());
-
-                }
-            }
-        }else if (eleccionAsientos.isVisible()) { /**No funciona*/
-                JButton botonCompra = eleccionAsientos.getPanelDatos().getBotonCompra();
-                if (e.getComponent() == botonCompra) {
-                    eleccionAsientos.setVisible(false);
-                    compra.setVisible(true);
+                    datosBus = eleccionAsientos.getPanelDatos();
+                    datosBus.setHoraInicioAsociada((horarios.getListaHorariosdepanel().getListaHorarios().get(i).getHorario().getHoraInicio()));
+                    datosBus.setHoraFinAsociada(horarios.getListaHorariosdepanel().getListaHorarios().get(i).getHorario().getHoraFin());
+                    botonCompra = eleccionAsientos.getComprar();
+                    botonCompra.addMouseListener(this);
                     revalidate();
                     repaint();
                 }
             }
+        }else if (e.getComponent() == botonCompra) {
+            if(datosBus.getPrecioTotal()!=0) {
+                JOptionPane.showConfirmDialog(null, "Pasaje comprado exitosamente!", "Compra Exitosa", JOptionPane.DEFAULT_OPTION);
+                eleccionAsientos.setVisible(false);
+                compra.setVisible(true);
+                datosBus.setPrecioTotal(0.0);
+                revalidate();
+                repaint();
+            }
+            else{
+                JOptionPane.showConfirmDialog(null, "No has seleccionado ningun pasaje ", "Error de compra", JOptionPane.DEFAULT_OPTION);
+            }
+        }
     }
 
     @Override

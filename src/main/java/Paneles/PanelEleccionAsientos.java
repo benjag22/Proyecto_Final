@@ -4,11 +4,9 @@ import Vistas.VistasListaBuses;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.time.LocalTime;
 
-public class PanelEleccionAsientos extends JPanel implements MouseListener {
+public class PanelEleccionAsientos extends JPanel{
     private VistasListaBuses listaBuses = new VistasListaBuses();
     private VistaBus busAsociado;
     private PanelDatosBus panelDatos;
@@ -16,6 +14,7 @@ public class PanelEleccionAsientos extends JPanel implements MouseListener {
     private JLabel destinoAsociado;
     private LocalTime horaInicio;
     private LocalTime horaFinal;
+    private JButton comprar;
 
 
     public PanelEleccionAsientos(int randomBus, LocalTime horaInicio, LocalTime horaFinal, String origen, String destino) {
@@ -25,7 +24,6 @@ public class PanelEleccionAsientos extends JPanel implements MouseListener {
         this.busAsociado = listaBuses.getBus(randomBus);
         origenAsociado= new JLabel(origen);
         destinoAsociado = new JLabel(destino);
-        this.addMouseListener(this);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // BoxLayout con eje Y para que se ordene
 
         JPanel panelInterno = new JPanel(new BorderLayout());
@@ -37,28 +35,14 @@ public class PanelEleccionAsientos extends JPanel implements MouseListener {
         panelInterno.add(busAsociado, BorderLayout.CENTER);
         panelInterno.add(panelDatos,BorderLayout.SOUTH);
         add(panelInterno);
+        comprar = getPanelDatos().getBotonCompra();
     }
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
-
     public PanelDatosBus getPanelDatos() {
         return panelDatos;
     }
+
+    public JButton getComprar() {
+        return comprar;
+    }
 }
+

@@ -23,7 +23,6 @@ public class PanelHorarios extends JPanel {
     private String origen;
     private String destino;
     private LocalDate fecha;
-    private int cantidad;
     private ArrayList<PanelEleccionAsientos> listaEleccionAsientos;
 
     public PanelHorarios(String origen,String destino,LocalDate fecha) {
@@ -110,9 +109,6 @@ public ArrayList<JButton> getListaBotonesAsociado(){
     return listaBotonesAsociado;
 }
 
-    public PanelEleccionAsientos getPanelEleccion() {
-        return panelEleccion;
-    }
 
     public ArrayList<PanelEleccionAsientos> getListaEleccionAsientos() {
         return listaEleccionAsientos;
