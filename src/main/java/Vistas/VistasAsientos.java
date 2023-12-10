@@ -63,6 +63,7 @@ public class VistasAsientos extends JPanel {
         this.imagenOriginal = this.imagenOcupado;
         this.imagenPresionada = this.imagenOcupado;
         this.precio = 0.0;
+        this.presionada=false;
         this.ocupado = true;
         setEnabled(false);
         repaint();

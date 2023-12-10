@@ -22,7 +22,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     private LocalDate fechalocal;
     private ArrayList<PanelHorarios> listapanelHorario;
 
-    public PanelPrincipal(){
+    public PanelPrincipal() {
         listapanelHorario = new ArrayList<>();
         this.addMouseListener(this);
         atras = new JButton("Regresar");
@@ -36,7 +36,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         destinoIda = compra.getPanelDestinoIda();
         destinoIda.setVisible(false);
         ActionListener horaselec = e -> {
-            if(destinoIda.aceptar()) {
+            if (destinoIda.aceptar()) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 String origen = destinoIda.getSeleccion_origen();
                 String destino = destinoIda.getSeleccion_destino();
@@ -103,14 +103,14 @@ public class PanelPrincipal extends JPanel implements MouseListener {
                         listapanelHorario.add(horarios);
                     }
                 }
-            }
-            else{
+            } else {
                 System.out.println("No se puede viajar desde tu ciudad a tu misma ciudad");
             }
         };
+
         destinoIda.getFecha().addActionListener(horaselec);
         compra.getComprarAsiento().addMouseListener(this);
-        setPreferredSize(new Dimension(1920,1080));
+        setPreferredSize(new Dimension(1920, 1080));
         add(compra);
         add(destinoIda);
     }
@@ -193,8 +193,17 @@ public class PanelPrincipal extends JPanel implements MouseListener {
 
                 }
             }
-        }
+        }else if (eleccionAsientos.isVisible()) { /**No funciona*/
+                JButton botonCompra = eleccionAsientos.getPanelDatos().getBotonCompra();
+                if (e.getComponent() == botonCompra) {
+                    eleccionAsientos.setVisible(false);
+                    compra.setVisible(true);
+                    revalidate();
+                    repaint();
+                }
+            }
     }
+
     @Override
     public void mousePressed(MouseEvent e) {
 

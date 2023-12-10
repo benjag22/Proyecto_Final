@@ -24,7 +24,6 @@ public class PanelDatosBus extends JPanel implements AsientoClickListener {
     private double precioAsientos;
     private double precioIVA;
     private double precioTotal;
-
     public PanelDatosBus(VistaBus busAsociado, LocalTime horaInicioAsociada, LocalTime horaFinAsociada, String origen, String destino) {
         this.origen = origen;
         this.destino = destino;
@@ -54,6 +53,10 @@ public class PanelDatosBus extends JPanel implements AsientoClickListener {
                     if (asiento.isPresionada()) {
                         asiento.cambiarAsientoOCupado();
                         asiento.setAsientoClickListener(null);
+                        precioAsientos=0.0;
+                        precioIVA=0.0;
+                        precioTotal=0.0;
+                        repaint();
                     }
                 }
             }
@@ -77,8 +80,6 @@ public class PanelDatosBus extends JPanel implements AsientoClickListener {
         Font fuente = new Font("Impact", Font.PLAIN , 20);
         g.setFont(fuente);
         g.setColor(Color.BLACK);
-        int x=40;
-        int y=50;
         g.drawString("Hora de inicio: " +horaInicioAsociada, 45, 65);
         g.drawString("Hora de llegada: " + horaFinAsociada, 45, 160);
         g.drawString("Origen: "+origen,380,65);
@@ -126,5 +127,8 @@ public class PanelDatosBus extends JPanel implements AsientoClickListener {
 
     public void setHoraFinAsociada(LocalTime horaFinAsociada) {
         this.horaFinAsociada = horaFinAsociada;
+    }
+    public JButton getBotonCompra() {
+        return comprar;
     }
 }
