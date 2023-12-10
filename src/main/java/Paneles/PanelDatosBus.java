@@ -14,6 +14,10 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalTime;
 
+/**
+ * Panel que muestra la información del bus.
+ */
+
 public class PanelDatosBus extends JPanel implements AsientoClickListener {
     private String origen;
     private String destino;
@@ -24,6 +28,17 @@ public class PanelDatosBus extends JPanel implements AsientoClickListener {
     private double precioAsientos;
     private double precioIVA;
     private double precioTotal;
+
+    /**
+     * Constructor del PanelDatosBus.
+     *
+     * @param busAsociado        Vista del bus al que está asociado.
+     * @param horaInicioAsociada Hora de inicio asociada.
+     * @param horaFinAsociada    Hora de llegada asociada.
+     * @param origen             Ciudad de origen.
+     * @param destino            Ciudad de destino.
+     */
+
     public PanelDatosBus(VistaBus busAsociado, LocalTime horaInicioAsociada, LocalTime horaFinAsociada, String origen, String destino) {
         this.origen = origen;
         this.destino = destino;
@@ -62,11 +77,22 @@ public class PanelDatosBus extends JPanel implements AsientoClickListener {
         });
     }
 
+    /**
+     * AsientoClickListener: Se llama cuando se hace clic en un asiento.
+     * Actualiza el total y repinta la vista.
+     */
+
     @Override
     public void onAsientoClick() {
         contarTotal();
         repaint();
     }
+
+    /**
+     * paint: Sobrescribe el método paint de la clase JPanel para personalizar la apariencia del panel de datos del bus.
+     * @param g El contexto gráfico en el que se va a pintar.
+     */
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -100,6 +126,11 @@ public class PanelDatosBus extends JPanel implements AsientoClickListener {
         g.drawString("Precio total con impuestos : "+precioTotal,630,150);
 
     }
+
+    /**
+     * contarTotal: Cuenta el total de los asientos seleccionados.
+     */
+
     public void contarTotal() {
         this.precioAsientos = 0;
         this.precioIVA = 0;
@@ -112,6 +143,14 @@ public class PanelDatosBus extends JPanel implements AsientoClickListener {
         this.precioIVA = this.precioAsientos * 0.19;
         this.precioTotal = this.precioAsientos + this.precioIVA;
     }
+
+    /**
+     * cargarImagen: Carga una imagen.
+     *
+     * @param ruta Ruta del archivo.
+     * @return Imagen cargada.
+     */
+
     private BufferedImage cargarImagen(String ruta) {
         try {
             return ImageIO.read(new File(ruta));
@@ -120,20 +159,50 @@ public class PanelDatosBus extends JPanel implements AsientoClickListener {
             return null;
         }
     }
+
+    /**
+     * setHoraInicioAsociada: Establece la hora de inicio asociada.
+     *
+     * @param horaInicioAsociada Nueva hora de inicio.
+     */
+
     public void setHoraInicioAsociada(LocalTime horaInicioAsociada) {
         this.horaInicioAsociada = horaInicioAsociada;
     }
 
+    /**
+     * setHoraFinAsociada: Establece la hora de llegada asociada.
+     *
+     * @param horaFinAsociada Nueva hora de llegada.
+     */
+
     public void setHoraFinAsociada(LocalTime horaFinAsociada) {
         this.horaFinAsociada = horaFinAsociada;
     }
+
+    /**
+     * getBotonCompra: Obtiene el botón de compra.
+     *
+     * @return Botón de compra.
+     */
+
     public JButton getBotonCompra() {
         return comprar;
     }
 
+    /**
+     * getPrecioTotal: Obtiene el precio total de la compra.
+     *
+     * @return precio total.
+     */
     public double getPrecioTotal() {
         return precioTotal;
     }
+
+    /**
+     * setPrecioTotal: Establece el precio total.
+     * @param precioTotal El precio total a establecer.
+     */
 
     public void setPrecioTotal(double precioTotal) {
         this.precioTotal = precioTotal;

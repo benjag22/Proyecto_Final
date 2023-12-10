@@ -3,21 +3,24 @@ package Paneles;
 import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.*;
+
 /**
- * Implementación Música Fondo que sonará en todo momento.
- * */
+ * La clase MusicaFondo proporciona métodos para reproducir música de fondo en bucle continuo.
+ */
 public class MusicaFondo {
 
-
     /**
-     * Método comprarProducto: reproducirMusicaFondo Carga el archivo y lo reproduce en LOOP
-     * continuamente mientras el programa se está ejecutando.
-     **/
-    public static void reproducirMusicaFondo(String filepath) {
+     * Reproduce música de fondo en bucle continuo.
+     *
+     * @param filepath La ruta del archivo de audio.
+     * @throws UnsupportedAudioFileException Si el formato del acrhivo de audio no es compatible.
+     * @throws LineUnavailableException Si no se puede acceder a la línea de audio para reproducir el sonido.
+     * @throws IOException Si ocurre un error de entrada/salida durante la lectura del archivo de audio.
+     */
+    public static void reproducirMusicaFondo(String filepath) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         try {
             File audioFile = new File(filepath);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
 
@@ -25,7 +28,7 @@ public class MusicaFondo {
 
             clip.start();
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
-            e.printStackTrace();
+            throw e;
         }
     }
 }

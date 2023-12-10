@@ -5,8 +5,19 @@ import ClasesLogicas.AsientoSemiCama;
 import ClasesLogicas.BusDosPisos;
 import ClasesLogicas.BusUnPiso;
 import java.util.ArrayList;
+
+/**
+ * Clase que proporciona vista de buses para la interfaz gráfica.
+ */
+
 public class VistasListaBuses {
     ArrayList<VistaBus> listaVistaBuses;
+
+    /**
+     * Constructor de la clase VistasListaBuses.
+     * Inicializa la lista de vistas de buses y crea instancias de VistaBus con diferentes configuraciones.
+     */
+
     public VistasListaBuses(){
         listaVistaBuses= new ArrayList<>();
 
@@ -40,6 +51,13 @@ public class VistasListaBuses {
         listaVistaBuses.add(busDosPisos3);
 
     }
+
+    /**
+     * GetBus: Obtiene una vista de bus aleatoria de la lista
+     * @param random Dato aleatorio para seleccionar vista bus.
+     * @return VistaBus seleccionada aleatoriamente.
+     */
+
     public VistaBus getBus(int random) {
         VistaBus busSeleccionado = listaVistaBuses.get(random);
         return busSeleccionado;

@@ -10,6 +10,11 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import javax.imageio.ImageIO;
+
+/**
+ * Vista horario interfaz gráfica.
+ */
+
 public class VistaHorario extends JPanel {
     private Horario horario;
     private BufferedImage imagenComprar;
@@ -19,6 +24,16 @@ public class VistaHorario extends JPanel {
     private String destino;
     private JButton botonCompra;
     private LocalDate fecha;
+
+    /**
+     * Constructor de la clase VistaHorario.
+     *
+     * @param horario Objeto Horario asociado.
+     * @param origen  Ciudad de origen.
+     * @param destino Ciudad de destino.
+     * @param fecha Fecha del horario.
+     */
+
     public VistaHorario(Horario horario, String origen, String destino, LocalDate fecha) {
         this.horario = horario;
         this.origen = origen;
@@ -47,6 +62,11 @@ public class VistaHorario extends JPanel {
         });
         add(botonCompra);
     }
+
+    /**
+     * actualizarImagen: Actualiza la imagen del botón de compra si está presionado o no.
+     */
+
     private void actualizarImagen() {
         if (presionado) {
             botonCompra.setIcon(new ImageIcon(imagenComprarPresionada.getScaledInstance(botonCompra.getWidth(), botonCompra.getHeight(), Image.SCALE_SMOOTH)));
@@ -70,6 +90,14 @@ public class VistaHorario extends JPanel {
         g.drawString("Descripción: " + horario + ", " + "Fecha: " + fecha, 150, 138);
         g.drawRect(0,0,this.getWidth(),this.getHeight());
     }
+
+    /**
+     * cargarImagen: Carga una imagena.
+     *
+     * @param ruta Ruta de la imagen.
+     * @return BufferedImage de imagen cargada.
+     */
+
     private BufferedImage cargarImagen(String ruta) {
         try {
             return ImageIO.read(new File(ruta));
@@ -78,17 +106,38 @@ public class VistaHorario extends JPanel {
             return null;
         }
     }
+
+    /**
+     * getHorario: Obtiene el objeto Horario asociado.
+     * @return Objeto Horario.
+     */
+
     public Horario getHorario() {
         return horario;
     }
+
+    /**
+     * getOrigen: Obtiene la ciudad de origen.
+     * @return Ciudad de origen.
+     */
 
     public String getOrigen() {
         return origen;
     }
 
+    /**
+     * getDestino: Obtiene la ciudad de destino.
+     * @return Ciudad de destino.
+     */
+
     public String getDestino() {
         return destino;
     }
+
+    /**
+     * getBotonCompra: Obtiene el botón de compra.
+     * @return JButton de compra.
+     */
 
     public JButton getBotonCompra() {
         return botonCompra;

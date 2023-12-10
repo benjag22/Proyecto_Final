@@ -1,5 +1,9 @@
 package ClasesLogicas;
 
+/**
+ * Enumeración que representa las ciudades.
+ */
+
 public enum Ciudades {
     ANGOL("Angol"),
     ARAUCO("Arauco"),
@@ -31,9 +35,21 @@ public enum Ciudades {
 
     private final String nombre;
 
+    /**
+     * Ciudades: Constructor de la enumeración Ciudades.
+     *
+     * @param nombre El nombre de la ciudad.
+     */
+
     Ciudades(String nombre) {
         this.nombre = nombre;
     }
+
+    /**
+     * getNombre: Obtiene el nombre de la ciudad.
+     *
+     * @return El nombre de la ciudad.
+     */
 
     public String getNombre() {
         return nombre;

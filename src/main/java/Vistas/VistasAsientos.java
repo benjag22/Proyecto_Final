@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+/**
+ * Vista de los asientos de la interfaz gráfica.
+ */
 
 public class VistasAsientos extends JPanel {
     private Asiento asiento;
@@ -18,6 +21,12 @@ public class VistasAsientos extends JPanel {
     private boolean ocupado = false;
     private double precio;
     private AsientoClickListener listener;
+
+    /**
+     * Constructor de la clase VistasAsientos.
+     * @param asiento Asiento asociado a la vista.
+     */
+
     public VistasAsientos(Asiento asiento) {
         this.asiento = asiento;
         this.precio=0.0;
@@ -39,6 +48,11 @@ public class VistasAsientos extends JPanel {
 
     }
 
+    /**
+     * Paint: Pinta el componente gráfico.
+     * @param g Para pintar el componente.
+     */
+
     public void paint(Graphics g) {
         super.paint(g);
         if (presionada) {
@@ -49,16 +63,39 @@ public class VistasAsientos extends JPanel {
             this.precio=0;
         }
     }
+
+    /**
+     * getAsiento: Obtiene el asiento asociado a la vista.
+     * @return Asiento asociado.
+     */
+
     public Asiento getAsiento() {
         return asiento;
     }
 
+    /**
+     * isPresionada: Verifica si vista asiento está presionada.
+     * @return true si está presionada, false si no.
+     */
+
     public boolean isPresionada() {
         return presionada;
     }
+
+    /**
+     * setAsientoCliclListener: Establece el oyente de clic asiento.
+     *
+     * @param listener Oyente evento clic.
+     */
+
     public void setAsientoClickListener(AsientoClickListener listener) {
         this.listener = listener;
     }
+
+    /**
+     * cambiarAsientoOCupado: Cambia el estado del asiento a ocupado.
+     */
+
     public void cambiarAsientoOCupado() {
         this.imagenOriginal = this.imagenOcupado;
         this.imagenPresionada = this.imagenOcupado;

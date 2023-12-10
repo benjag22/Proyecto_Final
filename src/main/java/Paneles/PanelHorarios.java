@@ -12,6 +12,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import  java.util.Random;
 
+/**
+ * Panel para la selección de horarios disponibles.
+ */
+
 public class PanelHorarios extends JPanel {
     private BufferedImage imagen;
     private JLabel Seleccionar;
@@ -24,6 +28,14 @@ public class PanelHorarios extends JPanel {
     private String destino;
     private LocalDate fecha;
     private ArrayList<PanelEleccionAsientos> listaEleccionAsientos;
+
+    /**
+     * Constructor del PanelHorarios.
+     *
+     * @param origen Ciudad de origen.
+     * @param destino Ciudad de destino.
+     * @param fecha  Fecha del viaje.
+     */
 
     public PanelHorarios(String origen,String destino,LocalDate fecha) {
         cargarSonidos();
@@ -72,6 +84,11 @@ public class PanelHorarios extends JPanel {
         }
     }
 
+    /**
+     * paintComponent: Sobrescribe el método paintComponent de JPanel para personalizar la apariencia del panel.
+     * @param g El contexto gráfico en el que se va a pintar.
+     */
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -102,25 +119,60 @@ public class PanelHorarios extends JPanel {
         }
     }
 
+    /**
+     * getListaHorariosdepanel: Obtiene la lista de horarios asociada.
+     *
+     * @return VistaListaHorarios.
+     */
+
     public VistaListaHorarios getListaHorariosdepanel() {
         return listaHorarios;
     }
-public ArrayList<JButton> getListaBotonesAsociado(){
-    return listaBotonesAsociado;
-}
+    /**
+     * getListaBotonesAsociado: Obtiene la lista de botones asociada.
+     *
+     * @return Lista de botones.
+     */
+    public ArrayList<JButton> getListaBotonesAsociado(){
+     return listaBotonesAsociado;
+    }
 
+    /**
+     * getListaEleccionAsientos: Obtiene el panel de elección asociado.
+     *
+     * @return Panel de elección de asientos.
+     */
 
     public ArrayList<PanelEleccionAsientos> getListaEleccionAsientos() {
         return listaEleccionAsientos;
     }
 
+
+    /**
+     * Obtiene la fecha asociada.
+     *
+     * @return Fecha del viaje.
+     */
+
     public LocalDate getFecha() {
         return fecha;
     }
 
+    /**
+     * Obtiene la ciudad de origen asociada.
+     *
+     * @return Ciudad de origen.
+     */
+
     public String getOrigen() {
         return origen;
     }
+
+    /**
+     * Obtiene la ciudad de destino asociada.
+     *
+     * @return Ciudad de destino.
+     */
 
     public String getDestino() {
         return destino;

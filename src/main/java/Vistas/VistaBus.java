@@ -6,6 +6,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
+/**
+ * Vista bus en interfaz gráfica.
+ */
+
 public class VistaBus extends JPanel{
 
     private Bus bus;
@@ -16,6 +21,11 @@ public class VistaBus extends JPanel{
     private int columnas;
     private int paginaActual = 1;
     private double precioTotal;
+
+    /**
+     * Constructor de la clase VistaBus.
+     * @param bus Objeto Bus asociado.
+     */
 
     public VistaBus(Bus bus) {
         this.precioTotal=0.0;
@@ -53,6 +63,12 @@ public class VistaBus extends JPanel{
             add(seatingArea, BorderLayout.CENTER);
         }
     }
+
+    /**
+     * cambiarPagina: Cambia la página actual de asientos.
+     * @param delta Para cambiar la página.
+     */
+
     private void cambiarPagina(int delta) {
         paginaActual += delta;
         if (paginaActual < 1) {
@@ -62,6 +78,14 @@ public class VistaBus extends JPanel{
         }
         cardLayout.show(seatingArea, String.valueOf(paginaActual));
     }
+
+    /**
+     * agregarAsientos: Agrega asientos a la vista del bus.
+     *
+     * @param asiento Tipo de asiento a agregar.
+     * @param cual    Tipo específico de asiento.
+     */
+
     public void agregarAsientos(Asiento asiento, int cual) {
         this.filas = obtenerFilas(cual);
         this.columnas = obtenerColumnas(cual);
@@ -92,17 +116,43 @@ public class VistaBus extends JPanel{
         seatingArea.add(paginaPanel, String.valueOf(seatingArea.getComponentCount() + 1));
     }
 
+    /**
+     * obtenerFilas: Obtiene el número de filas.
+     * @param tipoAsiento Tipo de asiento.
+     * @return Número de filas.
+     */
+
     private int obtenerFilas(int tipoAsiento) {
         return (tipoAsiento == 1) ? CantidadesAsientoPisos.PISONORMAL.getFILAS() : CantidadesAsientoPisos.PISOREDUCIDO.getFILAS();
     }
+
+    /**
+     * obtenerColumnas: Obtiene el número de columnas.
+     * @param tipoAsiento Tipo de asiento.
+     * @return Número de columnas.
+     */
 
     private int obtenerColumnas(int tipoAsiento) {
         return (tipoAsiento == 1) ? CantidadesAsientoPisos.PISONORMAL.getCOLUMNAS() : CantidadesAsientoPisos.PISOREDUCIDO.getCOLUMNAS();
     }
 
+    /**
+     * getListaAsientos: Obtiene la lista de asientos.
+     * @return Lista de asientos.
+     */
+
     public ArrayList<VistasAsientos> getListaAsientos() {
         return listaAsientos;
     }
+
+    /**
+     * crearNuevoAsiento: Crea un nuevo asiento según el tipo de asiento.
+     *
+     * @param asiento Tipo de asiento.
+     * @param letra   Letra de la fila.
+     * @param numero  Número de la columna.
+     * @return Nuevo objeto Asiento.
+     */
 
     private Asiento crearNuevoAsiento(Asiento asiento, char letra, int numero) {
         Asiento nuevoAsiento;
@@ -115,6 +165,12 @@ public class VistaBus extends JPanel{
         nuevoAsiento.setColumna(numero);
         return nuevoAsiento;
     }
+
+    /**
+     * getPaginaActual: Obtiene la página actual.
+     * @return Número de la página actual.
+     */
+
     public int getPaginaActual() {
         return paginaActual;
     }

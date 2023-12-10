@@ -10,6 +10,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * PanelPrincipal es la clase principal que gestiona la interfaz gráfica.
+ */
+
 public class PanelPrincipal extends JPanel implements MouseListener {
 
     private PanelCompra compra;
@@ -26,6 +30,10 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     private String origen;
     private String destino;
     private Boolean horarioEncontrado = false;
+
+    /**
+     * Constructor de PanelPrincipal.
+     */
 
     public PanelPrincipal() {
         listapanelHorario = new ArrayList<>();
@@ -117,6 +125,11 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         add(destinoIda);
     }
 
+    /**
+     * paintComponent: Sobrescribe el método paintComponent de JPanel para personalizar la apariencia del panel.
+     * @param g El contexto gráfico en el que se va a pintar.
+     */
+
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -150,6 +163,12 @@ public class PanelPrincipal extends JPanel implements MouseListener {
 
         }
     }
+
+    /**
+     * mouseClicked: Maneja eventos de clic del ratón.
+     * @param e Evento de ratón.
+     */
+
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getComponent() == atras){
@@ -227,6 +246,11 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
     }
+
+    /**
+     * cargarSonidos: Carga los archivos de sonido para los eventos de mouse.
+     */
+
     private void cargarSonidos() {
         try {
             String audioFileMouseOverPath = "src/main/java/Recursos/Sobre.wav";
@@ -243,6 +267,11 @@ public class PanelPrincipal extends JPanel implements MouseListener {
             e.printStackTrace();
         }
     }
+
+    /**
+     * reproducirSonido: Reproduce el sonido especificado.
+     * @param clip Sonido a reproducir.
+     */
 
     private void reproducirSonido(Clip clip) {
         if (clip != null) {

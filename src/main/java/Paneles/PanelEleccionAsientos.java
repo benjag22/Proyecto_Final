@@ -6,6 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalTime;
 
+/**
+ * Panel para la elección de asientos en un bus.
+ */
+
 public class PanelEleccionAsientos extends JPanel{
     private VistasListaBuses listaBuses = new VistasListaBuses();
     private VistaBus busAsociado;
@@ -16,6 +20,16 @@ public class PanelEleccionAsientos extends JPanel{
     private LocalTime horaFinal;
     private JButton comprar;
 
+
+    /**
+     * Constructor del PanelEleccionAsientos.
+     *
+     * @param randomBus Índice del bus seleccionado aleatoriamente.
+     * @param horaInicio Hora de inicio.
+     * @param horaFinal  Hora de llegada.
+     * @param origen     Ciudad de origen.
+     * @param destino    Ciudad de destino.
+     */
 
     public PanelEleccionAsientos(int randomBus, LocalTime horaInicio, LocalTime horaFinal, String origen, String destino) {
         setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -37,9 +51,22 @@ public class PanelEleccionAsientos extends JPanel{
         add(panelInterno);
         comprar = getPanelDatos().getBotonCompra();
     }
+
+    /**
+     * getPanelDatos: Obtiene el panel de datos asociado al PanelEleccionAsientos.
+     *
+     * @return Panel de datos.
+     */
+
     public PanelDatosBus getPanelDatos() {
         return panelDatos;
     }
+
+    /**
+     * getComprar: Obtiene elección.
+     *
+     * @return Elección Comprar.
+     */
 
     public JButton getComprar() {
         return comprar;

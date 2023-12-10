@@ -2,19 +2,50 @@ package ClasesLogicas;
 import java.time.LocalTime;
 import java.util.Random;
 
+/**
+ * Clase que representa un horario de salida y llegada.
+ */
+
 public class Horario {
     private LocalTime horaInicio;
     private LocalTime horaFin;
+
+    /**
+     * Constructor de la clase Horario.
+     * Inicializa las horas con el valor mínimo de LocalTime.
+     */
+
     public Horario() {
-        this.horaInicio = LocalTime.MIN;  // Inicializa con el valor mínimo de LocalTime
-        this.horaFin = LocalTime.MIN;     // Inicializa con el valor mínimo de LocalTime
+        this.horaInicio = LocalTime.MIN;
+        this.horaFin = LocalTime.MIN;
     }
+
+    /**
+     * getHoraInicio: Obtiene la hora de inicio.
+     *
+     * @return La hora de inicio.
+     */
+
     public LocalTime getHoraInicio() {
         return horaInicio;
     }
+
+    /**
+     * getHoraFin: Obtiene la hora de fin.
+     *
+     * @return La hora de fin.
+     */
+
     public LocalTime getHoraFin() {
         return horaFin;
     }
+
+    /**
+     * generarHorarioAleatorio: Genera un horario aleatorio.
+     *
+     * @return Un objeto Horario con horas aleatorias.
+     */
+
     public static Horario generarHorarioAleatorio() {
         Random random = new Random();
 
@@ -31,6 +62,13 @@ public class Horario {
 
         return horarioGenerado;
     }
+
+    /**
+     * toString: String del objeto Horario.
+     *
+     * @return String del horario.
+     */
+
     @Override
     public String toString() {
         return "Salida del bus: " + horaInicio.toString() + ", " + "Llegada del bus:" + horaFin.toString();

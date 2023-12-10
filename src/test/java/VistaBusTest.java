@@ -5,8 +5,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import javax.swing.*;
 import java.awt.*;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+/**
+ * Clase Test para VistaBus
+ */
 
 class VistaBusTest {
 
@@ -18,6 +21,10 @@ class VistaBusTest {
         bus = new BusUnPiso();
         vistaBus = new VistaBus(bus);
     }
+
+    /**
+     * Prueba la funcionalidad de cambiar de página en VistaBus
+     */
 
     @Test
     void testCambiarPagina() {

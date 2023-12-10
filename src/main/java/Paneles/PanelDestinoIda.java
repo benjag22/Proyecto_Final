@@ -12,6 +12,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Panel que permite seleccionar el origen, destino y fecha.
+ */
+
 public class PanelDestinoIda extends JPanel implements ItemListener {
     private BufferedImage imagen;
     private JLabel Seleccionar;
@@ -24,6 +28,11 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     private JComboBox Destino;
     private String Org;
     private String Dest;
+
+    /**
+     * Constructor del PanelDestinoIda.
+     */
+
     public PanelDestinoIda(){
         cargarSonidos();
         this.setLayout(null);
@@ -65,6 +74,13 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
         add(Fecha);
     }
 
+    /**
+     * cargarImagen: Carga una imagen.
+     *
+     * @param ruta Ruta del archivo.
+     * @return Imagen cargada.
+     */
+
     private BufferedImage cargarImagen(String ruta) {
         try {
             return ImageIO.read(new File(ruta));
@@ -73,6 +89,12 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
             return null;
         }
     }
+
+    /**
+     * paintComponent: Sobrescribe el método paintComponent de JPanel para personalizar la apariencia del panel.
+     * @param g El contexto gráfico en el que se va a pintar.
+     */
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -89,17 +111,40 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
             seleccion_destino = Destino.getSelectedItem().toString();
         }
     }
+
+    /**
+     * aceptar: Verifica si la selección de origen y destino es válida.
+     *
+     * @return True si la selección es válida, False sino.
+     */
+
     public boolean aceptar(){
         return !seleccion_origen.equals(seleccion_destino);
     }
+
+    /**
+     * getSeleccion_origen: Obtiene la ciudad origen.
+     *
+     * @return Ciudad de origen seleccionada.
+     */
 
     public String getSeleccion_origen() {
         return seleccion_origen;
     }
 
+    /**
+     * getSeleccion_destino: Obtiene la ciudad destino.
+     *
+     * @return Ciudad de destino seleccionada.
+     */
+
     public String getSeleccion_destino() {
         return seleccion_destino;
     }
+
+    /**
+     * cargarSonidos: Carga los archivos de sonido para los eventos de mouse.
+     */
 
     private void cargarSonidos() {
         try {
@@ -117,25 +162,65 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
             e.printStackTrace();
         }
     }
+
+    /**
+     * reproducirSonido: Reproduce el sonido especificado.
+     *
+     * @param clip Sonido a reproducir.
+     */
+
     private void reproducirSonido(Clip clip) {
         if (clip != null) {
             clip.setMicrosecondPosition(0);
             clip.start();
         }
     }
+
+    /**
+     * getFecha: Obtiene campo de texto de fecha.
+     *
+     * @return Campo de texto de fecha.
+     */
+
     public JTextField getFecha() {
         return Fecha;
     }
+
+    /**
+     * getOrigenComboBox: Obtiene el JComboBox de origen.
+     *
+     * @return JComboBox de origen.
+     */
+
     public JComboBox getOrigenComboBox() {
         return Origen;
     }
+
+    /**
+     * getDestinoComboBox: Obtiene el JComboBox de destino.
+     *
+     * @return JComboBox de destino.
+     */
+
     public JComboBox getDestinoComboBox() {
         return Destino;
     }
 
+    /**
+     * getOrg: Obtiene el String de origen.
+     *
+     * @return String de origen.
+     */
+
     public String getOrg() {
         return Org;
     }
+
+    /**
+     * getDest: Obtiene el String de destino.
+     *
+     * @return String de destino.
+     */
 
     public String getDest() {
         return Dest;

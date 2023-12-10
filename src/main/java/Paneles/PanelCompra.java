@@ -10,12 +10,21 @@ import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.*;
 
+/**
+ * Panel que da inicio y bienvenida al programa.
+ */
+
 public class PanelCompra extends JPanel implements MouseListener {
     private JButton ComprarAsiento;
     private BufferedImage imagen;
     private Clip clipMouseOver;
     private Clip clipClick;
     private PanelDestinoIda panelDestinoIda;
+
+    /**
+     * Constructor de la clase PanelCompra.
+     */
+
     public PanelCompra(){
         cargarSonidos();
         panelDestinoIda = new PanelDestinoIda();
@@ -31,6 +40,13 @@ public class PanelCompra extends JPanel implements MouseListener {
         add(ComprarAsiento);
 
     }
+
+    /**
+     * cargarImagen: Carga una imagen.
+     * @param ruta Ruta del archivo.
+     * @return La imagen cargada.
+     */
+
     private BufferedImage cargarImagen(String ruta) {
         try {
             return ImageIO.read(new File(ruta));
@@ -39,6 +55,11 @@ public class PanelCompra extends JPanel implements MouseListener {
             return null;
         }
     }
+
+    /**
+     * paintComponent: Sobrescribe el método paintComponent de JPanel para personalizar la apariencia del panel.
+     * @param g El contexto gráfico en el que se va a pintar.
+     */
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -46,9 +67,21 @@ public class PanelCompra extends JPanel implements MouseListener {
                 g.drawImage(imagen, 0, 0, 1920, 1080, this);
         }
     }
+
+    /**
+     * getComprarAsiento: Obtiene el botón de compra.
+     * @return El botón de compra.
+     */
+
     public JButton getComprarAsiento() {
         return ComprarAsiento;
     }
+
+    /**
+     * mouseClicked: Maneja el evento de clic del mouse.
+     * @param e Evento de mouse.
+     */
+
     @Override
     public void mouseClicked(MouseEvent e) {
         reproducirSonido(clipClick);
@@ -73,6 +106,11 @@ public class PanelCompra extends JPanel implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+
+    /**
+     * cargarSonidos: Carga los sonidos utilizados para los eventos del mouse.
+     */
+
     private void cargarSonidos() {
         try {
             String audioFileMouseOverPath = "src/main/java/Recursos/Sobre.wav";
@@ -90,12 +128,22 @@ public class PanelCompra extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * reproducirSonido: Reproduce un sonido específico.
+     * @param clip Clip a reproducir.
+     */
+
     private void reproducirSonido(Clip clip) {
         if (clip != null) {
             clip.setMicrosecondPosition(0);
             clip.start();
         }
     }
+
+    /**
+     * getPanelDestinoIda: Obtiene el panel de destino ida asociado.
+     * @return El panel de destino ida.
+     */
 
     public PanelDestinoIda getPanelDestinoIda() {
         return panelDestinoIda;
