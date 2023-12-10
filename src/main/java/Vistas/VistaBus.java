@@ -115,5 +115,8 @@ public class VistaBus extends JPanel{
         nuevoAsiento.setColumna(numero);
         return nuevoAsiento;
     }
+    public int getPaginaActual() {
+        return paginaActual;
+    }
 
 }
