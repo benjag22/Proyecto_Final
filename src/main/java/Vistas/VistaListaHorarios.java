@@ -14,7 +14,8 @@ public class VistaListaHorarios extends JPanel {
     private ArrayList<VistaHorario> listaHorarios;
 
     /**
-     * Constructor de la clase VistaListaHorarios.
+     * Constructor de la clase VistaListaHorarios,inicializa el gridlayout de las cantidades de horarios X 1,
+     * para mostrarlos como lista
      *
      * @param cantidad Cantidad de horarios a mostrar en la lista.
      * @param origen Ciudad de origen.
@@ -31,7 +32,7 @@ public class VistaListaHorarios extends JPanel {
 
     /**
      * cargarHorarios: Carga los horarios aleatorios en la lista de horarios.
-     *
+     * y los añade al arraylist y al panel en forma de lista
      * @param cantidad Cantidad de horarios a cargar.
      * @param origen Ciudad de origen.
      * @param destino Ciudad de destino.

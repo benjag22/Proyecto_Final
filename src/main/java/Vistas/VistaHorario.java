@@ -12,7 +12,8 @@ import java.time.LocalDate;
 import javax.imageio.ImageIO;
 
 /**
- * Vista horario interfaz gráfica.
+ * Vista horario interfaz gráfica, recibe las horas generadas aleatoriamente, origen, destino y fecha
+ * pasadors por parametro por panel Destino-Ida.
  */
 
 public class VistaHorario extends JPanel {
@@ -26,7 +27,7 @@ public class VistaHorario extends JPanel {
     private LocalDate fecha;
 
     /**
-     * Constructor de la clase VistaHorario.
+     * Constructor de la clase VistaHorario. inicializa los atributos y el listener del boton comprar y su icono
      *
      * @param horario Objeto Horario asociado.
      * @param origen  Ciudad de origen.
@@ -86,7 +87,7 @@ public class VistaHorario extends JPanel {
         g.drawString("Destino:  " + destino, 700, 105);
         g.drawString("Hora de inicio:  " + horario.getHoraInicio(), 80, 45);
         g.drawString("Hora de fin:  " + horario.getHoraFin(), 80, 105);
-        g.drawString("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _", 80, 115);
+        g.drawString("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _", 80, 115);
         g.drawString("Descripción: " + horario + ", " + "Fecha: " + fecha, 150, 138);
         g.drawRect(0,0,this.getWidth(),this.getHeight());
     }
@@ -135,7 +136,7 @@ public class VistaHorario extends JPanel {
     }
 
     /**
-     * getBotonCompra: Obtiene el botón de compra.
+     * getBotonCompra: Obtiene el botón de compra, para manejar eventos en panel principal
      * @return JButton de compra.
      */
 

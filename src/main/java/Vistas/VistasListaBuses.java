@@ -15,7 +15,8 @@ public class VistasListaBuses {
 
     /**
      * Constructor de la clase VistasListaBuses.
-     * Inicializa la lista de vistas de buses y crea instancias de VistaBus con diferentes configuraciones.
+     * Inicializa la lista de vistas de buses y crea instancias de VistaBus con diferentes
+     * configuraciones, tipos de asientos, cantidades de asientos y pisos
      */
 
     public VistasListaBuses(){

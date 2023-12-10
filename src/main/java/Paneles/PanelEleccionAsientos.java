@@ -14,15 +14,12 @@ public class PanelEleccionAsientos extends JPanel{
     private VistasListaBuses listaBuses = new VistasListaBuses();
     private VistaBus busAsociado;
     private PanelDatosBus panelDatos;
-    private JLabel origenAsociado;
-    private JLabel destinoAsociado;
-    private LocalTime horaInicio;
-    private LocalTime horaFinal;
     private JButton comprar;
 
 
     /**
-     * Constructor del PanelEleccionAsientos.
+     * Constructor del PanelEleccionAsientos, mas que nada ordena VistaBus elegido y lo asocia a un panelDatosBus
+     * lo ordena mediante BoxLayout.Y_AXIS dentro del panel
      *
      * @param randomBus Índice del bus seleccionado aleatoriamente.
      * @param horaInicio Hora de inicio.
@@ -33,11 +30,7 @@ public class PanelEleccionAsientos extends JPanel{
 
     public PanelEleccionAsientos(int randomBus, LocalTime horaInicio, LocalTime horaFinal, String origen, String destino) {
         setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
-        this.horaFinal=horaFinal;
-        this.horaInicio=horaInicio;
         this.busAsociado = listaBuses.getBus(randomBus);
-        origenAsociado= new JLabel(origen);
-        destinoAsociado = new JLabel(destino);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // BoxLayout con eje Y para que se ordene
 
         JPanel panelInterno = new JPanel(new BorderLayout());
@@ -63,7 +56,7 @@ public class PanelEleccionAsientos extends JPanel{
     }
 
     /**
-     * getComprar: Obtiene elección.
+     * getComprar: Obtiene elección de asientos y sirve para devolver a panelCOmpra mediante eventos
      *
      * @return Elección Comprar.
      */

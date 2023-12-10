@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import  java.util.Random;
 
 /**
- * Panel para la selección de horarios disponibles.
+ * Panel para la selección de horarios disponibles, muestra una lista de horarios y cada horario asociado a un bus y su panel
+ * hora y bus inicializado de manera random
  */
 
 public class PanelHorarios extends JPanel {
@@ -30,11 +31,13 @@ public class PanelHorarios extends JPanel {
     private ArrayList<PanelEleccionAsientos> listaEleccionAsientos;
 
     /**
-     * Constructor del PanelHorarios.
+     * Constructor del PanelHorarios crea un numero random de horarios a los cuales se les asocia un origen, destino y fecha
+     * elegidos por un horario, guarda los botones de Vista Horario y crear un panelEleccionDe asientos con un bus random
+     * de VistaListaBuses y los guarda
      *
-     * @param origen Ciudad de origen.
-     * @param destino Ciudad de destino.
-     * @param fecha  Fecha del viaje.
+     * @param origen Ciudad de origen seleccionado.
+     * @param destino Ciudad de destino seleccionado.
+     * @param fecha  Fecha del viaje seleccionado.
      */
 
     public PanelHorarios(String origen,String destino,LocalDate fecha) {
@@ -85,7 +88,7 @@ public class PanelHorarios extends JPanel {
     }
 
     /**
-     * paintComponent: Sobrescribe el método paintComponent de JPanel para personalizar la apariencia del panel.
+     * paintComponent: pinta el fondo escogido del panel
      * @param g El contexto gráfico en el que se va a pintar.
      */
 

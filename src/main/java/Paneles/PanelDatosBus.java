@@ -30,7 +30,8 @@ public class PanelDatosBus extends JPanel implements AsientoClickListener {
     private double precioTotal;
 
     /**
-     * Constructor del PanelDatosBus.
+     * Constructor del PanelDatosBus, asocia el listener de cada VistaBus asociado, se encarga de anular o no el listener
+     * de cada asiento seleccionado y comprado, implementa el observer
      *
      * @param busAsociado        Vista del bus al que está asociado.
      * @param horaInicioAsociada Hora de inicio asociada.
@@ -90,6 +91,7 @@ public class PanelDatosBus extends JPanel implements AsientoClickListener {
 
     /**
      * paint: Sobrescribe el método paint de la clase JPanel para personalizar la apariencia del panel de datos del bus.
+     * ademas de mostrar el precio total con y sin iva durante la seleccion
      * @param g El contexto gráfico en el que se va a pintar.
      */
 

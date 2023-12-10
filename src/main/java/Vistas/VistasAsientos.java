@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 /**
- * Vista de los asientos de la interfaz gráfica.
+ * Vista de los asientos de la interfaz gráfica, representado solo con imagenes y seleccionado, deleseleccionado y ocupado
  */
 
 public class VistasAsientos extends JPanel {
@@ -18,12 +18,14 @@ public class VistasAsientos extends JPanel {
     private BufferedImage imagenPresionada;
     private BufferedImage imagenOcupado;
     private boolean presionada = false;
-    private boolean ocupado = false;
     private double precio;
     private AsientoClickListener listener;
 
     /**
-     * Constructor de la clase VistasAsientos.
+     * Constructor inicializa las propiedades del asiento en la vista grafica
+     * le establece la dimension de la imagen
+     * y añade la logica del listener para seleccionar y deseleccionar
+     * ademas notificar al observador si es seleccionado el asiento
      * @param asiento Asiento asociado a la vista.
      */
 
@@ -49,7 +51,8 @@ public class VistasAsientos extends JPanel {
     }
 
     /**
-     * Paint: Pinta el componente gráfico.
+     * Paint: Pinta la imagen dependiendo de si es presionada o no el asiento grafico, ademas establece el precio
+     * si es que es presionado o no, para representar el valor actual de la seleccion en PanelDatosBus
      * @param g Para pintar el componente.
      */
 
@@ -75,6 +78,7 @@ public class VistasAsientos extends JPanel {
 
     /**
      * isPresionada: Verifica si vista asiento está presionada.
+     * mas que nada para ver todos los asientos presionados para volverlos ocupado al comprar
      * @return true si está presionada, false si no.
      */
 
@@ -84,7 +88,7 @@ public class VistasAsientos extends JPanel {
 
     /**
      * setAsientoCliclListener: Establece el oyente de clic asiento.
-     *
+     *(principalmente para cuando el asiento es comprado)
      * @param listener Oyente evento clic.
      */
 
@@ -93,7 +97,8 @@ public class VistasAsientos extends JPanel {
     }
 
     /**
-     * cambiarAsientoOCupado: Cambia el estado del asiento a ocupado.
+     * cambiarAsientoOCupado: Cambia el estado del asiento a ocupado desde el observador
+     *
      */
 
     public void cambiarAsientoOCupado() {
@@ -101,7 +106,6 @@ public class VistasAsientos extends JPanel {
         this.imagenPresionada = this.imagenOcupado;
         this.precio = 0.0;
         this.presionada=false;
-        this.ocupado = true;
         setEnabled(false);
         repaint();
     }

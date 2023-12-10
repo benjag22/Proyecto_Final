@@ -22,7 +22,7 @@ public class PanelCompra extends JPanel implements MouseListener {
     private PanelDestinoIda panelDestinoIda;
 
     /**
-     * Constructor de la clase PanelCompra.
+     * Constructor de la clase PanelCompra, dirige a panelDestino ida con boton comprar
      */
 
     public PanelCompra(){

@@ -30,7 +30,9 @@ public class PanelDestinoIda extends JPanel implements ItemListener {
     private String Dest;
 
     /**
-     * Constructor del PanelDestinoIda.
+     * Constructor del PanelDestinoIda. inicializa los box de destino y origen de las ciudadeas de enums
+     * ademas de la fecha con un JFIelText
+     * sirve principalmente para manejar destino/origen y fecha en panelPrincipal
      */
 
     public PanelDestinoIda(){

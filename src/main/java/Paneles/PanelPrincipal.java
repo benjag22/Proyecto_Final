@@ -32,7 +32,12 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     private Boolean horarioEncontrado = false;
 
     /**
-     * Constructor de PanelPrincipal.
+     * Constructor de PanelPrincipal, principalmente inincializa todos los paneles, los agrega y hace visible en el orden que corresponden
+     * ademas se encarga de inicializar un panel horario junto con al fecha, origen y destino elegidos por el usuario y lo agrega a un arraylist
+     * y lo mas importante es que genera una lista horarios asociado a un destino/origen y fecha unicos, por lo que si el origen,destino y fecha
+     * unicos no se encuentran(osea que no fueron buscados anteriormente) se genera uno nuevo y se guarda en tiempo de ejecucion
+     * observacion = CUANDO SE GENERA UNA NUEVA LISTA DE HORARIOS TARDA EN APARECER EL PANEL, EN CASO CONTRARIO NO TARDA.
+     * y por ultimo verifica que la fecha sea valida y en su formato
      */
 
     public PanelPrincipal() {
@@ -55,8 +60,13 @@ public class PanelPrincipal extends JPanel implements MouseListener {
                 destino = destinoIda.getSeleccion_destino();
                 try {
                     fechalocal = LocalDate.parse(destinoIda.getFecha().getText(), formatter);
+                    if (fechalocal.isBefore(LocalDate.now())) {
+                        JOptionPane.showConfirmDialog(null, "La fecha debe ser igual o mayor a la fecha actual", "Error en la fecha", JOptionPane.DEFAULT_OPTION);
+                        return;
+                    }
                 } catch (Exception f) {
-                    fechalocal=null;
+                    JOptionPane.showConfirmDialog(null, "Verifique el formato de la fecha (dd-MM-yyyy)", "Error en el formato de la fecha", JOptionPane.DEFAULT_OPTION);
+                    return;
                 }
                 if (fechalocal != null && !origen.equals(destinoIda.getOrg()) && !destino.equals(destinoIda.getDest())) {
                     if (listapanelHorario.isEmpty()) {
@@ -165,7 +175,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     }
 
     /**
-     * mouseClicked: Maneja eventos de clic del ratón.
+     * mouseClicked: Maneja eventos dependiendo que panel esta visible, de que horarios escogio o si compro asientos.
      * @param e Evento de ratón.
      */
 
